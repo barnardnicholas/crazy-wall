@@ -2,6 +2,8 @@ body,
 .root {
   margin: 0;
   padding: 0;
+  background-color: #222222;
+  color: #ffffff;
 }
 
 .App {
@@ -45,18 +47,17 @@ body,
   }
 }
 
-.line-start {
-  top: 50px;
-  left: 50px;
+.puppy-puppy1 {
+  /* top: 50px;
+  left: 50px; */
   background-image: url(https://www.ardengrange.com/sites/admin/plugins/elfinder/files/ardengrange/Nutrition%20and%20Advice%20section/Fact%20Sheets%20section/Canine%20Fact%20Sheets/Puppy%20section/Puppy%20guide%20images/Scruffy%20pup.jpg);
 }
-.line-end {
-  top: 50px;
-  right: 50px;
+.puppy-puppy2 {
+  /* top: 50px;
+  right: 50px; */
   background-image: url(https://www.telegraph.co.uk/content/dam/Pets/spark/royal-canin/happy-puppy-xlarge.jpg?imwidth=1200);
 }
-.line-start,
-.line-end {
+.puppy {
   position: absolute;
   width: 200px;
   height: 125px;
