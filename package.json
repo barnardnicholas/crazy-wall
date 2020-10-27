@@ -10,7 +10,9 @@
     "react-dom": "^17.0.1",
     "react-draggable": "^4.4.3",
     "react-lineto": "^3.2.0",
+    "react-rotatable": "^1.0.2",
     "react-scripts": "4.0.0",
+    "react-zoom-pan-pinch": "^1.6.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
