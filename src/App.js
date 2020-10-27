@@ -54,6 +54,20 @@ class App extends Component {
     
   }
 
+  handleRotate = (e, id, angle) => {
+    console.log(`${id} - ${angle}`)
+    this.renderLines();
+    this.setState((currentState) => {
+      const itemCopy = {...currentState.items[id]}
+      itemCopy.rotation = angle;
+      const newState = {items: {...currentState.items}}
+      newState.items[id] = itemCopy;
+      return newState;
+    })
+  }
+
+  handleRotateStop = (e, id) => {}
+
   renderLines = () => {
     return this.state.lines.map(line => {
       return (
@@ -69,11 +83,12 @@ class App extends Component {
         <div className="App">
        <h1>Puppy Board</h1>
 
-          <Rotatable>
+
+          <Rotatable onRotate={(e, dom, angle) => this.handleRotate(e, "puppy1", angle)}>
         <Draggable onDrag={(e) => {this.handleDrag(e, "puppy1")}} onStop={(e) => {this.handleDragStop(e, "puppy1")}}>
           <div className="line-start">
     <h3>{this.state.items.puppy1.posX}, {this.state.items.puppy1.posY}</h3>
-    <h3>{`${this.state.items.puppy1.rotation}deg`}</h3>
+    <h3>{`${Math.floor(this.state.items.puppy1.rotation)}deg`}</h3>
         </div>
         </Draggable>
           </Rotatable>
