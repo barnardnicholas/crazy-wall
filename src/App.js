@@ -169,15 +169,18 @@ class App extends Component {
     this.writeData(this.state);
   };
 
+  // - TODO - this sets state incorrectly
   handleResize = (width, height, top, left, id) => {
     this.setState((prevState) => {
-      const newItems = [...prevState.items.filter((i) => i.id != id)];
+      const thisIndex = prevState.items.map((i) => i.id).indexOf(id);
+      console.log(thisIndex);
+      const newItems = [...prevState.items];
       const newItem = { ...prevState.items.filter((i) => i.id == id)[0] };
       newItem.width = width;
       newItem.height = height;
       newItem.top = top;
       newItem.left = left;
-      newItems.push(newItem);
+      newItems[thisIndex] = newItem;
       return {
         ...prevState,
         items: newItems,

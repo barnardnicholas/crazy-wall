@@ -40,7 +40,7 @@ const BoardItem = (props) => {
       }}
       handleDragEnd={handleDragEnd}
       handleResize={(width, height, top, left) => {
-        handleResize(width, height, top, left, "puppy1");
+        handleResize(width, height, top, left, id);
       }}
       handleResizeEnd={handleResizeEnd}
       handleRotate={(angle) => {
