@@ -20,6 +20,7 @@ const resetData = {
       width: 250,
       height: 250,
       angle: 355,
+      aspect: 1,
       name: "Puppy 1",
       id: "puppy1",
       zIndex: 2,
@@ -30,12 +31,13 @@ const resetData = {
       width: 250,
       height: 250,
       angle: 25,
+      aspect: 2,
       name: "Puppy 2",
       id: "puppy2",
       zIndex: 1,
     },
   ],
-  lines: [["line-start", "line-end"]],
+  lines: [["item-puppy1", "item-puppy2"]],
 };
 
 const setItemState = (prevState, id, keys, values) => {
@@ -66,7 +68,7 @@ class App extends Component {
     super();
     this.state = {
       dataLoaded: false,
-      activeItem: "puppy1",
+      activeItem: null,
       items: [
         {
           left: 400,
@@ -74,6 +76,7 @@ class App extends Component {
           width: 250,
           height: 250,
           angle: 355,
+          aspect: 1,
           name: "Puppy 1",
           id: "puppy1",
           zIndex: 2,
@@ -84,12 +87,13 @@ class App extends Component {
           width: 250,
           height: 250,
           angle: 25,
+          aspect: 2,
           name: "Puppy 2",
           id: "puppy2",
           zIndex: 1,
         },
       ],
-      lines: [["line-start", "line-end"]],
+      lines: [["item-puppy1", "item-puppy2"]],
     };
   }
 
@@ -187,7 +191,7 @@ class App extends Component {
           to={line[1]}
           borderColor="red"
           borderStyle="solid"
-          borderWidth="2"
+          borderWidth={2}
         ></LineTo>
       );
     });
@@ -199,61 +203,69 @@ class App extends Component {
 
   render() {
     return (
-      <TransformWrapper
-        scale={1}
-        options={transformWrapperOptions}
-        pan={transformWrapperPanOptions}
-      >
-        <TransformComponent>
-          <div className="App">
-            <div
-              className="board"
-              onClick={(e) => {
-                this.handleBoardClick(e);
-              }}
-            >
-              <h1>Puppy Board</h1>
-              <button
-                onClick={() => {
-                  this.writeData(this.state);
+      <>
+        <TransformWrapper
+          scale={1}
+          options={transformWrapperOptions}
+          pan={transformWrapperPanOptions}
+        >
+          <TransformComponent>
+            <div className="App">
+              <div
+                className="board"
+                onClick={(e) => {
+                  this.handleBoardClick(e);
                 }}
               >
-                Write Data
-              </button>
-              <button onClick={this.resetData}>Reset Data</button>
+                <h1>Puppy Board</h1>
+                <button
+                  onClick={() => {
+                    this.writeData(this.state);
+                  }}
+                >
+                  Write Data
+                </button>
+                <button onClick={this.resetData}>Reset Data</button>
 
-              {this.state.dataLoaded
-                ? this.state.items.map((item, idx) => {
-                    return (
-                      <PuppyPicture
-                        key={idx}
-                        data={item}
-                        zIndex={item.zIndex}
-                        active={this.state.activeItem == item.id ? true : false}
-                        handleContentClick={() => {
-                          this.handleContentClick(item.id);
-                        }}
-                        handleDrag={this.handleDrag}
-                        handleDragEnd={this.handleDragEnd}
-                        handleResize={this.handleResize}
-                        handleResizeEnd={this.handleResizeEnd}
-                        handleRotate={this.handleRotate}
-                        handleRotateEnd={this.handleRotateEnd}
-                      />
-                    );
-                  })
-                : null}
-
-              {/* {this.renderLines()} */}
+                {this.state.dataLoaded
+                  ? this.state.items.map((item, idx) => {
+                      return (
+                        <PuppyPicture
+                          key={idx}
+                          data={item}
+                          zIndex={item.zIndex}
+                          active={
+                            this.state.activeItem == item.id ? true : false
+                          }
+                          handleContentClick={() => {
+                            this.handleContentClick(item.id);
+                          }}
+                          handleDrag={this.handleDrag}
+                          handleDragEnd={this.handleDragEnd}
+                          handleResize={this.handleResize}
+                          handleResizeEnd={this.handleResizeEnd}
+                          handleRotate={this.handleRotate}
+                          handleRotateEnd={this.handleRotateEnd}
+                        />
+                      );
+                    })
+                  : null}
+                {/* {this.renderLines()} */}
+              </div>
             </div>
-          </div>
-        </TransformComponent>
-      </TransformWrapper>
+          </TransformComponent>
+        </TransformWrapper>
+      </>
     );
   }
 
   componentDidMount() {
     this.readData();
+  }
+
+  componentWillUnmount() {
+    const { activeItem, ...prevState } = this.state;
+    this.writeData({ ...prevState, activeItem: null });
   }
 }
 

@@ -1,40 +1,38 @@
-import React, { Component } from "react";
+import React from "react";
 import ResizableContent from "./ResizableContent";
 
-class PuppyPicture extends Component {
-  render() {
-    return (
-      <ResizableContent
-        top={this.props.data.top}
-        left={this.props.data.left}
-        width={this.props.data.width}
-        height={this.props.data.height}
-        rotateAngle={this.props.data.angle}
-        zIndex={this.props.zIndex}
-        active={this.props.active}
-        className="resize-1"
-        handleDrag={(top, left) => {
-          this.props.handleDrag(top, left, this.props.data.id);
-        }}
-        handleDragEnd={this.props.handleDragEnd}
-        handleResize={(width, height, top, left) => {
-          this.props.handleResize(width, height, top, left, "puppy1");
-        }}
-        handleResizeEnd={this.props.handleResizeEnd}
-        handleRotate={(angle) => {
-          this.props.handleRotate(angle, this.props.data.id);
-        }}
-        handleRotateEnd={this.props.handleRotateEnd}
+const PuppyPicture = (props) => {
+  return (
+    <ResizableContent
+      top={props.data.top}
+      left={props.data.left}
+      width={props.data.width}
+      height={props.data.height}
+      rotateAngle={props.data.angle}
+      zIndex={props.zIndex}
+      active={props.active}
+      className="resize-1"
+      handleDrag={(top, left) => {
+        props.handleDrag(top, left, props.data.id);
+      }}
+      handleDragEnd={props.handleDragEnd}
+      handleResize={(width, height, top, left) => {
+        props.handleResize(width, height, top, left, "puppy1");
+      }}
+      handleResizeEnd={props.handleResizeEnd}
+      handleRotate={(angle) => {
+        props.handleRotate(angle, props.data.id);
+      }}
+      handleRotateEnd={props.handleRotateEnd}
+    >
+      <div
+        className={`content content1 puppy item-${props.data.id}`}
+        onClick={props.handleContentClick}
       >
-        <div
-          className={`content content1 puppy puppy-${this.props.data.id}`}
-          onClick={this.props.handleContentClick}
-        >
-          {this.props.data.name}
-        </div>
-      </ResizableContent>
-    );
-  }
-}
+        {props.data.name}
+      </div>
+    </ResizableContent>
+  );
+};
 
 export default PuppyPicture;

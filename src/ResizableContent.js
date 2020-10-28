@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import ResizableRect from "react-resizable-rotatable-draggable";
+import ResizableRect from "./lib/react-resizable-rotatable-draggable";
 
 const ResizableContent = (props) => {
   const [width, setWidth] = useState(props.width);
@@ -15,7 +15,7 @@ const ResizableContent = (props) => {
     height,
     position: "absolute",
     transform: `rotate(${rotateAngle}deg)`,
-    zIndex: props.zIndex,
+    // zIndex: props.zIndex,
   };
 
   const handleResize = (style, isShiftKey, type) => {
@@ -63,7 +63,7 @@ const ResizableContent = (props) => {
           minWidth={10}
           width={width}
           minHeight={10}
-          zIndex={props.zIndex + 1}
+          // zIndex={props.zIndex}
           height={height}
           onDrag={handleDrag}
           onDragEnd={handleDragEnd}
