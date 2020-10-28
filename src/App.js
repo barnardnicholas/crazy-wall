@@ -193,7 +193,9 @@ class App extends Component {
     });
   };
 
-  renderPuppies() {}
+  handleBoardClick = (e) => {
+    if (e.target.className == "board") this.setActiveItem(null);
+  };
 
   render() {
     return (
@@ -204,39 +206,46 @@ class App extends Component {
       >
         <TransformComponent>
           <div className="App">
-            <h1>Puppy Board</h1>
-            <button
-              onClick={() => {
-                this.writeData(this.state);
+            <div
+              className="board"
+              onClick={(e) => {
+                this.handleBoardClick(e);
               }}
             >
-              Write Data
-            </button>
-            <button onClick={this.resetData}>Reset Data</button>
+              <h1>Puppy Board</h1>
+              <button
+                onClick={() => {
+                  this.writeData(this.state);
+                }}
+              >
+                Write Data
+              </button>
+              <button onClick={this.resetData}>Reset Data</button>
 
-            {this.state.dataLoaded
-              ? this.state.items.map((item, idx) => {
-                  return (
-                    <PuppyPicture
-                      key={idx}
-                      data={item}
-                      zIndex={item.zIndex}
-                      active={this.state.activeItem == item.id ? true : false}
-                      handleContentClick={() => {
-                        this.handleContentClick(item.id);
-                      }}
-                      handleDrag={this.handleDrag}
-                      handleDragEnd={this.handleDragEnd}
-                      handleResize={this.handleResize}
-                      handleResizeEnd={this.handleResizeEnd}
-                      handleRotate={this.handleRotate}
-                      handleRotateEnd={this.handleRotateEnd}
-                    />
-                  );
-                })
-              : null}
+              {this.state.dataLoaded
+                ? this.state.items.map((item, idx) => {
+                    return (
+                      <PuppyPicture
+                        key={idx}
+                        data={item}
+                        zIndex={item.zIndex}
+                        active={this.state.activeItem == item.id ? true : false}
+                        handleContentClick={() => {
+                          this.handleContentClick(item.id);
+                        }}
+                        handleDrag={this.handleDrag}
+                        handleDragEnd={this.handleDragEnd}
+                        handleResize={this.handleResize}
+                        handleResizeEnd={this.handleResizeEnd}
+                        handleRotate={this.handleRotate}
+                        handleRotateEnd={this.handleRotateEnd}
+                      />
+                    );
+                  })
+                : null}
 
-            {/* {this.renderLines()} */}
+              {/* {this.renderLines()} */}
+            </div>
           </div>
         </TransformComponent>
       </TransformWrapper>
