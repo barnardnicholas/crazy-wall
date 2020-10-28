@@ -1,37 +1,38 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import "./App.css";
-import Draggable, { DraggableCore } from "react-draggable";
 import LineTo from "react-lineto";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
-import Rotatable from "react-rotatable";
 import "react-rotatable/dist/css/rotatable.min.css";
-import RRD from "./RRD";
-import "./RRD.css";
-import ResizableContent from "./ResizableContent";
-import PuppyPicture from "./PuppyPicture";
+import BoardItem from "./BoardItem";
 
 const resetData = {
   dataLoaded: false,
   activeItem: null,
   items: [
     {
+      type: "photo",
+      imageUrl:
+        "https://www.telegraph.co.uk/content/dam/Pets/spark/royal-canin/happy-puppy-xlarge.jpg?imwidth=1200",
       left: 400,
       top: 400,
-      width: 250,
-      height: 250,
+      width: 450,
+      height: 547,
       angle: 355,
-      aspect: 1,
+      aspect: 0.823,
       name: "Puppy 1",
       id: "puppy1",
       zIndex: 2,
     },
     {
+      type: "photo",
+      imageUrl:
+        "https://www.ardengrange.com/sites/admin/plugins/elfinder/files/ardengrange/Nutrition%20and%20Advice%20section/Fact%20Sheets%20section/Canine%20Fact%20Sheets/Puppy%20section/Puppy%20guide%20images/Scruffy%20pup.jpg",
       left: 600,
       top: 400,
-      width: 250,
-      height: 250,
+      width: 450,
+      height: 547,
       angle: 25,
-      aspect: 2,
+      aspect: 0.823,
       name: "Puppy 2",
       id: "puppy2",
       zIndex: 1,
@@ -71,23 +72,29 @@ class App extends Component {
       activeItem: null,
       items: [
         {
+          type: "photo",
+          imageUrl:
+            "https://www.telegraph.co.uk/content/dam/Pets/spark/royal-canin/happy-puppy-xlarge.jpg?imwidth=1200",
           left: 400,
           top: 400,
-          width: 250,
-          height: 250,
+          width: 450,
+          height: 547,
           angle: 355,
-          aspect: 1,
+          aspect: 0.823,
           name: "Puppy 1",
           id: "puppy1",
           zIndex: 2,
         },
         {
+          type: "photo",
+          imageUrl:
+            "https://www.ardengrange.com/sites/admin/plugins/elfinder/files/ardengrange/Nutrition%20and%20Advice%20section/Fact%20Sheets%20section/Canine%20Fact%20Sheets/Puppy%20section/Puppy%20guide%20images/Scruffy%20pup.jpg",
           left: 600,
           top: 400,
-          width: 250,
-          height: 250,
+          width: 450,
+          height: 547,
           angle: 25,
-          aspect: 2,
+          aspect: 0.823,
           name: "Puppy 2",
           id: "puppy2",
           zIndex: 1,
@@ -164,14 +171,13 @@ class App extends Component {
 
   handleResize = (width, height, top, left, id) => {
     this.setState((prevState) => {
-      let thisIndex = this.state.items.map((item) => item.id).indexOf(id);
-      const newItems = [...prevState.items];
-      const newItem = { ...prevState.items[thisIndex] };
+      const newItems = [...prevState.items.filter((i) => i.id != id)];
+      const newItem = { ...prevState.items.filter((i) => i.id == id)[0] };
       newItem.width = width;
       newItem.height = height;
       newItem.top = top;
       newItem.left = left;
-      newItems[thisIndex] = newItem;
+      newItems.push(newItem);
       return {
         ...prevState,
         items: newItems,
@@ -230,10 +236,11 @@ class App extends Component {
                 {this.state.dataLoaded
                   ? this.state.items.map((item, idx) => {
                       return (
-                        <PuppyPicture
+                        <BoardItem
                           key={idx}
                           data={item}
                           zIndex={item.zIndex}
+                          aspect={item.aspect}
                           active={
                             this.state.activeItem == item.id ? true : false
                           }

@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import ResizableRect from "./lib/react-resizable-rotatable-draggable";
+import ResizableRect from "react-resizable-rotatable-draggable";
 
 const ResizableContent = (props) => {
   const [width, setWidth] = useState(props.width);
@@ -8,6 +8,7 @@ const ResizableContent = (props) => {
   const [left, setLeft] = useState(props.left);
   const [rotateAngle, setRotateAngle] = useState(props.rotateAngle);
 
+  console.log(props.width);
   const contentStyle = {
     top,
     left,
@@ -59,7 +60,7 @@ const ResizableContent = (props) => {
           top={top}
           rotatable
           left={left}
-          aspectRatio
+          aspectRatio={props.aspect}
           minWidth={10}
           width={width}
           minHeight={10}

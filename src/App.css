@@ -50,14 +50,9 @@ body,
   background-image: url(https://www.telegraph.co.uk/content/dam/Pets/spark/royal-canin/happy-puppy-xlarge.jpg?imwidth=1200);
 }
 .puppy {
-  position: absolute;
-  width: 200px;
-  height: 125px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  color: #fff;
-  border: 2px solid black;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
