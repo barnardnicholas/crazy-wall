@@ -10,6 +10,8 @@ class PuppyPicture extends Component {
         width={this.props.data.width}
         height={this.props.data.height}
         rotateAngle={this.props.data.angle}
+        zIndex={this.props.zIndex}
+        active={this.props.active}
         className="resize-1"
         handleDrag={(top, left) => {
           this.props.handleDrag(top, left, this.props.data.id);
@@ -24,7 +26,10 @@ class PuppyPicture extends Component {
         }}
         handleRotateEnd={this.props.handleRotateEnd}
       >
-        <div className={`content content1 puppy puppy-${this.props.data.id}`}>
+        <div
+          className={`content content1 puppy puppy-${this.props.data.id}`}
+          onClick={this.props.handleContentClick}
+        >
           {this.props.data.name}
         </div>
       </ResizableContent>

@@ -15,6 +15,7 @@ const ResizableContent = (props) => {
     height,
     position: "absolute",
     transform: `rotate(${rotateAngle}deg)`,
+    zIndex: props.zIndex,
   };
 
   const handleResize = (style, isShiftKey, type) => {
@@ -53,24 +54,27 @@ const ResizableContent = (props) => {
     <Fragment>
       <div style={contentStyle}>{props.children}</div>
 
-      <ResizableRect
-        top={top}
-        rotatable
-        left={left}
-        aspectRatio
-        minWidth={10}
-        width={width}
-        minHeight={10}
-        height={height}
-        onDrag={handleDrag}
-        onDragEnd={handleDragEnd}
-        onRotate={handleRotate}
-        onRotateEnd={handleRotateEnd}
-        onResize={handleResize}
-        onResizeEnd={handleResizeEnd}
-        zoomable="nw, ne, se, sw"
-        rotateAngle={rotateAngle}
-      />
+      {props.active ? (
+        <ResizableRect
+          top={top}
+          rotatable
+          left={left}
+          aspectRatio
+          minWidth={10}
+          width={width}
+          minHeight={10}
+          zIndex={props.zIndex + 1}
+          height={height}
+          onDrag={handleDrag}
+          onDragEnd={handleDragEnd}
+          onRotate={handleRotate}
+          onRotateEnd={handleRotateEnd}
+          onResize={handleResize}
+          onResizeEnd={handleResizeEnd}
+          zoomable="nw, ne, se, sw"
+          rotateAngle={rotateAngle}
+        />
+      ) : null}
     </Fragment>
   );
 };

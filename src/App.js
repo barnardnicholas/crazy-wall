@@ -10,6 +10,34 @@ import "./RRD.css";
 import ResizableContent from "./ResizableContent";
 import PuppyPicture from "./PuppyPicture";
 
+const resetData = {
+  dataLoaded: false,
+  activeItem: null,
+  items: [
+    {
+      left: 400,
+      top: 400,
+      width: 250,
+      height: 250,
+      angle: 355,
+      name: "Puppy 1",
+      id: "puppy1",
+      zIndex: 2,
+    },
+    {
+      left: 600,
+      top: 400,
+      width: 250,
+      height: 250,
+      angle: 25,
+      name: "Puppy 2",
+      id: "puppy2",
+      zIndex: 1,
+    },
+  ],
+  lines: [["line-start", "line-end"]],
+};
+
 const setItemState = (prevState, id, keys, values) => {
   const newItems = [...prevState.items];
   const newItem = {
@@ -38,6 +66,7 @@ class App extends Component {
     super();
     this.state = {
       dataLoaded: false,
+      activeItem: "puppy1",
       items: [
         {
           left: 400,
@@ -47,6 +76,7 @@ class App extends Component {
           angle: 355,
           name: "Puppy 1",
           id: "puppy1",
+          zIndex: 2,
         },
         {
           left: 600,
@@ -56,6 +86,7 @@ class App extends Component {
           angle: 25,
           name: "Puppy 2",
           id: "puppy2",
+          zIndex: 1,
         },
       ],
       lines: [["line-start", "line-end"]],
@@ -75,31 +106,16 @@ class App extends Component {
   };
 
   resetData = () => {
-    const resetData = {
-      dataLoaded: false,
-      items: [
-        {
-          left: 400,
-          top: 400,
-          width: 250,
-          height: 250,
-          angle: 355,
-          name: "Puppy 1",
-          id: "puppy1",
-        },
-        {
-          left: 600,
-          top: 400,
-          width: 250,
-          height: 250,
-          angle: 25,
-          name: "Puppy 2",
-          id: "puppy2",
-        },
-      ],
-      lines: [["line-start", "line-end"]],
-    };
     this.writeData(resetData);
+  };
+
+  setActiveItem = (id) => {
+    if (this.state.activeItem != id) this.setState({ activeItem: id });
+    else if (!id) this.setState({ activeItem: null });
+  };
+
+  handleContentClick = (id) => {
+    if (this.state.activeItem != id) this.setActiveItem(id);
   };
 
   handleDrag = (top, left, id) => {
@@ -204,6 +220,11 @@ class App extends Component {
                     <PuppyPicture
                       key={idx}
                       data={item}
+                      zIndex={item.zIndex}
+                      active={this.state.activeItem == item.id ? true : false}
+                      handleContentClick={() => {
+                        this.handleContentClick(item.id);
+                      }}
                       handleDrag={this.handleDrag}
                       handleDragEnd={this.handleDragEnd}
                       handleResize={this.handleResize}
