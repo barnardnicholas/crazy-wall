@@ -4,10 +4,6 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: Verdana;
-}
-
 .rect {
   cursor: move;
   user-select: none;
@@ -22,10 +18,3 @@ body {
   justify-content: center;
 }
 
-.content1 {
-  background-color: #ffeaa7;
-}
-
-.content2 {
-  background-color: #f9b1a0;
-}

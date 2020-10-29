@@ -5,6 +5,8 @@ import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import "react-rotatable/dist/css/rotatable.min.css";
 import BoardItem from "./BoardItem";
 
+// TODO - handle z-indexing of items by re-ordering array in state
+
 const resetData = {
   dataLoaded: false,
   activeItem: null,
@@ -169,11 +171,9 @@ class App extends Component {
     this.writeData(this.state);
   };
 
-  // - TODO - this sets state incorrectly
   handleResize = (width, height, top, left, id) => {
     this.setState((prevState) => {
       const thisIndex = prevState.items.map((i) => i.id).indexOf(id);
-      console.log(thisIndex);
       const newItems = [...prevState.items];
       const newItem = { ...prevState.items.filter((i) => i.id == id)[0] };
       newItem.width = width;

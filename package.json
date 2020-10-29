@@ -6,6 +6,8 @@
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "chai": "^4.2.0",
+    "mocha": "^8.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-draggable": "^4.4.3",
@@ -21,6 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test-utils": "mocha src/utils/spec/",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
