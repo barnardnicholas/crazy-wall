@@ -4,6 +4,7 @@ import LineTo from "react-lineto";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import "react-rotatable/dist/css/rotatable.min.css";
 import BoardItem from "./BoardItem";
+import { moveToFront, moveToBack } from "./utils/index";
 
 // TODO - handle z-indexing of items by re-ordering array in state
 
@@ -192,6 +193,17 @@ class App extends Component {
     this.writeData(this.state);
   };
 
+  handleMoveToFront = (item) => {
+    let prevItems = [...this.state.items];
+    this.setState({ items: [] });
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        items: moveToFront(prevItems, item),
+      };
+    });
+  };
+
   renderLines = () => {
     return this.state.lines.map((line) => {
       return (
@@ -256,6 +268,9 @@ class App extends Component {
                           handleResizeEnd={this.handleResizeEnd}
                           handleRotate={this.handleRotate}
                           handleRotateEnd={this.handleRotateEnd}
+                          handleMoveToFront={() => {
+                            this.handleMoveToFront(item);
+                          }}
                         />
                       );
                     })
