@@ -13,6 +13,7 @@ const BoardItem = (props) => {
     handleRotateEnd,
     handleContentClick,
     handleMoveToFront,
+    handleMoveToBack,
   } = props;
   const {
     type,
@@ -50,9 +51,11 @@ const BoardItem = (props) => {
       handleRotateEnd={handleRotateEnd}
     >
       <PictureContent
+        key={props.data.id}
         data={props.data}
         handleContentClick={handleContentClick}
         handleMoveToFront={handleMoveToFront}
+        handleMoveToBack={handleMoveToBack}
       />
     </ResizableContent>
   );

@@ -84,6 +84,11 @@ describe("moveToFront", () => {
     const otherResultItems = actualResult.slice(0, actualResult.length - 1);
     expect(otherTestItems).to.eql(otherResultItems);
   });
+  it("Returns the same array if item is already at end", () => {
+    const newItemToMove = { ...testItems[1] };
+    const actualResult = moveToFront(testItems, newItemToMove);
+    expect(actualResult).to.eql(testItems);
+  });
 });
 
 describe("moveToBack", () => {

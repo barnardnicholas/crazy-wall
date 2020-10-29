@@ -1,7 +1,7 @@
 import React from "react";
 
 const PictureContent = (props) => {
-  const { handleContentClick, handleMoveToFront } = props;
+  const { handleContentClick, handleMoveToFront, handleMoveToBack } = props;
   const { id, name, imageUrl } = props.data;
   //   const { id, name } = props.data;
   return (
@@ -11,7 +11,11 @@ const PictureContent = (props) => {
       style={{ backgroundImage: `url(${imageUrl})` }}
     >
       {name}
-      <button onClick={handleMoveToFront}>Front</button>
+
+      <div className="order-controls">
+        <button onClick={handleMoveToFront}>Bring to Front</button>
+        <button onClick={handleMoveToBack}>Move to Back</button>
+      </div>
     </div>
   );
 };

@@ -194,14 +194,31 @@ class App extends Component {
   };
 
   handleMoveToFront = (item) => {
-    let prevItems = [...this.state.items];
-    this.setState({ items: [] });
-    this.setState((prevState) => {
-      return {
-        ...prevState,
-        items: moveToFront(prevItems, item),
-      };
-    });
+    this.setState(
+      (prevState) => {
+        return {
+          ...prevState,
+          items: moveToFront(prevState.items, item),
+        };
+      },
+      () => {
+        this.writeData(this.state);
+      }
+    );
+  };
+
+  handleMoveToBack = (item) => {
+    this.setState(
+      (prevState) => {
+        return {
+          ...prevState,
+          items: moveToBack(prevState.items, item),
+        };
+      },
+      () => {
+        this.writeData(this.state);
+      }
+    );
   };
 
   renderLines = () => {
@@ -233,6 +250,7 @@ class App extends Component {
           <TransformComponent>
             <div className="App">
               <div
+                key={"board"}
                 className="board"
                 onClick={(e) => {
                   this.handleBoardClick(e);
@@ -249,10 +267,10 @@ class App extends Component {
                 <button onClick={this.resetData}>Reset Data</button>
 
                 {this.state.dataLoaded
-                  ? this.state.items.map((item, idx) => {
+                  ? this.state.items.map((item) => {
                       return (
                         <BoardItem
-                          key={idx}
+                          key={`item-${item.id}`}
                           data={item}
                           zIndex={item.zIndex}
                           aspect={item.aspect}
@@ -270,6 +288,9 @@ class App extends Component {
                           handleRotateEnd={this.handleRotateEnd}
                           handleMoveToFront={() => {
                             this.handleMoveToFront(item);
+                          }}
+                          handleMoveToBack={() => {
+                            this.handleMoveToBack(item);
                           }}
                         />
                       );
