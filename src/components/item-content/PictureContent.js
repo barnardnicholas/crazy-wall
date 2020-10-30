@@ -8,7 +8,7 @@ const PictureContent = (props) => {
   //   const { id, name } = props.data;
   return (
     <div className={`content content1`} onClick={handleContentClick}>
-      <div style={{ width, height }}>
+      <div style={{ width, height, fontSize: `${height * 0.1}px` }}>
         <div
           className="pic-polaroid bg-cover"
           style={{ backgroundImage: `url(${imageUrl})` }}
@@ -17,7 +17,7 @@ const PictureContent = (props) => {
           className="bg-cover pic-frame-polaroid"
           style={{ backgroundImage: `url(${polaroidFrame})` }}
         ></div>
-        {/* {name} */}
+        <div className="pic-label-polaroid">{name}</div>
 
         <div className="order-controls">
           <button onClick={handleMoveToFront}>F</button>
