@@ -10,13 +10,15 @@ const hues = {
 
 const Pin = (props) => {
   console.dir(props);
-  const { pinAngle, pinColor } = props;
+  const { pinAngle, pinColor, pinTop, pinLeft } = props;
   return (
     <div
       className="pin bg-contain"
       style={{
         filter: `hue-rotate(${hues[pinColor]}deg)`,
         transform: `rotate(${pinAngle}deg)`,
+        top: pinTop,
+        left: pinLeft,
       }}
     ></div>
   );

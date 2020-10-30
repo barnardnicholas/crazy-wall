@@ -1,6 +1,7 @@
 import React from "react";
 import ResizableContent from "./ResizableContent";
 import PictureContent from "./components/item-content/PictureContent";
+import NoteContent from "./components/item-content/NoteContent";
 
 const BoardItem = (props) => {
   const {
@@ -50,13 +51,23 @@ const BoardItem = (props) => {
       }}
       handleRotateEnd={handleRotateEnd}
     >
-      <PictureContent
-        key={props.data.id}
-        data={props.data}
-        handleContentClick={handleContentClick}
-        handleMoveToFront={handleMoveToFront}
-        handleMoveToBack={handleMoveToBack}
-      />
+      {props.data.type === "photo" ? (
+        <PictureContent
+          key={props.data.id}
+          data={props.data}
+          handleContentClick={handleContentClick}
+          handleMoveToFront={handleMoveToFront}
+          handleMoveToBack={handleMoveToBack}
+        />
+      ) : (
+        <NoteContent
+          key={props.data.id}
+          data={props.data}
+          handleContentClick={handleContentClick}
+          handleMoveToFront={handleMoveToFront}
+          handleMoveToBack={handleMoveToBack}
+        />
+      )}
     </ResizableContent>
   );
 };
