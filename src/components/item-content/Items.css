@@ -1,3 +1,14 @@
+/* -------------------- Pin -------------------- */
+.pin {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: calc(50% - 10px);
+  top: 10px;
+  background-image: url("../../assets/img/pin_red_100x107.png");
+  z-index: 10;
+}
+
 /* -------------------- Photo -------------------- */
 .pic-frame-polaroid {
   position: absolute;

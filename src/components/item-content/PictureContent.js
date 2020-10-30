@@ -1,6 +1,7 @@
 import React from "react";
 import polaroidFrame from "../../assets/img/polaroid-frame.png";
 import "./Items.css";
+import Pin from "./Pin";
 
 const PictureContent = (props) => {
   const { handleContentClick, handleMoveToFront, handleMoveToBack } = props;
@@ -23,6 +24,7 @@ const PictureContent = (props) => {
           <button onClick={handleMoveToFront}>F</button>
           <button onClick={handleMoveToBack}>B</button>
         </div>
+        <Pin color="red" />
       </div>
     </div>
   );

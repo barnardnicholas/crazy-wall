@@ -70,6 +70,12 @@ body,
   background-position: center;
 }
 
+.bg-contain {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .order-controls {
   position: absolute;
   bottom: -30px;
