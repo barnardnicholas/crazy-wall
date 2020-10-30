@@ -1,7 +1,8 @@
 import React from "react";
 import ResizableContent from "./ResizableContent";
 import PictureContent from "./components/item-content/PictureContent";
-import NoteContent from "./components/item-content/NoteContent";
+import NotepadPage from "./components/item-content/NotepadPage";
+import PostIt from "./components/item-content/PostIt";
 
 const BoardItem = (props) => {
   const {
@@ -28,6 +29,41 @@ const BoardItem = (props) => {
     name,
     aspect,
   } = props.data;
+
+  const renderItem = () => {
+    if (props.data.type === "photo") {
+      return (
+        <PictureContent
+          key={props.data.id}
+          data={props.data}
+          handleContentClick={handleContentClick}
+          handleMoveToFront={handleMoveToFront}
+          handleMoveToBack={handleMoveToBack}
+        />
+      );
+    } else if (props.data.type === "note") {
+      return (
+        <NotepadPage
+          key={props.data.id}
+          data={props.data}
+          handleContentClick={handleContentClick}
+          handleMoveToFront={handleMoveToFront}
+          handleMoveToBack={handleMoveToBack}
+        />
+      );
+    } else if (props.data.type === "postit") {
+      return (
+        <PostIt
+          key={props.data.id}
+          data={props.data}
+          handleContentClick={handleContentClick}
+          handleMoveToFront={handleMoveToFront}
+          handleMoveToBack={handleMoveToBack}
+        />
+      );
+    }
+  };
+
   return (
     <ResizableContent
       top={top}
@@ -51,23 +87,7 @@ const BoardItem = (props) => {
       }}
       handleRotateEnd={handleRotateEnd}
     >
-      {props.data.type === "photo" ? (
-        <PictureContent
-          key={props.data.id}
-          data={props.data}
-          handleContentClick={handleContentClick}
-          handleMoveToFront={handleMoveToFront}
-          handleMoveToBack={handleMoveToBack}
-        />
-      ) : (
-        <NoteContent
-          key={props.data.id}
-          data={props.data}
-          handleContentClick={handleContentClick}
-          handleMoveToFront={handleMoveToFront}
-          handleMoveToBack={handleMoveToBack}
-        />
-      )}
+      {renderItem()}
     </ResizableContent>
   );
 };

@@ -1,9 +1,9 @@
 import React from "react";
-import notepadPage from "../../assets/img/notepad-page.png";
+import postIt1 from "../../assets/img/postit-1.png";
 import "./Items.css";
 import Pin from "./Pin";
 
-const NoteContent = (props) => {
+const NotepadPage = (props) => {
   const { handleContentClick, handleMoveToFront, handleMoveToBack } = props;
   const {
     id,
@@ -22,8 +22,8 @@ const NoteContent = (props) => {
     <div className={`content content1`} onClick={handleContentClick}>
       <div style={{ width, height, fontSize: `${height * 0.1}px` }}>
         <div
-          className="notepad-page bg-contain"
-          style={{ backgroundImage: `url(${notepadPage})` }}
+          className="postit bg-contain"
+          style={{ backgroundImage: `url(${postIt1})` }}
         >
           {text}
         </div>
@@ -43,4 +43,4 @@ const NoteContent = (props) => {
   );
 };
 
-export default NoteContent;
+export default NotepadPage;
