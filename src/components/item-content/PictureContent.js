@@ -5,7 +5,7 @@ import Pin from "./Pin";
 
 const PictureContent = (props) => {
   const { handleContentClick, handleMoveToFront, handleMoveToBack } = props;
-  const { id, name, width, height, imageUrl } = props.data;
+  const { id, name, width, height, imageUrl, pinAngle, pinColor } = props.data;
   //   const { id, name } = props.data;
   return (
     <div className={`content content1`} onClick={handleContentClick}>
@@ -24,7 +24,7 @@ const PictureContent = (props) => {
           <button onClick={handleMoveToFront}>F</button>
           <button onClick={handleMoveToBack}>B</button>
         </div>
-        <Pin color="red" />
+        <Pin pinColor={pinColor} pinAngle={pinAngle} />
       </div>
     </div>
   );
