@@ -17,7 +17,6 @@ const NotepadPage = (props) => {
     pinLeft,
   } = props.data;
   //   const { id, name } = props.data;
-  console.log(props.data);
   return (
     <div className={`content content1`} onClick={handleContentClick}>
       <div style={{ width, height, fontSize: `${height * 0.1}px` }}>

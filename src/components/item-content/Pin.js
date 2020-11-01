@@ -9,7 +9,6 @@ const hues = {
 };
 
 const Pin = (props) => {
-  console.dir(props);
   const { pinAngle, pinColor, pinTop, pinLeft } = props;
   return (
     <div

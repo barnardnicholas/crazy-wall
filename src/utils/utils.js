@@ -10,4 +10,5 @@ const moveToBack = (items, item) => {
   return [item, ...otherItems];
 };
 
-module.exports = { moveToFront, moveToBack };
+// module.exports = { moveToFront, moveToBack };
+export { moveToFront, moveToBack };

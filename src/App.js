@@ -4,7 +4,7 @@ import LineTo from "react-lineto";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import "react-rotatable/dist/css/rotatable.min.css";
 import BoardItem from "./BoardItem";
-import { moveToFront, moveToBack } from "./utils/index";
+import { moveToFront, moveToBack } from "./utils/utils";
 
 // TODO - handle z-indexing of items by re-ordering array in state
 
