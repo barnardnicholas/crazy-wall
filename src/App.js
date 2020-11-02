@@ -270,7 +270,7 @@ class App extends Component {
                   this.handleBoardClick(e);
                 }}
               >
-                <h1>Puppy Board</h1>
+                <h1>Mood Board</h1>
                 <button
                   onClick={() => {
                     this.writeData(this.state);
