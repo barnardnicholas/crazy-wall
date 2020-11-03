@@ -89,10 +89,6 @@ const BoardItem = (props) => {
           handleRotate(angle, id);
         }}
         handleRotateEnd={handleRotateEnd}
-        onTouchMove={(top, left) => {
-          handleDrag(top, left, id);
-        }}
-        onTouchEnd={handleDragEnd}
       >
         {renderItem()}
       </ResizableContent>

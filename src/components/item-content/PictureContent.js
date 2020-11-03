@@ -1,5 +1,5 @@
 import React from "react";
-import polaroidFrame from "../../assets/img/polaroid-frame.webp";
+import polaroidFrame from "../../assets/img/polaroid-frame.png";
 import "./Items.css";
 import Pin from "./Pin";
 
