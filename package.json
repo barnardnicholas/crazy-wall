@@ -18,6 +18,7 @@
     "react-zoom-pan-pinch": "^1.6.1",
     "react-zoomable-ui": "^0.9.1",
     "styled-components": "^5.2.0",
+    "timestamp": "0.0.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

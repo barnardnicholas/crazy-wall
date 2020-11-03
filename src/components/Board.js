@@ -5,8 +5,10 @@ import "react-rotatable/dist/css/rotatable.min.css";
 import BoardItem from "./BoardItem";
 import { moveToFront, moveToBack } from "../utils/utils";
 import { Space } from "react-zoomable-ui";
+import { timestamp } from "timestamp";
 
 const resetData = {
+  lastInteraction: 0,
   dataLoaded: false,
   activeItem: null,
   items: [
@@ -82,7 +84,7 @@ const resetData = {
       pinLeft: "calc(50% - 10px)",
     },
   ],
-  lines: [["item-puppy1", "item-puppy2"]],
+  lines: [["pin-puppy1", "pin-puppy2"]],
 };
 
 const setItemState = (prevState, id, keys, values) => {
@@ -112,6 +114,7 @@ class Board extends Component {
   constructor() {
     super();
     this.state = {
+      lastInteraction: 0,
       dataLoaded: false,
       activeItem: null,
       items: [],
@@ -234,22 +237,23 @@ class Board extends Component {
   };
 
   renderLines = () => {
-    return this.state.lines.map((line, idx) => {
-      return (
-        <LineTo
-          key={idx}
-          from={line[0]}
-          to={line[1]}
-          borderColor="red"
-          borderStyle="solid"
-          borderWidth={2}
-        ></LineTo>
-      );
-    });
+    // return this.state.lines.map((line, idx) => {
+    return (
+      <LineTo
+        // key={idx}
+        from={"pin-puppy1"}
+        to={"pin-puppy2"}
+        borderColor="red"
+        borderStyle="solid"
+        borderWidth={2}
+      ></LineTo>
+    );
+    // });
   };
 
   handleBoardClick = (e) => {
     if (e.target.className == "board") this.setActiveItem(null);
+    this.setState({ lastInteraction: timestamp() });
   };
 
   render() {
@@ -271,6 +275,9 @@ class Board extends Component {
           innerDivStyle={{ width: 10000 }}
           onClick={(e) => {
             this.handleBoardClick(e);
+          }}
+          onUpdated={(e) => {
+            console.log(e);
           }}
         >
           <div key={"board"} className="board">
