@@ -89,7 +89,7 @@ const colorFor = (i) => {
   }
 };
 
-export const LargeAreaDemo = () => {
+const ZoomUI = () => {
   return (
     <Space
       style={{ backgroundColor: "black" }}
@@ -116,3 +116,5 @@ export const LargeAreaDemo = () => {
     </Space>
   );
 };
+
+export default ZoomUI;

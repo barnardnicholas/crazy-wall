@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 import ResizableRect from "react-resizable-rotatable-draggable";
+import { NoPanArea } from "react-zoomable-ui";
 
 const ResizableContent = (props) => {
   const [width, setWidth] = useState(props.width);
@@ -54,25 +55,27 @@ const ResizableContent = (props) => {
       <div style={contentStyle}>{props.children}</div>
 
       {props.active ? (
-        <ResizableRect
-          top={top}
-          rotatable
-          left={left}
-          aspectRatio={props.aspect}
-          minWidth={10}
-          width={width}
-          minHeight={10}
-          // zIndex={props.zIndex}
-          height={height}
-          onDrag={handleDrag}
-          onDragEnd={handleDragEnd}
-          onRotate={handleRotate}
-          onRotateEnd={handleRotateEnd}
-          onResize={handleResize}
-          onResizeEnd={handleResizeEnd}
-          zoomable="nw, ne, se, sw"
-          rotateAngle={rotateAngle}
-        />
+        <NoPanArea>
+          <ResizableRect
+            top={top}
+            rotatable
+            left={left}
+            aspectRatio={props.aspect}
+            minWidth={10}
+            width={width}
+            minHeight={10}
+            // zIndex={props.zIndex}
+            height={height}
+            onDrag={handleDrag}
+            onDragEnd={handleDragEnd}
+            onRotate={handleRotate}
+            onRotateEnd={handleRotateEnd}
+            onResize={handleResize}
+            onResizeEnd={handleResizeEnd}
+            zoomable=""
+            rotateAngle={rotateAngle}
+          />
+        </NoPanArea>
       ) : null}
     </Fragment>
   );

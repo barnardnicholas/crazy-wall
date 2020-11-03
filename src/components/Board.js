@@ -4,8 +4,7 @@ import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import "react-rotatable/dist/css/rotatable.min.css";
 import BoardItem from "./BoardItem";
 import { moveToFront, moveToBack } from "../utils/utils";
-
-// TODO - handle z-indexing of items by re-ordering array in state
+import { Space } from "react-zoomable-ui";
 
 const resetData = {
   dataLoaded: false,
@@ -255,65 +254,66 @@ class Board extends Component {
   render() {
     return (
       <>
-        <TransformWrapper
+        <div className="header">
+          <h1>Mood Board</h1>
+          <button
+            onClick={() => {
+              this.writeData(this.state);
+            }}
+          >
+            Write Data
+          </button>
+          <button onClick={this.resetData}>Reset Data</button>
+        </div>
+        <Space
+          style={{ backgroundColor: "black" }}
+          innerDivStyle={{ width: 10000 }}
+          onClick={(e) => {
+            this.handleBoardClick(e);
+          }}
+        >
+          {/* <TransformWrapper
           scale={1}
           options={transformWrapperOptions}
           pan={transformWrapperPanOptions}
         >
-          <TransformComponent>
-            <div className="App">
-              <div
-                key={"board"}
-                className="board"
-                onClick={(e) => {
-                  this.handleBoardClick(e);
-                }}
-              >
-                <h1>Mood Board</h1>
-                <button
-                  onClick={() => {
-                    this.writeData(this.state);
-                  }}
-                >
-                  Write Data
-                </button>
-                <button onClick={this.resetData}>Reset Data</button>
-
-                {this.state.dataLoaded
-                  ? this.state.items.map((item) => {
-                      return (
-                        <BoardItem
-                          key={`item-${item.id}`}
-                          data={item}
-                          zIndex={item.zIndex}
-                          aspect={item.aspect}
-                          active={
-                            this.state.activeItem == item.id ? true : false
-                          }
-                          handleContentClick={() => {
-                            this.handleContentClick(item.id);
-                          }}
-                          handleDrag={this.handleDrag}
-                          handleDragEnd={this.handleDragEnd}
-                          handleResize={this.handleResize}
-                          handleResizeEnd={this.handleResizeEnd}
-                          handleRotate={this.handleRotate}
-                          handleRotateEnd={this.handleRotateEnd}
-                          handleMoveToFront={() => {
-                            this.handleMoveToFront(item);
-                          }}
-                          handleMoveToBack={() => {
-                            this.handleMoveToBack(item);
-                          }}
-                        />
-                      );
-                    })
-                  : null}
-                {/* {this.renderLines()} */}
-              </div>
-            </div>
-          </TransformComponent>
-        </TransformWrapper>
+          <TransformComponent> */}
+          {/* <div className="board"> */}
+          <div key={"board"} className="board">
+            {this.state.dataLoaded
+              ? this.state.items.map((item) => {
+                  return (
+                    <BoardItem
+                      key={`item-${item.id}`}
+                      data={item}
+                      zIndex={item.zIndex}
+                      aspect={item.aspect}
+                      active={this.state.activeItem == item.id ? true : false}
+                      handleContentClick={() => {
+                        this.handleContentClick(item.id);
+                      }}
+                      handleDrag={this.handleDrag}
+                      handleDragEnd={this.handleDragEnd}
+                      handleResize={this.handleResize}
+                      handleResizeEnd={this.handleResizeEnd}
+                      handleRotate={this.handleRotate}
+                      handleRotateEnd={this.handleRotateEnd}
+                      handleMoveToFront={() => {
+                        this.handleMoveToFront(item);
+                      }}
+                      handleMoveToBack={() => {
+                        this.handleMoveToBack(item);
+                      }}
+                    />
+                  );
+                })
+              : null}
+            {/* {this.renderLines()} */}
+          </div>
+          {/* </div> */}
+          {/* </TransformComponent>
+        </TransformWrapper> */}
+        </Space>
       </>
     );
   }
