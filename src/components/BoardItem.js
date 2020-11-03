@@ -89,6 +89,10 @@ const BoardItem = (props) => {
           handleRotate(angle, id);
         }}
         handleRotateEnd={handleRotateEnd}
+        onTouchMove={(top, left) => {
+          handleDrag(top, left, id);
+        }}
+        onTouchEnd={handleDragEnd}
       >
         {renderItem()}
       </ResizableContent>
@@ -105,7 +109,14 @@ const BoardItem = (props) => {
       transform: `rotate(${angle}deg)`,
     };
     const content = (
-      <Draggable scale={1} disabled={active ? false : true} onDrag={handleDrag}>
+      <Draggable
+        scale={1}
+        disabled={active ? false : true}
+        onDrag={(e, p) => {
+          console.log(p);
+          handleDrag(top, left, id);
+        }}
+      >
         <div className={active ? "active-item" : ""} style={rdStyle}>
           {renderItem()}
         </div>
