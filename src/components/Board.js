@@ -16,8 +16,8 @@ const resetData = {
         "https://www.telegraph.co.uk/content/dam/Pets/spark/royal-canin/happy-puppy-xlarge.jpg?imwidth=1200",
       left: 243,
       top: 135,
-      width: 266,
-      height: 323,
+      width: 180, // 9cm x 20px = 180px
+      height: 219, //10.94cm x 20px = 218.8px
       angle: 355,
       aspect: 0.823,
       name: "Puppy 1",
@@ -34,8 +34,8 @@ const resetData = {
         "https://www.ardengrange.com/sites/admin/plugins/elfinder/files/ardengrange/Nutrition%20and%20Advice%20section/Fact%20Sheets%20section/Canine%20Fact%20Sheets/Puppy%20section/Puppy%20guide%20images/Scruffy%20pup.jpg",
       left: 795,
       top: 138,
-      width: 266,
-      height: 323,
+      width: 180,
+      height: 219,
       angle: 25,
       aspect: 0.823,
       name: "Puppy 2",
@@ -52,8 +52,8 @@ const resetData = {
         "Lorem ipsum dolor sit amet, usu mazim iuvaret in, ne eos virtute aliquid, nullam veritus imperdiet duo no. Iusto democritum at eam, pri omnis populo an. Id erat errem ullamcorper vel, vim in regione intellegat.",
       left: 522,
       top: 358,
-      width: 279,
-      height: 388,
+      width: 300, // 15cm x 20px = 300px
+      height: 417, // 20.83cm x 20px = 416.6px
       angle: 5,
       aspect: 0.72,
       name: "Note",
@@ -69,8 +69,8 @@ const resetData = {
       text: "Lorem ipsum dolor sit amet",
       left: 525,
       top: 146,
-      width: 181,
-      height: 179,
+      width: 152, //7.6cm x 20px = 152px
+      height: 150, //7.52cm x 20px = 150.4px
       angle: 350,
       aspect: 1.01,
       name: "Post-It",
@@ -115,7 +115,7 @@ class Board extends Component {
       dataLoaded: false,
       activeItem: null,
       items: [],
-      lines: [["item-puppy1", "item-puppy2"]],
+      lines: [["pin-puppy1", "pin-puppy2"]],
     };
   }
 
@@ -234,9 +234,10 @@ class Board extends Component {
   };
 
   renderLines = () => {
-    return this.state.lines.map((line) => {
+    return this.state.lines.map((line, idx) => {
       return (
         <LineTo
+          key={idx}
           from={line[0]}
           to={line[1]}
           borderColor="red"
@@ -272,13 +273,6 @@ class Board extends Component {
             this.handleBoardClick(e);
           }}
         >
-          {/* <TransformWrapper
-          scale={1}
-          options={transformWrapperOptions}
-          pan={transformWrapperPanOptions}
-        >
-          <TransformComponent> */}
-          {/* <div className="board"> */}
           <div key={"board"} className="board">
             {this.state.dataLoaded
               ? this.state.items.map((item) => {
@@ -310,9 +304,6 @@ class Board extends Component {
               : null}
             {/* {this.renderLines()} */}
           </div>
-          {/* </div> */}
-          {/* </TransformComponent>
-        </TransformWrapper> */}
         </Space>
       </>
     );

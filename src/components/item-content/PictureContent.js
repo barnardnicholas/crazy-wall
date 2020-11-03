@@ -39,6 +39,7 @@ const PictureContent = (props) => {
           pinAngle={pinAngle}
           pinTop={pinTop}
           pinLeft={pinLeft}
+          id={id}
         />
       </div>
     </div>
