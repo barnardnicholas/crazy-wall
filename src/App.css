@@ -39,6 +39,11 @@ body,
   cursor: grab;
 }
 
+.active-item {
+  border: 1px solid red;
+  box-sizing: content-box;
+}
+
 .rect {
   cursor: move;
   user-select: none;
