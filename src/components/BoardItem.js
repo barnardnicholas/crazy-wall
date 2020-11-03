@@ -1,8 +1,8 @@
 import React from "react";
 import ResizableContent from "./ResizableContent";
-import PictureContent from "./components/item-content/PictureContent";
-import NotepadPage from "./components/item-content/NotepadPage";
-import PostIt from "./components/item-content/PostIt";
+import PictureContent from "./item-content/PictureContent";
+import NotepadPage from "./item-content/NotepadPage";
+import PostIt from "./item-content/PostIt";
 
 const BoardItem = (props) => {
   const {
