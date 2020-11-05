@@ -2,7 +2,8 @@
 
 ## TODO
 
-Now:
+### Now:
+
 API functionality
 Database schema
 Version notation on item db entries
@@ -12,4 +13,15 @@ Auto-resize area depending on item placement
 UI/App structure
 Export board - JPG/PNG/PDF
 
-Later: Touch compatibility
+### Later:
+
+Touch compatibility
+
+### Items to add
+
+Newspaper cuttings
+Notes
+Photographs
+Maps
+Business Cards
+Flyers
