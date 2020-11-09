@@ -89,6 +89,7 @@ const BoardItem = (props) => {
           handleRotate(angle, id);
         }}
         handleRotateEnd={handleRotateEnd}
+        zoomFactor={props.zoomFactor}
       >
         {renderItem()}
       </ResizableContent>

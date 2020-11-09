@@ -11,6 +11,9 @@ const resetData = {
   lastInteraction: 0,
   dataLoaded: false,
   activeItem: null,
+  zoomFactor: 1,
+  centerX: 691,
+  centerY: 432,
   items: [
     {
       type: "photo",
@@ -117,6 +120,9 @@ class Board extends Component {
       lastInteraction: 0,
       dataLoaded: false,
       activeItem: null,
+      zoomFactor: 1,
+      centerX: 691,
+      centerY: 432,
       items: [],
       lines: [["pin-puppy1", "pin-puppy2"]],
     };
@@ -154,8 +160,8 @@ class Board extends Component {
       let thisIndex = this.state.items.map((item) => item.id).indexOf(id);
       const newItems = [...prevState.items];
       const newItem = { ...prevState.items[thisIndex] };
-      newItem.top = top;
-      newItem.left = left;
+      newItem.top = top / prevState.zoomFactor;
+      newItem.left = left / prevState.zoomFactor;
       newItems[thisIndex] = newItem;
       return {
         ...prevState,
@@ -252,7 +258,9 @@ class Board extends Component {
   };
 
   handleBoardClick = (e) => {
-    if (e.target.className == "board") this.setActiveItem(null);
+    // console.log(e);
+    if (e.target.className == "react-zoomable-ui-inner-div")
+      this.setActiveItem(null);
     this.setState({ lastInteraction: timestamp() });
   };
 
@@ -271,16 +279,26 @@ class Board extends Component {
           <button onClick={this.resetData}>Reset Data</button>
         </div>
         <Space
-          style={{ backgroundColor: "black" }}
+          // style={{ backgroundColor: "black" }}
           innerDivStyle={{ width: 10000 }}
+          onCreate={(e) => {
+            // console.log(e.containerDiv);
+            e.containerDiv.addEventListener("click", (e) => {
+              // console.log(e);
+              this.handleBoardClick(e);
+            });
+          }}
           onClick={(e) => {
+            console.log(e);
             this.handleBoardClick(e);
           }}
           onUpdated={(e) => {
-            console.log(e);
+            // console.log(e);
+            const { zoomFactor, centerX, centerY } = e;
+            this.setState({ zoomFactor, centerX, centerY });
           }}
         >
-          <div key={"board"} className="board">
+          <div key={"origin"} className="origin">
             {this.state.dataLoaded
               ? this.state.items.map((item) => {
                   return (
@@ -305,6 +323,7 @@ class Board extends Component {
                       handleMoveToBack={() => {
                         this.handleMoveToBack(item);
                       }}
+                      zoomFactor={this.state.zoomFactor}
                     />
                   );
                 })
