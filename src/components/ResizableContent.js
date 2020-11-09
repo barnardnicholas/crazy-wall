@@ -43,7 +43,10 @@ const ResizableContent = (props) => {
   const handleDrag = (deltaX, deltaY) => {
     setLeft(left + deltaX / props.zoomFactor);
     setTop(top + deltaY / props.zoomFactor);
-    props.handleDrag(top + deltaY, left + deltaX);
+    props.handleDrag(
+      top + deltaY / props.zoomFactor,
+      left + deltaX / props.zoomFactor
+    );
   };
 
   const handleDragEnd = () => {

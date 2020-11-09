@@ -12,6 +12,7 @@ Position items relative to center (X:0, y:0)
 Auto-resize area depending on item placement
 UI/App structure
 Export board - JPG/PNG/PDF
+Moving items when zoomed out - increase sensitivity
 
 ### Later:
 
