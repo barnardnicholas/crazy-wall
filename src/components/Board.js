@@ -6,6 +6,7 @@ import BoardItem from "./BoardItem";
 import { moveToFront, moveToBack } from "../utils/utils";
 import { Space, ViewPortCamera } from "react-zoomable-ui";
 import { timestamp } from "timestamp";
+import * as schema from "../data/item-schema";
 import { resetData } from "../data/test-data";
 
 // const transformWrapperOptions = {
@@ -205,8 +206,10 @@ class Board extends Component {
           }}
         >
           <div key={"origin"} className="origin">
+            <div>ORIGIN</div>
             {this.state.dataLoaded
-              ? this.state.items.map((item) => {
+              ? this.state.items.map((i) => {
+                  const item = { ...schema[i.type], ...i };
                   return (
                     <BoardItem
                       key={`item-${item.id}`}
