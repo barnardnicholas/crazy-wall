@@ -163,8 +163,7 @@ class Board extends Component {
 
   handleBoardClick = (e) => {
     // console.log(e);
-    if (e.target.className == "react-zoomable-ui-inner-div")
-      this.setActiveItem(null);
+    if (e.target.className == "board") this.setActiveItem(null);
     this.setState({ lastInteraction: timestamp() });
   };
 
@@ -192,26 +191,32 @@ class Board extends Component {
             //   this.handleBoardClick(e);
             // });
 
-            console.log();
             vp.camera.recenter(5000, 5000);
           }}
-          onClick={(e) => {
-            console.log(e);
-            this.handleBoardClick(e);
-          }}
+          // onClick={(e) => {
+          //   console.log(e);
+          //   this.handleBoardClick(e);
+          // }}
           onUpdated={(e) => {
             // console.log(e);
             const { zoomFactor, centerX, centerY } = e;
             this.setState({ zoomFactor, centerX, centerY });
           }}
         >
-          <div className="board">
+          <div
+            className="board"
+            onClick={(e) => {
+              console.log(e.target.className);
+              // this.handleBoardClick(e);
+              if (e.target.className === "board") this.setActiveItem(null);
+            }}
+          >
             <div key={"origin"} className="origin">
               <div>ORIGIN</div>
               {this.state.dataLoaded
                 ? this.state.items.map((i) => {
                     const item = { ...schema[i.type], ...i };
-                    console.log(item);
+                    console.log(item.id);
                     return (
                       <BoardItem
                         key={`item-${item.id}`}
