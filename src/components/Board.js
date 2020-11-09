@@ -205,12 +205,13 @@ class Board extends Component {
             this.setState({ zoomFactor, centerX, centerY });
           }}
         >
-          <div class="board">
+          <div className="board">
             <div key={"origin"} className="origin">
               <div>ORIGIN</div>
               {this.state.dataLoaded
                 ? this.state.items.map((i) => {
                     const item = { ...schema[i.type], ...i };
+                    console.log(item);
                     return (
                       <BoardItem
                         key={`item-${item.id}`}

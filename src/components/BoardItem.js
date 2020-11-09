@@ -33,7 +33,7 @@ const BoardItem = (props) => {
   } = props.data;
 
   const renderItem = () => {
-    if (props.data.type === "photo") {
+    if (props.data.type === "photo1") {
       return (
         <PictureContent
           key={props.data.id}
@@ -43,7 +43,7 @@ const BoardItem = (props) => {
           handleMoveToBack={handleMoveToBack}
         />
       );
-    } else if (props.data.type === "note") {
+    } else if (props.data.type === "note1") {
       return (
         <NotepadPage
           key={props.data.id}

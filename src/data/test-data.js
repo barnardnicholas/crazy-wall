@@ -38,7 +38,7 @@ export const resetData = {
   centerY: 432,
   items: [
     {
-      type: "photo",
+      type: "photo1",
       imageUrl:
         "https://www.telegraph.co.uk/content/dam/Pets/spark/royal-canin/happy-puppy-xlarge.jpg?imwidth=1200",
       left: -457,
@@ -56,7 +56,7 @@ export const resetData = {
       // pinLeft: "calc(50% - 10px)",
     },
     {
-      type: "photo",
+      type: "photo1",
       imageUrl:
         "https://www.ardengrange.com/sites/admin/plugins/elfinder/files/ardengrange/Nutrition%20and%20Advice%20section/Fact%20Sheets%20section/Canine%20Fact%20Sheets/Puppy%20section/Puppy%20guide%20images/Scruffy%20pup.jpg",
       left: 197,
@@ -74,7 +74,7 @@ export const resetData = {
       // pinLeft: "calc(50% - 10px)",
     },
     {
-      type: "note",
+      type: "note1",
       text:
         "Lorem ipsum dolor sit amet, usu mazim iuvaret in, ne eos virtute aliquid, nullam veritus imperdiet duo no. Iusto democritum at eam, pri omnis populo an. Id erat errem ullamcorper vel, vim in regione intellegat.",
       left: -424,

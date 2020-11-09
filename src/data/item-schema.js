@@ -1,5 +1,5 @@
-export const photo = {
-  type: "photo",
+export const photo1 = {
+  type: "photo1",
   imageUrl:
     "https://www.telegraph.co.uk/content/dam/Pets/spark/royal-canin/happy-puppy-xlarge.jpg?imwidth=1200",
   left: 0,
@@ -14,8 +14,24 @@ export const photo = {
   pinTop: "10px",
   pinLeft: "calc(50% - 10px)",
 };
-export const note = {
-  type: "note",
+export const photo2 = {
+  type: "photo1",
+  imageUrl:
+    "https://www.telegraph.co.uk/content/dam/Pets/spark/royal-canin/happy-puppy-xlarge.jpg?imwidth=1200",
+  left: 0,
+  top: 0,
+  width: 180, // 9cm x 20px = 180px
+  height: 219, //10.94cm x 20px = 218.8px
+  angle: 0,
+  aspect: 0.823,
+  name: "Puppy 1",
+  zIndex: 2,
+  pinColor: "red",
+  pinTop: "10px",
+  pinLeft: "calc(50% - 10px)",
+};
+export const note1 = {
+  type: "note1",
   text:
     "Lorem ipsum dolor sit amet, usu mazim iuvaret in, ne eos virtute aliquid, nullam veritus imperdiet duo no. Iusto democritum at eam, pri omnis populo an. Id erat errem ullamcorper vel, vim in regione intellegat.",
   left: 0,
