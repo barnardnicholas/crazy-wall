@@ -1,9 +1,8 @@
 import React from "react";
-import polaroidFrame from "../../assets/img/polaroid-frame.png";
 import "./Items.css";
 import Pin from "./Pin";
 
-const PictureContent = (props) => {
+const Photo2 = (props) => {
   const { handleContentClick, handleMoveToFront, handleMoveToBack } = props;
   const {
     id,
@@ -21,14 +20,10 @@ const PictureContent = (props) => {
     <div className={`content content1`} onClick={handleContentClick}>
       <div style={{ width, height, fontSize: `${height * 0.1}px` }}>
         <div
-          className="pic-polaroid bg-cover"
+          className="photo2 bg-cover"
           style={{ backgroundImage: `url(${imageUrl})` }}
         ></div>
-        <div
-          className="bg-cover pic-frame-polaroid"
-          style={{ backgroundImage: `url(${polaroidFrame})` }}
-        ></div>
-        <div className="pic-label-polaroid">{name}</div>
+        {/* <div className="pic-label-polaroid">{name}</div> */}
 
         <div className="order-controls">
           <button onClick={handleMoveToFront}>F</button>
@@ -46,4 +41,4 @@ const PictureContent = (props) => {
   );
 };
 
-export default PictureContent;
+export default Photo2;

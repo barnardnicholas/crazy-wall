@@ -1,6 +1,7 @@
 import React from "react";
 import ResizableContent from "./ResizableContent";
-import PictureContent from "./item-content/PictureContent";
+import Polaroid from "./item-content/Polaroid";
+import Photo2 from "./item-content/Photo2";
 import NotepadPage from "./item-content/NotepadPage";
 import PostIt from "./item-content/PostIt";
 import Draggable from "react-draggable";
@@ -35,7 +36,17 @@ const BoardItem = (props) => {
   const renderItem = () => {
     if (props.data.type === "photo1") {
       return (
-        <PictureContent
+        <Polaroid
+          key={props.data.id}
+          data={props.data}
+          handleContentClick={handleContentClick}
+          handleMoveToFront={handleMoveToFront}
+          handleMoveToBack={handleMoveToBack}
+        />
+      );
+    } else if (props.data.type === "photo2") {
+      return (
+        <Photo2
           key={props.data.id}
           data={props.data}
           handleContentClick={handleContentClick}

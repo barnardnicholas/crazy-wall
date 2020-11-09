@@ -108,6 +108,22 @@ export const resetData = {
       // pinTop: "8%",
       // pinLeft: "calc(50% - 10px)",
     },
+    {
+      type: "photo2",
+      imageUrl:
+        "https://www.gannett-cdn.com/presto/2019/06/11/USAT/bafed1d8-eda0-457a-8f6b-8fd4f3c421ec-061019-dobby-1280x720.jpg?crop=459,546,x0,y0&width=300&height=357&format=pjpg&auto=webp",
+      left: 128,
+      top: 10,
+      width: 203, // 10.16cm x 20px = 203px
+      height: 305, //15.24cm x 20px = 305px
+      angle: 355,
+      aspect: 0.666,
+      name: "B&W Photo 1",
+      zIndex: 2,
+      pinColor: "red",
+      pinTop: "10px",
+      pinLeft: "calc(50% - 10px)",
+    },
   ],
   lines: [["pin-puppy1", "pin-puppy2"]],
 };
