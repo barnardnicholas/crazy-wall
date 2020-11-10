@@ -1,11 +1,67 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ResizableContent from "./ResizableContent";
-import Polaroid from "./item-content/Polaroid";
-import Photo2 from "./item-content/Photo2";
-import NotepadPage from "./item-content/NotepadPage";
-import PostIt from "./item-content/PostIt";
-import Draggable from "react-draggable";
-import { NoPanArea } from "react-zoomable-ui";
+// import Draggable from "react-draggable";
+// import { NoPanArea } from "react-zoomable-ui";
+
+const Polaroid = React.lazy(() => import("./item-content/Polaroid"));
+const Photo2 = React.lazy(() => import("./item-content/Photo2"));
+const NotepadPage = React.lazy(() => import("./item-content/NotepadPage"));
+const PostIt = React.lazy(() => import("./item-content/PostIt"));
+
+const items = {
+  photo1: (props) => {
+    return (
+      <Suspense fallback={<div>Loading...</div>}>
+        <Polaroid
+          key={props.data.id}
+          data={props.data}
+          handleContentClick={props.handleContentClick}
+          handleMoveToFront={props.handleMoveToFront}
+          handleMoveToBack={props.handleMoveToBack}
+        />
+      </Suspense>
+    );
+  },
+  photo2: (props) => {
+    return (
+      <Suspense fallback={<div>Loading...</div>}>
+        <Photo2
+          key={props.data.id}
+          data={props.data}
+          handleContentClick={props.handleContentClick}
+          handleMoveToFront={props.handleMoveToFront}
+          handleMoveToBack={props.handleMoveToBack}
+        />
+      </Suspense>
+    );
+  },
+  postit: (props) => {
+    return (
+      <Suspense fallback={<div>Loading...</div>}>
+        <PostIt
+          key={props.data.id}
+          data={props.data}
+          handleContentClick={props.handleContentClick}
+          handleMoveToFront={props.handleMoveToFront}
+          handleMoveToBack={props.handleMoveToBack}
+        />
+      </Suspense>
+    );
+  },
+  note1: (props) => {
+    return (
+      <Suspense fallback={<div>Loading...</div>}>
+        <NotepadPage
+          key={props.data.id}
+          data={props.data}
+          handleContentClick={props.handleContentClick}
+          handleMoveToFront={props.handleMoveToFront}
+          handleMoveToBack={props.handleMoveToBack}
+        />
+      </Suspense>
+    );
+  },
+};
 
 const BoardItem = (props) => {
   const {
@@ -33,50 +89,6 @@ const BoardItem = (props) => {
     aspect,
   } = props.data;
 
-  const renderItem = () => {
-    if (props.data.type === "photo1") {
-      return (
-        <Polaroid
-          key={props.data.id}
-          data={props.data}
-          handleContentClick={handleContentClick}
-          handleMoveToFront={handleMoveToFront}
-          handleMoveToBack={handleMoveToBack}
-        />
-      );
-    } else if (props.data.type === "photo2") {
-      return (
-        <Photo2
-          key={props.data.id}
-          data={props.data}
-          handleContentClick={handleContentClick}
-          handleMoveToFront={handleMoveToFront}
-          handleMoveToBack={handleMoveToBack}
-        />
-      );
-    } else if (props.data.type === "note1") {
-      return (
-        <NotepadPage
-          key={props.data.id}
-          data={props.data}
-          handleContentClick={handleContentClick}
-          handleMoveToFront={handleMoveToFront}
-          handleMoveToBack={handleMoveToBack}
-        />
-      );
-    } else if (props.data.type === "postit") {
-      return (
-        <PostIt
-          key={props.data.id}
-          data={props.data}
-          handleContentClick={handleContentClick}
-          handleMoveToFront={handleMoveToFront}
-          handleMoveToBack={handleMoveToBack}
-        />
-      );
-    }
-  };
-
   const renderResizeableContent = () => {
     return (
       <ResizableContent
@@ -102,37 +114,9 @@ const BoardItem = (props) => {
         handleRotateEnd={handleRotateEnd}
         zoomFactor={props.zoomFactor}
       >
-        {renderItem()}
+        {items[props.data.type](props)}
       </ResizableContent>
     );
-  };
-
-  const renderReactDraggable = () => {
-    const rdStyle = {
-      width,
-      height,
-      top,
-      left,
-      position: "absolute",
-      transform: `rotate(${angle}deg)`,
-    };
-    const content = (
-      <Draggable
-        scale={1}
-        disabled={active ? false : true}
-        onDrag={(e, p) => {
-          console.log(p);
-          handleDrag(top, left, id);
-        }}
-      >
-        <div className={active ? "active-item" : ""} style={rdStyle}>
-          {renderItem()}
-        </div>
-      </Draggable>
-    );
-
-    if (active) return <NoPanArea>{content}</NoPanArea>;
-    else return content;
   };
 
   return (
