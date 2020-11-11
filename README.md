@@ -13,7 +13,7 @@ Version notation on item db entries
 
 Auto-resize area depending on item placement
 UI/App structure
-Export board - JPG/PNG/PDF
+Export board - JPG/PNG/PDF/json/txt
 
 <!-- Moving items when zoomed out - increase sensitivity -->
 

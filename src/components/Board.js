@@ -64,8 +64,8 @@ class Board extends Component {
       let thisIndex = this.state.items.map((item) => item.id).indexOf(id);
       const newItems = [...prevState.items];
       const newItem = { ...prevState.items[thisIndex] };
-      newItem.top = top / prevState.zoomFactor;
-      newItem.left = left / prevState.zoomFactor;
+      newItem.top = top;
+      newItem.left = left;
       newItems[thisIndex] = newItem;
       return {
         ...prevState,
@@ -216,7 +216,6 @@ class Board extends Component {
               {this.state.dataLoaded
                 ? this.state.items.map((i) => {
                     const item = { ...schema[i.type], ...i };
-                    console.log(item.id);
                     return (
                       <BoardItem
                         key={`item-${item.id}`}
