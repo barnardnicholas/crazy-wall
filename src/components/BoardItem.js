@@ -1,81 +1,8 @@
 import React, { Suspense } from "react";
 import ResizableContent from "./ResizableContent";
+import itemComponents from "./item-content/itemComponents";
 // import Draggable from "react-draggable";
 // import { NoPanArea } from "react-zoomable-ui";
-
-import Polaroid from "./item-content/Polaroid";
-import Photo2 from "./item-content/Photo2";
-import NotepadPage from "./item-content/NotepadPage";
-import PostIt from "./item-content/PostIt";
-import NewspaperColumn from "./item-content/NewspaperColumn";
-
-const items = {
-  photo1: (props) => {
-    return (
-      // <Suspense fallback={<div>Loading...</div>}>
-      <Polaroid
-        key={props.data.id}
-        data={props.data}
-        handleContentClick={props.handleContentClick}
-        handleMoveToFront={props.handleMoveToFront}
-        handleMoveToBack={props.handleMoveToBack}
-      />
-      // </Suspense>
-    );
-  },
-  photo2: (props) => {
-    return (
-      // <Suspense fallback={<div>Loading...</div>}>
-      <Photo2
-        key={props.data.id}
-        data={props.data}
-        handleContentClick={props.handleContentClick}
-        handleMoveToFront={props.handleMoveToFront}
-        handleMoveToBack={props.handleMoveToBack}
-      />
-      // </Suspense>
-    );
-  },
-  postit: (props) => {
-    return (
-      // <Suspense fallback={<div>Loading...</div>}>
-      <PostIt
-        key={props.data.id}
-        data={props.data}
-        handleContentClick={props.handleContentClick}
-        handleMoveToFront={props.handleMoveToFront}
-        handleMoveToBack={props.handleMoveToBack}
-      />
-      // </Suspense>
-    );
-  },
-  note1: (props) => {
-    return (
-      // <Suspense fallback={<div>Loading...</div>}>
-      <NotepadPage
-        key={props.data.id}
-        data={props.data}
-        handleContentClick={props.handleContentClick}
-        handleMoveToFront={props.handleMoveToFront}
-        handleMoveToBack={props.handleMoveToBack}
-      />
-      // </Suspense>
-    );
-  },
-  newspaperColumn: (props) => {
-    return (
-      // <Suspense fallback={<div>Loading...</div>}>
-      <NewspaperColumn
-        key={props.data.id}
-        data={props.data}
-        handleContentClick={props.handleContentClick}
-        handleMoveToFront={props.handleMoveToFront}
-        handleMoveToBack={props.handleMoveToBack}
-      />
-      // </Suspense>
-    );
-  },
-};
 
 const BoardItem = (props) => {
   const {
@@ -131,7 +58,7 @@ const BoardItem = (props) => {
         zoomFactor={zoomFactor}
         zoomable={zoomable || null}
       >
-        {items[props.data.type](props)}
+        {itemComponents[props.data.type](props)}
       </ResizableContent>
     );
   };

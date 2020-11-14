@@ -12,13 +12,13 @@ const sampleText = [
 ].join("\r\n");
 
 const itemSchema = {
-  type: "newspaperColumn",
+  type: "newspaperFrontPage1",
   headline: "Lorem ipsum dolor sit amet",
   text: sampleText,
   left: 0,
   top: 0,
-  width: 150, // 15cm x 20px = 300px
-  height: 420, // 20.83cm x 20px = 416.6px
+  width: 150,
+  height: 420,
   angle: 0,
   aspect: null,
   name: "Note",
@@ -30,14 +30,13 @@ const itemSchema = {
 };
 
 const itemData = {
-  type: "newspaperColumn",
+  type: "newspaperFrontPage1",
   headline: "Lorem ipsum dolor sit amet",
   text: sampleText,
   left: -50,
   top: 17,
   height: 420, // user-resizeable
   angle: 0,
-  // aspect: 0.72,
   name: "Newspaper Column",
   id: "newspaper-column-1",
   zIndex: 1,

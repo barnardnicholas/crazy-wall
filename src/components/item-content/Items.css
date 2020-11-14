@@ -99,6 +99,8 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+  -webkit-filter: grayscale(100%) sepia(0.39);
+  filter: grayscale(100%) sepia(0.39);
 }
 .newspaper-column-headline {
   font-family: "Vidaloka Regular", "Times New Roman", serif;
