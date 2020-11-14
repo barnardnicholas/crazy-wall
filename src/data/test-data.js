@@ -133,7 +133,7 @@ const resetData = {
         "Nec numquam ponderum at. Et possim doctus his, vel recusabo adversarium no, vim ea volutpat elaboraret. Duo no modo blandit percipit, qui falli homero ne, an mazim viderer pro. Cu probo fierent omittantur sea, eum persius disputando ne.",
       ].join("\r\n"),
       left: -50,
-      top: 17,
+      top: 112,
       height: 420, // user-resizeable
       angle: 0,
       name: "Newspaper Column",
