@@ -1,4 +1,4 @@
-const { moveToFront, moveToBack } = require("../utils");
+const { moveToFront, moveToBack, splitText } = require("../utils");
 const { expect } = require("chai");
 const { testItems } = require("../../data/test-data");
 
@@ -157,5 +157,18 @@ describe("moveToBack", () => {
     );
     const otherResultItems = actualResult.slice(1);
     expect(otherTestItems).to.eql(otherResultItems);
+  });
+});
+
+describe("splitText", () => {
+  it("returns an array", () => {
+    const text = "Text \r\n On \r\n Multiple \r\n Lines";
+    const result = splitText(text);
+    expect(result).to.be.an("array");
+  });
+  it("splits multi-line array correctly", () => {
+    const text = "Text\r\nOn\r\nMultiple\r\nLines";
+    const result = splitText(text);
+    expect(result).to.eql(["Text", "On", "Multiple", "Lines"]);
   });
 });

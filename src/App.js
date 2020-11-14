@@ -1,11 +1,16 @@
 import React from "react";
+import { Link, Router } from "@reach/router";
 import Board from "./components/Board";
 import "./App.css";
+import ItemBuilder from "./components/ItemBuilder";
 
 const App = () => {
   return (
     <div className="App">
-      <Board />
+      <Router>
+        <Board path="/" />
+        <ItemBuilder path="item-builder" />
+      </Router>
     </div>
   );
 };

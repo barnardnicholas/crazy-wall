@@ -8,5 +8,9 @@ const moveToBack = (items, item) => {
   return [item, ...items.filter((i) => i.id !== item.id)];
 };
 
-// module.exports = { moveToFront, moveToBack };
-export { moveToFront, moveToBack };
+const splitText = (text) => {
+  return text.split("\r\n");
+};
+
+// module.exports = { moveToFront, moveToBack, splitText };
+export { moveToFront, moveToBack, splitText };

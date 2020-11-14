@@ -6,6 +6,21 @@
     /* IE6-IE8 */ url("./assets/fonts/SueEllenFrancisco-Regular.ttf")
       format("truetype"); /* Safari, Android, iOS */
 }
+@font-face {
+  font-family: "Source Serif Pro Regular";
+  src: url("./assets/fonts/SourceSerifPro-Regular.ttf"); /* IE9 Compat Modes */
+  src: url("./assets/fonts/SourceSerifPro-Regular.ttf?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("./assets/fonts/SourceSerifPro-Regular.ttf")
+      format("truetype"); /* Safari, Android, iOS */
+}
+@font-face {
+  font-family: "Vidaloka Regular";
+  src: url("./assets/fonts/Vidaloka-Regular.ttf"); /* IE9 Compat Modes */
+  src: url("./assets/fonts/Vidaloka-Regular.ttf?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("./assets/fonts/Vidaloka-Regular.ttf") format("truetype"); /* Safari, Android, iOS */
+}
 
 * {
   margin: 0;
@@ -19,6 +34,10 @@ body,
   padding: 0;
   background-color: #222222;
   color: #ffffff;
+}
+
+p {
+  margin-bottom: 1em;
 }
 
 .App {
@@ -88,6 +107,10 @@ body,
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+.bg-repeat {
+  background-repeat: repeat;
+  background-size: auto;
 }
 
 .order-controls {

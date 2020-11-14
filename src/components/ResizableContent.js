@@ -67,7 +67,6 @@ const ResizableContent = (props) => {
             minWidth={10}
             width={width}
             minHeight={10}
-            // zIndex={props.zIndex}
             height={height}
             onDrag={handleDrag}
             onDragEnd={handleDragEnd}
@@ -75,7 +74,7 @@ const ResizableContent = (props) => {
             onRotateEnd={handleRotateEnd}
             onResize={handleResize}
             onResizeEnd={handleResizeEnd}
-            zoomable=""
+            zoomable={props.zoomable || ""}
             rotateAngle={rotateAngle}
           />
         </NoPanArea>
