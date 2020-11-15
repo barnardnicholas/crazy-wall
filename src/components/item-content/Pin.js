@@ -20,7 +20,9 @@ const Pin = (props) => {
         top: pinTop,
         left: pinLeft,
       }}
-    ></div>
+    >
+      <div className="pin-body"></div>
+    </div>
   );
 };
 

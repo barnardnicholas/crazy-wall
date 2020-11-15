@@ -35,6 +35,7 @@ const BoardItem = (props) => {
   const renderResizeableContent = () => {
     return (
       <ResizableContent
+        key={id}
         top={top}
         left={left}
         width={width}

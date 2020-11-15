@@ -20,7 +20,7 @@ const NewspaperColumn = (props) => {
   } = props.data;
   //   const { id, name } = props.data;
   return (
-    <div className={`content`} onClick={handleContentClick}>
+    <div key={id} className={`content`} onClick={handleContentClick}>
       <div style={{ width, height, fontSize: `${width * 0.3}px` }}>
         <div
           className="newspaper-column bg-repeat"

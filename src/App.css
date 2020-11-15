@@ -21,6 +21,12 @@
       format("embedded-opentype"),
     /* IE6-IE8 */ url("./assets/fonts/Vidaloka-Regular.ttf") format("truetype"); /* Safari, Android, iOS */
 }
+@font-face {
+  font-family: "Chomsky";
+  src: url("./assets/fonts/Chomsky.ttf"); /* IE9 Compat Modes */
+  src: url("./assets/fonts/Chomsky.ttf?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("./assets/fonts/Chomsky.ttf") format("truetype"); /* Safari, Android, iOS */
+}
 
 * {
   margin: 0;
