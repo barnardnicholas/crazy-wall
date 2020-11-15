@@ -33,9 +33,9 @@ const resetData = {
   lastInteraction: 0,
   dataLoaded: false,
   activeItem: null,
-  zoomFactor: 1,
   centerX: 691,
   centerY: 432,
+  zoomFactor: 0.66,
   items: [
     {
       type: "photo1",

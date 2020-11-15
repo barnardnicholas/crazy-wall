@@ -21,7 +21,7 @@ const NewspaperFrontPage1 = (props) => {
   } = props.data;
   //   const { id, name } = props.data;
   return (
-    <div key={id} className={`content`} onClick={handleContentClick}>
+    <div key={id} id={id} className={`content`} onClick={handleContentClick}>
       <div style={{ width, height, fontSize: `${height * 0.1}px` }}>
         <div
           className="newspaper-front-1 bg-repeat"
@@ -49,8 +49,8 @@ const NewspaperFrontPage1 = (props) => {
           </div>
           <div className="newspaper-front-1-headline">{headline || ""}</div>
           <div className="newspaper-front-1-body">
-            {splitText(text).map((t) => (
-              <p>{t}</p>
+            {splitText(text).map((t, i) => (
+              <p key={`${id}-${i}`}>{t}</p>
             ))}
           </div>
           <div

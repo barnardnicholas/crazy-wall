@@ -24,11 +24,11 @@ class Board extends Component {
       lastInteraction: 0,
       dataLoaded: false,
       activeItem: null,
-      zoomFactor: 1,
       centerX: 691,
       centerY: 432,
       items: [],
       lines: [["pin-puppy1", "pin-puppy2"]],
+      zoomFactor: 0.66,
     };
   }
 
@@ -190,8 +190,12 @@ class Board extends Component {
             //   // console.log(e);
             //   this.handleBoardClick(e);
             // });
-
-            vp.camera.recenter(5000, 5000);
+            if (this.props.dataLoaded) {
+              const photo2 = document.getElementById("photo2-1");
+              console.log(photo2);
+            }
+            vp.camera.recenter(5000, 5000, this.state.zoomFactor || 1);
+            // vp.translateClientRectToVirtualSpace(photo2);
           }}
           // onClick={(e) => {
           //   console.log(e);
@@ -206,7 +210,6 @@ class Board extends Component {
           <div
             className="board"
             onClick={(e) => {
-              console.log(e.target.className);
               // this.handleBoardClick(e);
               if (e.target.className === "board") this.setActiveItem(null);
             }}

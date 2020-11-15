@@ -18,7 +18,12 @@ const NotepadPage = (props) => {
   } = props.data;
   //   const { id, name } = props.data;
   return (
-    <div className={`content content1`} onClick={handleContentClick}>
+    <div
+      key={id}
+      id={id}
+      className={`content content1`}
+      onClick={handleContentClick}
+    >
       <div style={{ width, height, fontSize: `${height * 0.1}px` }}>
         <div
           className="notepad-page bg-contain"
