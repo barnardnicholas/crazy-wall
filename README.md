@@ -29,3 +29,4 @@ Photographs
 Maps
 Business Cards
 Flyers
+Masking Tape pieces
