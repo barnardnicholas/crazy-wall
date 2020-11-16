@@ -8,7 +8,7 @@ const NewspaperColumn = (props) => {
   const { handleContentClick, handleMoveToFront, handleMoveToBack } = props;
   const {
     id,
-    name,
+    // name,
     width,
     height,
     headline,

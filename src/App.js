@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Router } from "@reach/router";
+import { Router } from "@reach/router";
 import Board from "./components/Board";
 import "./App.css";
 import ItemBuilder from "./components/ItemBuilder";

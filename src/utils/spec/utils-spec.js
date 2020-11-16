@@ -24,7 +24,6 @@ describe("moveToFront", () => {
   });
   it("Does not mutate original array", () => {
     const arrayCopy = [...testItems];
-    const actualResult = moveToFront(testItems, itemToMove);
     expect(arrayCopy).to.eql(testItems);
   });
   it("Returns an array containing the specified item", () => {
@@ -98,7 +97,6 @@ describe("moveToBack", () => {
   });
   it("Does not mutate original array", () => {
     const arrayCopy = [...testItems];
-    const actualResult = moveToBack(testItems, itemToMove);
     expect(arrayCopy).to.eql(testItems);
   });
   it("Returns an array containing the specified item", () => {

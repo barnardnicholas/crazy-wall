@@ -1,5 +1,5 @@
 import React from "react";
-import pinRed from "../../assets/img/pin_red_100x107.png";
+// import pinRed from "../../assets/img/pin_red_100x107.png";
 
 const hues = {
   red: 0,

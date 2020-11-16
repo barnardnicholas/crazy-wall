@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import LineTo from "react-lineto";
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+// import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import "react-rotatable/dist/css/rotatable.min.css";
 import BoardItem from "./BoardItem";
 import { moveToFront, moveToBack } from "../utils/utils";
-import { Space, ViewPortCamera } from "react-zoomable-ui";
+import { Space } from "react-zoomable-ui";
 import { timestamp } from "timestamp";
 import * as schema from "../data/item-schema";
 import { resetData } from "../data/test-data";
@@ -49,12 +49,12 @@ class Board extends Component {
   };
 
   setActiveItem = (id) => {
-    if (this.state.activeItem != id) this.setState({ activeItem: id });
+    if (this.state.activeItem !== id) this.setState({ activeItem: id });
     else if (!id) this.setState({ activeItem: null });
   };
 
   handleContentClick = (id) => {
-    if (this.state.activeItem != id) this.setActiveItem(id);
+    if (this.state.activeItem !== id) this.setActiveItem(id);
   };
 
   handleDrag = (top, left, id) => {
@@ -101,7 +101,7 @@ class Board extends Component {
     this.setState((prevState) => {
       const thisIndex = prevState.items.map((i) => i.id).indexOf(id);
       const newItems = [...prevState.items];
-      const newItem = { ...prevState.items.filter((i) => i.id == id)[0] };
+      const newItem = { ...prevState.items.filter((i) => i.id === id)[0] };
       newItem.width = width;
       newItem.height = height;
       newItem.top = top;
@@ -163,7 +163,7 @@ class Board extends Component {
 
   handleBoardClick = (e) => {
     // console.log(e);
-    if (e.target.className == "board") this.setActiveItem(null);
+    if (e.target.className === "board") this.setActiveItem(null);
     this.setState({ lastInteraction: timestamp() });
   };
 
@@ -225,7 +225,9 @@ class Board extends Component {
                         data={item}
                         zIndex={item.zIndex}
                         aspect={item.aspect}
-                        active={this.state.activeItem == item.id ? true : false}
+                        active={
+                          this.state.activeItem === item.id ? true : false
+                        }
                         handleContentClick={() => {
                           this.handleContentClick(item.id);
                         }}

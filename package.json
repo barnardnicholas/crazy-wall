@@ -1,5 +1,5 @@
 {
-  "name": "drag-size-rotate-test",
+  "name": "crazy-wall",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,7 +8,9 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "chai": "^4.2.0",
+    "firebase": "^8.0.2",
     "mocha": "^8.2.0",
+    "node-time-uuid": "^0.1.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-draggable": "^4.4.3",
@@ -26,7 +28,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test-utils": "mocha src/utils/spec/",
+    "test-utils": "mocha src/utils/spec/utils-spec.js",
+    "test-api": "mocha src/utils/spec/api-spec.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

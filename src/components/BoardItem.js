@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import ResizableContent from "./ResizableContent";
 import itemComponents from "./item-content/itemComponents";
 // import Draggable from "react-draggable";
@@ -13,13 +13,9 @@ const BoardItem = (props) => {
     handleResizeEnd,
     handleRotate,
     handleRotateEnd,
-    handleContentClick,
-    handleMoveToFront,
-    handleMoveToBack,
     zoomFactor,
   } = props;
   const {
-    type,
     top,
     left,
     width,
@@ -27,7 +23,6 @@ const BoardItem = (props) => {
     angle,
     zIndex,
     id,
-    name,
     aspect,
     zoomable,
   } = props.data;

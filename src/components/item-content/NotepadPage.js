@@ -7,7 +7,7 @@ const NotepadPage = (props) => {
   const { handleContentClick, handleMoveToFront, handleMoveToBack } = props;
   const {
     id,
-    name,
+    // name,
     width,
     height,
     text,

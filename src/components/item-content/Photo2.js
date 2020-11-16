@@ -6,7 +6,7 @@ const Photo2 = (props) => {
   const { handleContentClick, handleMoveToFront, handleMoveToBack } = props;
   const {
     id,
-    name,
+    // name,
     width,
     height,
     imageUrl,
