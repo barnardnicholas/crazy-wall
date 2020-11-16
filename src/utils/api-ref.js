@@ -207,5 +207,5 @@ const masterTaskRunner = () => {
     });
 };
 
-module.exports = { userSignIn };
+module.exports = { firebase, database, userSignIn };
 // export { userSignIn };
