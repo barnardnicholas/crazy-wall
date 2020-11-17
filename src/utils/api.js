@@ -1,13 +1,58 @@
-// GET '/' - API docs
+const timestamp = require("timestamp");
 
-// GET '/users/:user_id/boards/:board_id' - Get single board
-// DEL '/users/:user_id/boards/:board_id' - Delete single board
-// PATCH '/users/:user_id/boards/:board_id' - Update board
-// POST '/users/:user_id/boards' - Create new board
+var ObjectId = require("node-time-uuid");
 
-// GET '/boards' - Get all boards except private ones
+//Create a new UUID
+const uuid = new ObjectId().toString("base64url");
 
-// GET '/users/:user_id' - Get user data
+const decoded = new ObjectId(uuid);
+
+console.log(uuid);
+
+// Import Firebase
+const firebase = require("firebase");
+
+// Auth variables
+const { firebaseAuth } = require("../auth/firebase-auth");
+// Initialize Firebase
+firebase.initializeApp(firebaseAuth);
+// Database Reference
+const database = firebase.database();
+
+// -------------------------------------------------------------------------------
+// ---------------------------------- FUNCTIONS ----------------------------------
+// -------------------------------------------------------------------------------
+
+// ---------------------------------- Users ----------------------------------
+
+// Sign into Firebase
+const userSignIn = (email, password) => {
+  return firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then((res) => {
+      console.log(res.user);
+      console.log(`Successfully logged in as ${email}`);
+      return Promise.resolve(res);
+    })
+    .catch((err) => {
+      return Promise.reject(err);
+    });
+};
+
+// GET '/users/:user_id' - Get user profile (public facing)
 // POST '/users/:user_id' - Create new user
 // PATCH '/users/:user_id' - Update user data
 // DEL '/users/:user_id' - Delete user
+// GET '/users/:user_id/boards' - Get all boards attributed to user
+
+// ---------------------------------- Boards ----------------------------------
+
+// GET '/boards' - Get all boards except private ones
+// GET '/boards/:board_id' - Get single board
+// DEL '/boards/:board_id' - Delete single board
+// PATCH '/boards/:board_id' - Update board
+// POST '/boards' - Create new board
+
+module.exports = { firebase, database, userSignIn };
+// export { userSignIn };

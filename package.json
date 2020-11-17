@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^12.1.10",
     "chai": "^4.2.0",
     "firebase": "^8.0.2",
+    "firebaseui": "^4.7.1",
     "mocha": "^8.2.0",
     "node-time-uuid": "^0.1.5",
     "react": "^17.0.1",
