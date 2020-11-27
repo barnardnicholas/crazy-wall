@@ -1,4 +1,11 @@
-const { moveToFront, moveToBack, splitText } = require("../utils");
+const {
+  moveToFront,
+  moveToBack,
+  splitText,
+  calcThreadAngle,
+  calcThreadLength,
+  getPinOffset,
+} = require("../utils");
 const { expect } = require("chai");
 const { testItems } = require("../../data/test-data");
 
@@ -169,4 +176,189 @@ describe("splitText", () => {
     const result = splitText(text);
     expect(result).to.eql(["Text", "On", "Multiple", "Lines"]);
   });
+});
+
+const coords1 = { startTop: 0, startLeft: 0, endTop: 0, endLeft: 100 }; // 0deg
+const coords2 = { startTop: 0, startLeft: 0, endTop: 100, endLeft: 100 }; // 45deg
+const coords3 = { startTop: 0, startLeft: 0, endTop: 100, endLeft: -100 }; // 135deg
+const coords4 = { startTop: 0, startLeft: 0, endTop: 0, endLeft: -100 }; // 180deg
+const coords5 = { startTop: 0, startLeft: 0, endTop: -100, endLeft: -100 }; // 225deg
+const coords6 = { startTop: 0, startLeft: 0, endTop: -100, endLeft: 0 }; // 270deg
+const coords7 = { startTop: 0, startLeft: 0, endTop: -100, endLeft: 100 }; // 315deg
+const coords8 = { startTop: 0, startLeft: 0, endTop: -100, endLeft: 200 }; //
+
+describe("calcThreadAngle", () => {
+  it("returns a number", () => {
+    const actual = calcThreadAngle(
+      coords1.startTop,
+      coords1.startLeft,
+      coords1.endTop,
+      coords1.endLeft
+    );
+    expect(actual).to.be.a("number");
+  });
+  it("returns 0 for 0,0,0,0", () => {
+    const actual = calcThreadAngle(0, 0, 0, 0);
+    expect(actual).to.equal(0);
+  });
+  it("returns 0 for coords1", () => {
+    const actual = calcThreadAngle(
+      coords1.startTop,
+      coords1.startLeft,
+      coords1.endTop,
+      coords1.endLeft
+    );
+    expect(actual).to.equal(0);
+  });
+  it("returns 45 for coords2", () => {
+    const actual = calcThreadAngle(
+      coords2.startTop,
+      coords2.startLeft,
+      coords2.endTop,
+      coords2.endLeft
+    );
+    expect(actual).to.equal(45);
+  });
+  it("returns 135 for coords3", () => {
+    const actual = calcThreadAngle(
+      coords3.startTop,
+      coords3.startLeft,
+      coords3.endTop,
+      coords3.endLeft
+    );
+    expect(actual).to.equal(135);
+  });
+  it("returns 180 for coords4", () => {
+    const actual = calcThreadAngle(
+      coords4.startTop,
+      coords4.startLeft,
+      coords4.endTop,
+      coords4.endLeft
+    );
+    expect(actual).to.equal(180);
+  });
+  it("returns 225 for coords5", () => {
+    const actual = calcThreadAngle(
+      coords5.startTop,
+      coords5.startLeft,
+      coords5.endTop,
+      coords5.endLeft
+    );
+    expect(actual).to.equal(225);
+  });
+  it("returns 270 for coords6", () => {
+    const actual = calcThreadAngle(
+      coords6.startTop,
+      coords6.startLeft,
+      coords6.endTop,
+      coords6.endLeft
+    );
+    expect(actual).to.equal(270);
+  });
+  it("returns 315 for coords7", () => {
+    const actual = calcThreadAngle(
+      coords7.startTop,
+      coords7.startLeft,
+      coords7.endTop,
+      coords7.endLeft
+    );
+    expect(actual).to.equal(315);
+  });
+});
+
+describe("calcThreadLength", () => {
+  it("returns a positive integer or float", () => {
+    const actual = calcThreadLength(
+      coords1.startTop,
+      coords1.startLeft,
+      coords1.endTop,
+      coords1.endLeft
+    );
+    expect(actual).to.be.a("number");
+    expect(actual).to.be.greaterThan(0);
+  });
+  it("returns correct answer for coords1", () => {
+    const actual = calcThreadLength(
+      coords1.startTop,
+      coords1.startLeft,
+      coords1.endTop,
+      coords1.endLeft
+    );
+    expect(Math.floor(actual)).to.equal(100);
+  });
+  it("returns correct answer for coords2", () => {
+    const actual = calcThreadLength(
+      coords2.startTop,
+      coords2.startLeft,
+      coords2.endTop,
+      coords2.endLeft
+    );
+    expect(Math.floor(actual)).to.equal(141);
+  });
+  it("returns correct answer for coords3", () => {
+    const actual = calcThreadLength(
+      coords3.startTop,
+      coords3.startLeft,
+      coords3.endTop,
+      coords3.endLeft
+    );
+    expect(Math.floor(actual)).to.equal(141);
+  });
+  it("returns correct answer for coords4", () => {
+    const actual = calcThreadLength(
+      coords4.startTop,
+      coords4.startLeft,
+      coords4.endTop,
+      coords4.endLeft
+    );
+    expect(Math.floor(actual)).to.equal(100);
+  });
+  it("returns correct answer for coords5", () => {
+    const actual = calcThreadLength(
+      coords5.startTop,
+      coords5.startLeft,
+      coords5.endTop,
+      coords5.endLeft
+    );
+    expect(Math.floor(actual)).to.equal(141);
+  });
+  it("returns correct answer for coords8", () => {
+    const actual = calcThreadLength(
+      coords8.startTop,
+      coords8.startLeft,
+      coords8.endTop,
+      coords8.endLeft
+    );
+    expect(Math.floor(actual)).to.equal(223);
+  });
+});
+
+const testPinItem = {
+  left: 400,
+  top: 400,
+  width: 450,
+  height: 547,
+  angle: 0,
+  pinOffsetTop: 10,
+  pinOffsetLeft: 90,
+};
+
+// centre of item (absolute) = {top: 673.5, left: 625}
+// distance from center to pin: 263.5
+
+describe.only("getPinOffset", () => {
+  it("returns an object with correct keys and value types", () => {
+    const actual = getPinOffset(testPinItem);
+    expect(actual).to.be.an("object");
+    expect(actual).to.haveOwnProperty("top");
+    expect(actual).to.haveOwnProperty("left");
+    expect(actual.top).to.be.a("number");
+    expect(actual.left).to.be.a("number");
+  });
+  it("returns correct pin top & bottom for 0 rotation", () => {
+    const actual = getPinOffset(testPinItem);
+    expect(actual.top).to.equal(410);
+    expect(actual.left).to.equal(490);
+  });
+  // MORE TDD
 });

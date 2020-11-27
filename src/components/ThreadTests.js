@@ -18,7 +18,7 @@ import Thread from "./item-content/Thread";
 //   disableOnTarget: ["line-start", "line-end"],
 // };
 
-class Board extends Component {
+class ThreadTests extends Component {
   constructor() {
     super();
     this.state = {
@@ -27,8 +27,45 @@ class Board extends Component {
       activeItem: null,
       centerX: 691,
       centerY: 432,
-      items: [],
-      lines: [["pin-puppy1", "pin-puppy2"]],
+      items: [
+        {
+          type: "photo1",
+          imageUrl:
+            "https://www.telegraph.co.uk/content/dam/Pets/spark/royal-canin/happy-puppy-xlarge.jpg?imwidth=1200",
+          left: -457,
+          top: -384,
+          // width: 180, // 9cm x 20px = 180px
+          // height: 219, //10.94cm x 20px = 218.8px
+          angle: 0,
+          // aspect: 0.823,
+          name: "Puppy 1",
+          id: "puppy1",
+          zIndex: 2,
+          pinAngle: 180,
+          pinColor: "red",
+          pinOffsetTop: 10,
+          pinOffsetLeft: 90,
+        },
+        {
+          type: "photo1",
+          imageUrl:
+            "https://www.ardengrange.com/sites/admin/plugins/elfinder/files/ardengrange/Nutrition%20and%20Advice%20section/Fact%20Sheets%20section/Canine%20Fact%20Sheets/Puppy%20section/Puppy%20guide%20images/Scruffy%20pup.jpg",
+          left: 197,
+          top: -365,
+          // width: 180,
+          // height: 219,
+          angle: 0,
+          // aspect: 0.823,
+          name: "Puppy 2",
+          id: "puppy2",
+          zIndex: 1,
+          pinAngle: 90,
+          pinColor: "green",
+          pinOffsetTop: 10,
+          pinOffsetLeft: 90,
+        },
+      ],
+      threads: [["puppy1", "puppy2"]],
       zoomFactor: 0.66,
     };
   }
@@ -38,11 +75,12 @@ class Board extends Component {
   };
 
   readData = () => {
-    if (localStorage.puppyState) {
-      const newState = JSON.parse(localStorage.puppyState);
-      newState.dataLoaded = true;
-      this.setState(newState);
-    }
+    // if (localStorage.puppyState) {
+    //   const newState = JSON.parse(localStorage.puppyState);
+    //   newState.dataLoaded = true;
+    //   this.setState(newState);
+    // }
+    this.setState({ dataLoaded: true });
   };
 
   resetData = () => {
@@ -162,6 +200,29 @@ class Board extends Component {
     // });
   };
 
+  renderThreads = () => {
+    this.state.threads.map((thread) => {
+      console.log("renderThreads");
+      const startId = thread[0];
+      const endId = thread[1];
+      const startIndex = this.state.items.map((i) => i.id).indexOf(startId);
+      const endIndex = this.state.items.map((i) => i.id).indexOf(endId);
+      const startTop = this.state.items[startIndex].top;
+      const startLeft = this.state.items[startIndex].left;
+      const endTop = this.state.items[endIndex].top;
+      const endLeft = this.state.items[endIndex].left;
+      return (
+        <Thread
+          key={`thread-${startId}=${endId}`}
+          startTop={startTop}
+          endTop={endTop}
+          startLeft={startLeft}
+          endLeft={endLeft}
+        />
+      );
+    });
+  };
+
   handleBoardClick = (e) => {
     // console.log(e);
     if (e.target.className === "board") this.setActiveItem(null);
@@ -172,15 +233,15 @@ class Board extends Component {
     return (
       <>
         <div className="header">
-          <h1>Mood Board</h1>
-          <button
+          <h1>Thread Tester</h1>
+          {/* <button
             onClick={() => {
               this.writeData(this.state);
             }}
           >
             Write Data
           </button>
-          <button onClick={this.resetData}>Reset Data</button>
+          <button onClick={this.resetData}>Reset Data</button> */}
           <div></div>
         </div>
         <Space
@@ -252,10 +313,13 @@ class Board extends Component {
                 : null}
               {this.state.items.length ? (
                 <Thread
-                  top={this.state.items[0].top || 0}
-                  left={this.state.items[0].left || 0}
-                  angle={0}
-                  width={400}
+                  key={`thread-${this.state.threads[0][0]}=${this.state.threads[0][1]}`}
+                  startTop={this.state.items[0].top}
+                  endTop={this.state.items[1].top}
+                  startLeft={this.state.items[0].left}
+                  endLeft={this.state.items[1].left}
+                  startItem={this.state.items[0]}
+                  endItem={this.state.items[1]}
                 />
               ) : null}
 
@@ -268,14 +332,14 @@ class Board extends Component {
   }
 
   componentDidMount() {
-    if (!localStorage.puppyState) this.writeData(resetData);
+    // if (!localStorage.puppyState) this.writeData(resetData);
     this.readData();
   }
 
   componentWillUnmount() {
     const { activeItem, ...prevState } = this.state;
-    this.writeData({ ...prevState, activeItem: null });
+    // this.writeData({ ...prevState, activeItem: null });
   }
 }
 
-export default Board;
+export default ThreadTests;

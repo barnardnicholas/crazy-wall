@@ -31,9 +31,16 @@ const userSignIn = (email, password) => {
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then((res) => {
-      console.log(res.user);
       console.log(`Successfully logged in as ${email}`);
-      return Promise.resolve(res);
+      return Promise.resolve({
+        uid: res.user.uid,
+        displayName: res.user.displayName,
+        photoURL: res.user.photoURL,
+        email: res.user.email,
+        emailVerified: res.user.emailVerified,
+        isAnonymous: res.user.isAnonymous,
+        phoneNumber: res.user.phoneNumber,
+      });
     })
     .catch((err) => {
       return Promise.reject(err);
@@ -41,6 +48,22 @@ const userSignIn = (email, password) => {
 };
 
 // GET '/users/:user_id' - Get user profile (public facing)
+// Get last post & store locally
+const fetchUserProfile = (uid) => {
+  return new Promise((resolve, reject) => {
+    database
+      .ref(`/users/${uid}`)
+      .once("value")
+      .then((snapshot) => {
+        if (snapshot.val()) {
+          console.log(snapshot.val());
+          resolve(snapshot.val());
+        } else {
+          reject(new Error("Failed to fetch last post"));
+        }
+      });
+  });
+};
 // POST '/users/:user_id' - Create new user
 // PATCH '/users/:user_id' - Update user data
 // DEL '/users/:user_id' - Delete user
@@ -54,5 +77,5 @@ const userSignIn = (email, password) => {
 // PATCH '/boards/:board_id' - Update board
 // POST '/boards' - Create new board
 
-module.exports = { firebase, database, userSignIn };
+module.exports = { firebase, database, userSignIn, fetchUserProfile };
 // export { userSignIn };

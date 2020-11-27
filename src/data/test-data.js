@@ -12,6 +12,8 @@ const testItems = [
     name: "Puppy 1",
     id: "puppy1",
     zIndex: 2,
+    pinOffsetTop: 10,
+    pinOffsetLeft: 90,
   },
   {
     type: "photo",
@@ -26,6 +28,8 @@ const testItems = [
     name: "Puppy 2",
     id: "puppy2",
     zIndex: 1,
+    pinOffsetTop: 10,
+    pinOffsetLeft: 90,
   },
 ];
 
@@ -167,5 +171,5 @@ const resetData = {
   lines: [["pin-puppy1", "pin-puppy2"]],
 };
 
-// module.exports = { testItems, resetData };
-export { testItems, resetData };
+module.exports = { testItems, resetData };
+// export { testItems, resetData };
