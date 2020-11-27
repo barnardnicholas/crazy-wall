@@ -27,6 +27,16 @@ const BoardItem = (props) => {
     zoomable,
   } = props.data;
 
+  const shadowStyle = {
+    top: `${top * zoomFactor + 2}px`,
+    left: `${left * zoomFactor + 2}px`,
+    width: `${width}px`,
+    height: `${height}px`,
+    transform: `rotate(${angle}deg)`,
+    background: `rgba(0,0,0,0.5)`,
+    position: "absolute",
+  };
+
   const renderResizeableContent = () => {
     return (
       <ResizableContent
@@ -54,6 +64,7 @@ const BoardItem = (props) => {
         zoomFactor={zoomFactor}
         zoomable={zoomable || null}
       >
+        {/* <div style={shadowStyle}></div> */}
         {itemComponents[props.data.type](props)}
       </ResizableContent>
     );

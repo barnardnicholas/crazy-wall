@@ -8,6 +8,7 @@ const ResizableContent = (props) => {
   const [top, setTop] = useState(props.top);
   const [left, setLeft] = useState(props.left);
   const [rotateAngle, setRotateAngle] = useState(props.rotateAngle);
+
   const contentStyle = {
     top,
     left,

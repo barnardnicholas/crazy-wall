@@ -12,13 +12,25 @@ const defaultWidth = 7; // thread width in px
 const testThreadStyle = {
   top: 0,
   left: 0,
-  width: 100,
+  width: 0,
   height: `${defaultWidth}px`,
   // backgroundColor: "red",
   backgroundSize: `auto 100%`,
   backgroundRepeat: `repeat-x`,
   backgroundImage: `url(${threadRed})`,
   backgroundPosition: `center`,
+  pointerEvents: "none",
+  position: "absolute",
+  transform: `rotate(0deg)`,
+  transformOrigin: `0 50%`,
+};
+
+const testThreadShadowStyle = {
+  top: 0,
+  left: 0,
+  width: 0,
+  height: `${defaultWidth}px`,
+  backgroundColor: "rgba(0,0,0,0.5)",
   pointerEvents: "none",
   position: "absolute",
   transform: `rotate(0deg)`,
@@ -51,11 +63,23 @@ const Thread = (props) => {
     transform: `rotate(${angle}deg)`,
     width: `${length}px`,
   };
+  const newShadowStyle = {
+    top: `${startTop + defaultWidth}px`,
+    left: `${startLeft}px`,
+    transform: `rotate(${angle}deg)`,
+    width: `${length}px`,
+  };
   return (
-    <div
-      className="test-thread"
-      style={{ ...testThreadStyle, ...newStyle }}
-    ></div>
+    <>
+      <div
+        className="test-thread-shadow"
+        style={{ ...testThreadShadowStyle, ...newShadowStyle }}
+      ></div>
+      <div
+        className="test-thread"
+        style={{ ...testThreadStyle, ...newStyle }}
+      ></div>
+    </>
   );
 };
 

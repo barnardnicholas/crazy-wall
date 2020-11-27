@@ -180,11 +180,12 @@ class Board extends Component {
             //   // console.log(e);
             //   this.handleBoardClick(e);
             // });
-            if (this.props.dataLoaded) {
-              const photo2 = document.getElementById("photo2-1");
-              console.log(photo2);
-            }
-            vp.camera.recenter(5000, 5000, this.state.zoomFactor || 1);
+            // if (this.props.dataLoaded) {
+            //   const photo2 = document.getElementById("photo2-1");
+            //   console.log(photo2);
+            // }
+            const newZoomFactor = this.state.zoomFactor || 1;
+            vp.camera.recenter(5000, 5000, newZoomFactor);
             // vp.translateClientRectToVirtualSpace(photo2);
           }}
           // onClick={(e) => {
