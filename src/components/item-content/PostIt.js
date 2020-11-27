@@ -1,7 +1,6 @@
 import React from "react";
 import postIt1 from "../../assets/img/postit-1.png";
 import "./Items.css";
-import Pin from "./Pin";
 
 const NotepadPage = (props) => {
   const { handleContentClick, handleMoveToFront, handleMoveToBack } = props;
@@ -11,12 +10,7 @@ const NotepadPage = (props) => {
     width,
     height,
     text,
-    pinAngle,
-    pinColor,
-    pinTop,
-    pinLeft,
   } = props.data;
-  //   const { id, name } = props.data;
   return (
     <div
       key={id}
@@ -36,13 +30,6 @@ const NotepadPage = (props) => {
           <button onClick={handleMoveToFront}>F</button>
           <button onClick={handleMoveToBack}>B</button>
         </div>
-        {/* <Pin
-          pinColor={pinColor}
-          pinAngle={pinAngle}
-          pinTop={pinTop}
-          pinLeft={pinLeft}
-          id={id}
-        /> */}
       </div>
     </div>
   );

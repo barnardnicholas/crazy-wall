@@ -2,23 +2,10 @@ import React from "react";
 import paperTexture from "../../assets/img/paper-texture-1.png";
 import { splitText } from "../../utils/utils";
 import "./Items.css";
-import Pin from "./Pin";
 
 const NewspaperColumn = (props) => {
   const { handleContentClick, handleMoveToFront, handleMoveToBack } = props;
-  const {
-    id,
-    // name,
-    width,
-    height,
-    headline,
-    text,
-    pinAngle,
-    pinColor,
-    pinTop,
-    pinLeft,
-  } = props.data;
-  //   const { id, name } = props.data;
+  const { id, width, height, headline, text } = props.data;
   return (
     <div key={id} id={id} className={`content`} onClick={handleContentClick}>
       <div style={{ width, height, fontSize: `${width * 0.3}px` }}>
@@ -38,13 +25,6 @@ const NewspaperColumn = (props) => {
           <button onClick={handleMoveToFront}>F</button>
           <button onClick={handleMoveToBack}>B</button>
         </div>
-        {/* <Pin
-          pinColor={pinColor}
-          pinAngle={pinAngle}
-          pinTop={pinTop}
-          pinLeft={pinLeft}
-          id={id}
-        /> */}
       </div>
     </div>
   );

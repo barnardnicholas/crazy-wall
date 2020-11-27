@@ -168,7 +168,13 @@ const resetData = {
       pinColor: "green",
     },
   ],
-  lines: [["pin-puppy1", "pin-puppy2"]],
+  threads: [
+    ["puppy1", "puppy2"],
+    ["puppy2", "newspaper-column-1"],
+    ["puppy2", "newspaper-front-1"],
+    ["newspaper-column-1", "photo2-1"],
+    ["postit1", "note1"],
+  ],
 };
 
 // module.exports = { testItems, resetData };

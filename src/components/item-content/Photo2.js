@@ -1,21 +1,9 @@
 import React from "react";
 import "./Items.css";
-import Pin from "./Pin";
 
 const Photo2 = (props) => {
   const { handleContentClick, handleMoveToFront, handleMoveToBack } = props;
-  const {
-    id,
-    // name,
-    width,
-    height,
-    imageUrl,
-    pinAngle,
-    pinColor,
-    pinTop,
-    pinLeft,
-  } = props.data;
-  //   const { id, name } = props.data;
+  const { id, width, height, imageUrl } = props.data;
   return (
     <div
       key={id}
@@ -28,19 +16,11 @@ const Photo2 = (props) => {
           className="photo2 bg-cover"
           style={{ backgroundImage: `url(${imageUrl})` }}
         ></div>
-        {/* <div className="pic-label-polaroid">{name}</div> */}
 
         <div className="order-controls">
           <button onClick={handleMoveToFront}>F</button>
           <button onClick={handleMoveToBack}>B</button>
         </div>
-        {/* <Pin
-          pinColor={pinColor}
-          pinAngle={pinAngle}
-          pinTop={pinTop}
-          pinLeft={pinLeft}
-          id={id}
-        /> */}
       </div>
     </div>
   );

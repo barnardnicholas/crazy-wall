@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import LineTo from "react-lineto";
 // import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import "react-rotatable/dist/css/rotatable.min.css";
 import BoardItem from "./BoardItem";
@@ -9,6 +8,7 @@ import { timestamp } from "timestamp";
 import * as schema from "../data/item-schema";
 import { resetData } from "../data/test-data";
 import Thread from "./item-content/Thread";
+import Pin from "./item-content/Pin";
 
 // const transformWrapperOptions = {
 //   disabled: false,
@@ -28,7 +28,10 @@ class Board extends Component {
       centerX: 691,
       centerY: 432,
       items: [],
-      lines: [["pin-puppy1", "pin-puppy2"]],
+      threads: [
+        ["puppy1", "puppy2"],
+        ["puppy2", "newspaper-column-1"],
+      ],
       zoomFactor: 0.66,
     };
   }
@@ -147,21 +150,6 @@ class Board extends Component {
     );
   };
 
-  renderLines = () => {
-    // return this.state.lines.map((line, idx) => {
-    return (
-      <LineTo
-        // key={idx}
-        from={"pin-puppy1"}
-        to={"pin-puppy2"}
-        borderColor="red"
-        borderStyle="solid"
-        borderWidth={2}
-      ></LineTo>
-    );
-    // });
-  };
-
   handleBoardClick = (e) => {
     // console.log(e);
     if (e.target.className === "board") this.setActiveItem(null);
@@ -172,7 +160,7 @@ class Board extends Component {
     return (
       <>
         <div className="header">
-          <h1>Mood Board</h1>
+          <h1>Crazy Wall</h1>
           <button
             onClick={() => {
               this.writeData(this.state);
@@ -218,6 +206,7 @@ class Board extends Component {
           >
             <div key={"origin"} className="origin">
               <div>ORIGIN</div>
+              {/* Load items */}
               {this.state.dataLoaded
                 ? this.state.items.map((i) => {
                     const item = { ...schema[i.type], ...i };
@@ -250,16 +239,36 @@ class Board extends Component {
                     );
                   })
                 : null}
-              {this.state.items.length ? (
-                <Thread
-                  top={this.state.items[0].top || 0}
-                  left={this.state.items[0].left || 0}
-                  angle={0}
-                  width={400}
-                />
-              ) : null}
 
-              {/* {this.renderLines()} */}
+              {/* Load Threads */}
+              {this.state.items.length
+                ? this.state.threads.map((thread) => {
+                    const startId = thread[0];
+                    const endId = thread[1];
+                    const startIndex = this.state.items
+                      .map((i) => i.id)
+                      .indexOf(startId);
+                    const endIndex = this.state.items
+                      .map((i) => i.id)
+                      .indexOf(endId);
+                    const startItem = this.state.items[startIndex];
+                    const endItem = this.state.items[endIndex];
+                    return (
+                      <Thread
+                        key={`thread-${thread[0]}-${thread[1]}`}
+                        startItem={startItem}
+                        endItem={endItem}
+                      />
+                    );
+                  })
+                : null}
+
+              {/* Load Pins */}
+              {this.state.items.length
+                ? this.state.items.map((item) => {
+                    return <Pin key={`pin-${item.id}`} item={item} />;
+                  })
+                : null}
             </div>
           </div>
         </Space>

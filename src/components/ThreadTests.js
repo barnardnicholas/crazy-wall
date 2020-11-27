@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import LineTo from "react-lineto";
-// import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import "react-rotatable/dist/css/rotatable.min.css";
 import BoardItem from "./BoardItem";
 import { moveToFront, moveToBack } from "../utils/utils";
@@ -10,15 +8,6 @@ import * as schema from "../data/item-schema";
 import { resetData } from "../data/test-data";
 import Thread from "./item-content/Thread";
 import Pin from "./item-content/Pin";
-import * as utils from "../utils/utils";
-
-// const transformWrapperOptions = {
-//   disabled: false,
-// };
-
-// const transformWrapperPanOptions = {
-//   disableOnTarget: ["line-start", "line-end"],
-// };
 
 class ThreadTests extends Component {
   constructor() {
@@ -220,38 +209,22 @@ class ThreadTests extends Component {
       <>
         <div className="header">
           <h1>Thread Tester</h1>
-          {/* <button
-            onClick={() => {
-              this.writeData(this.state);
-            }}
-          >
-            Write Data
-          </button>
-          <button onClick={this.resetData}>Reset Data</button> */}
           <div></div>
         </div>
         <Space
-          // style={{ backgroundColor: "black" }}
           innerDivStyle={{ width: 10000, height: 10000 }}
           onCreate={(vp) => {
-            // console.log(e.containerDiv);
-            // e.containerDiv.addEventListener("click", (e) => {
-            //   // console.log(e);
-            //   this.handleBoardClick(e);
-            // });
             if (this.props.dataLoaded) {
               const photo2 = document.getElementById("photo2-1");
               console.log(photo2);
             }
             vp.camera.recenter(5000, 5000, this.state.zoomFactor || 1);
-            // vp.translateClientRectToVirtualSpace(photo2);
           }}
           // onClick={(e) => {
           //   console.log(e);
           //   this.handleBoardClick(e);
           // }}
           onUpdated={(e) => {
-            // console.log(e);
             const { zoomFactor, centerX, centerY } = e;
             this.setState({ zoomFactor, centerX, centerY });
           }}
@@ -259,7 +232,6 @@ class ThreadTests extends Component {
           <div
             className="board"
             onClick={(e) => {
-              // this.handleBoardClick(e);
               if (e.target.className === "board") this.setActiveItem(null);
             }}
           >
@@ -314,7 +286,7 @@ class ThreadTests extends Component {
                     const endItem = this.state.items[endIndex];
                     return (
                       <Thread
-                        key={`thread-${thread[0]}=${thread[1]}`}
+                        key={`thread-${thread[0]}-${thread[1]}`}
                         startItem={startItem}
                         endItem={endItem}
                       />
@@ -325,7 +297,7 @@ class ThreadTests extends Component {
               {/* Load Pins */}
               {this.state.items.length
                 ? this.state.items.map((item) => {
-                    return <Pin item={item} />;
+                    return <Pin key={`pin-${item.id}`} item={item} />;
                   })
                 : null}
             </div>
@@ -336,13 +308,7 @@ class ThreadTests extends Component {
   }
 
   componentDidMount() {
-    // if (!localStorage.puppyState) this.writeData(resetData);
     this.readData();
-  }
-
-  componentWillUnmount() {
-    const { activeItem, ...prevState } = this.state;
-    // this.writeData({ ...prevState, activeItem: null });
   }
 }
 

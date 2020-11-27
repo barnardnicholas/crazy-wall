@@ -32,8 +32,6 @@ const Thread = (props) => {
   const pinOffsetEnd = getPinOffset(thisEndItem);
   const startTop = pinOffsetStart.top;
   const startLeft = pinOffsetStart.left;
-  const endTop = pinOffsetEnd.top;
-  const endLeft = pinOffsetEnd.left;
 
   let angle = calcThreadAngle(
     pinOffsetStart.top,
