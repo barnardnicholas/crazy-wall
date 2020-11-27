@@ -171,5 +171,5 @@ const resetData = {
   lines: [["pin-puppy1", "pin-puppy2"]],
 };
 
-module.exports = { testItems, resetData };
-// export { testItems, resetData };
+// module.exports = { testItems, resetData };
+export { testItems, resetData };

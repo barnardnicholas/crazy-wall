@@ -10,9 +10,11 @@ export const photo1 = {
   name: "Puppy 1",
   zIndex: 2,
   pinColor: "red",
-  pinTop: "10px",
-  pinLeft: "calc(50% - 10px)",
+  // pinTop: "10px",
+  // pinLeft: "calc(50% - 10px)",
   zoomable: "",
+  pinOffsetTop: 10,
+  pinOffsetLeft: 90,
 };
 export const photo2 = {
   type: "photo2",
@@ -26,9 +28,11 @@ export const photo2 = {
   name: "B&W Photo 1",
   zIndex: 2,
   pinColor: "red",
-  pinTop: "10px",
-  pinLeft: "calc(50% - 10px)",
+  // pinTop: "10px",
+  // pinLeft: "calc(50% - 10px)",
   zoomable: "",
+  pinOffsetTop: 10,
+  pinOffsetLeft: 101.5,
 };
 export const note1 = {
   type: "note1",
@@ -43,9 +47,11 @@ export const note1 = {
   name: "Note",
   zIndex: 1,
   pinColor: "red",
-  pinTop: "20px",
-  pinLeft: "calc(50% - 10px)",
+  // pinTop: "20px",
+  // pinLeft: "calc(50% - 10px)",
   zoomable: "",
+  pinOffsetTop: 20,
+  pinOffsetLeft: 150,
 };
 export const postit = {
   type: "postit",
@@ -59,11 +65,12 @@ export const postit = {
   name: "Post-It",
   zIndex: 1,
   pinColor: "red",
-  pinTop: "8%",
-  pinLeft: "calc(50% - 10px)",
+  // pinTop: "8%",
+  // pinLeft: "calc(50% - 10px)",
   zoomable: "",
+  pinOffsetTop: 13,
+  pinOffsetLeft: 76,
 };
-
 export const newspaperColumn = {
   type: "newspaperColumn",
   headline: "Lorem ipsum dolor sit amet",
@@ -80,11 +87,12 @@ export const newspaperColumn = {
   name: "Note",
   zIndex: 1,
   pinColor: "red",
-  pinTop: "5px",
-  pinLeft: "calc(50% - 10px)",
+  // pinTop: "5px",
+  // pinLeft: "calc(50% - 10px)",
   zoomable: "s",
+  pinOffsetTop: 5,
+  pinOffsetLeft: 75,
 };
-
 export const newspaperFrontPage1 = {
   type: "newspaperFrontPage1",
   headline: "Lorem ipsum dolor sit amet",
@@ -105,9 +113,11 @@ export const newspaperFrontPage1 = {
   name: "Newspaper Front Page 1",
   zIndex: 1,
   pinColor: "red",
-  pinTop: "5px",
-  pinLeft: "calc(50% - 10px)",
+  // pinTop: "5px",
+  // pinLeft: "calc(50% - 10px)",
   zoomable: "",
+  pinOffsetTop: 5,
+  pinOffsetLeft: 320,
 };
 
 const databaseSchema = {

@@ -9,6 +9,8 @@ import { timestamp } from "timestamp";
 import * as schema from "../data/item-schema";
 import { resetData } from "../data/test-data";
 import Thread from "./item-content/Thread";
+import Pin from "./item-content/Pin";
+import * as utils from "../utils/utils";
 
 // const transformWrapperOptions = {
 //   disabled: false,
@@ -64,8 +66,30 @@ class ThreadTests extends Component {
           pinOffsetTop: 10,
           pinOffsetLeft: 90,
         },
+        {
+          type: "newspaperColumn",
+          headline: "Lorem ipsum dolor sit amet",
+          text: [
+            "Lorem ipsum dolor sit amet, utroque percipit voluptaria vix an, eum in graeco splendide evertitur, ut vel errem putent. Id sit dico minim habemus, quo augue fastidii ea, ex eos essent adversarium vituperatoribus. In eam tale everti nonumes, vel at iriure equidem rationibus. Fugit omnesque an eum, dico sanctus duo id, est ne autem libris mandamus.",
+            "Nec numquam ponderum at. Et possim doctus his, vel recusabo adversarium no, vim ea volutpat elaboraret. Duo no modo blandit percipit, qui falli homero ne, an mazim viderer pro. Cu probo fierent omittantur sea, eum persius disputando ne.",
+          ].join("\r\n"),
+          left: -50,
+          top: 112,
+          height: 420, // user-resizeable
+          angle: 0,
+          name: "Newspaper Column",
+          id: "newspaper-column-1",
+          zIndex: 1,
+          pinAngle: 70,
+          pinColor: "green",
+          pinOffsetTop: 10,
+          pinOffsetLeft: 75,
+        },
       ],
-      threads: [["puppy1", "puppy2"]],
+      threads: [
+        ["puppy1", "puppy2"],
+        ["puppy2", "newspaper-column-1"],
+      ],
       zoomFactor: 0.66,
     };
   }
@@ -185,44 +209,6 @@ class ThreadTests extends Component {
     );
   };
 
-  renderLines = () => {
-    // return this.state.lines.map((line, idx) => {
-    return (
-      <LineTo
-        // key={idx}
-        from={"pin-puppy1"}
-        to={"pin-puppy2"}
-        borderColor="red"
-        borderStyle="solid"
-        borderWidth={2}
-      ></LineTo>
-    );
-    // });
-  };
-
-  renderThreads = () => {
-    this.state.threads.map((thread) => {
-      console.log("renderThreads");
-      const startId = thread[0];
-      const endId = thread[1];
-      const startIndex = this.state.items.map((i) => i.id).indexOf(startId);
-      const endIndex = this.state.items.map((i) => i.id).indexOf(endId);
-      const startTop = this.state.items[startIndex].top;
-      const startLeft = this.state.items[startIndex].left;
-      const endTop = this.state.items[endIndex].top;
-      const endLeft = this.state.items[endIndex].left;
-      return (
-        <Thread
-          key={`thread-${startId}=${endId}`}
-          startTop={startTop}
-          endTop={endTop}
-          startLeft={startLeft}
-          endLeft={endLeft}
-        />
-      );
-    });
-  };
-
   handleBoardClick = (e) => {
     // console.log(e);
     if (e.target.className === "board") this.setActiveItem(null);
@@ -279,6 +265,7 @@ class ThreadTests extends Component {
           >
             <div key={"origin"} className="origin">
               <div>ORIGIN</div>
+              {/* Load items */}
               {this.state.dataLoaded
                 ? this.state.items.map((i) => {
                     const item = { ...schema[i.type], ...i };
@@ -311,19 +298,36 @@ class ThreadTests extends Component {
                     );
                   })
                 : null}
-              {this.state.items.length ? (
-                <Thread
-                  key={`thread-${this.state.threads[0][0]}=${this.state.threads[0][1]}`}
-                  startTop={this.state.items[0].top}
-                  endTop={this.state.items[1].top}
-                  startLeft={this.state.items[0].left}
-                  endLeft={this.state.items[1].left}
-                  startItem={this.state.items[0]}
-                  endItem={this.state.items[1]}
-                />
-              ) : null}
 
-              {/* {this.renderLines()} */}
+              {/* Load Threads */}
+              {this.state.items.length
+                ? this.state.threads.map((thread) => {
+                    const startId = thread[0];
+                    const endId = thread[1];
+                    const startIndex = this.state.items
+                      .map((i) => i.id)
+                      .indexOf(startId);
+                    const endIndex = this.state.items
+                      .map((i) => i.id)
+                      .indexOf(endId);
+                    const startItem = this.state.items[startIndex];
+                    const endItem = this.state.items[endIndex];
+                    return (
+                      <Thread
+                        key={`thread-${thread[0]}=${thread[1]}`}
+                        startItem={startItem}
+                        endItem={endItem}
+                      />
+                    );
+                  })
+                : null}
+
+              {/* Load Pins */}
+              {this.state.items.length
+                ? this.state.items.map((item) => {
+                    return <Pin item={item} />;
+                  })
+                : null}
             </div>
           </div>
         </Space>

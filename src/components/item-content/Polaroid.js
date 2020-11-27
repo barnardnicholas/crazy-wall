@@ -39,13 +39,13 @@ const Polaroid = (props) => {
           <button onClick={handleMoveToFront}>F</button>
           <button onClick={handleMoveToBack}>B</button>
         </div>
-        <Pin
+        {/* <Pin
           pinColor={pinColor}
           pinAngle={pinAngle}
           pinTop={pinTop}
           pinLeft={pinLeft}
           id={id}
-        />
+        /> */}
       </div>
     </div>
   );

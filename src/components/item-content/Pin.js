@@ -1,5 +1,6 @@
 import React from "react";
-// import pinRed from "../../assets/img/pin_red_100x107.png";
+import * as utils from "../../utils/utils";
+import * as schema from "../../data/item-schema";
 
 const hues = {
   red: 0,
@@ -9,7 +10,10 @@ const hues = {
 };
 
 const Pin = (props) => {
-  const { pinAngle, pinColor, pinTop, pinLeft, id } = props;
+  // const { pinAngle, pinColor, pinTop, pinLeft, id } = props;
+  const thisItem = { ...schema[props.item.type], ...props.item };
+  const { pinAngle, pinColor, id } = thisItem;
+  const pinOffset = utils.getPinOffset(thisItem);
   return (
     <div
       id={`pin-${id}`}
@@ -17,8 +21,8 @@ const Pin = (props) => {
       style={{
         filter: `hue-rotate(${hues[pinColor]}deg)`,
         transform: `rotate(${pinAngle}deg)`,
-        top: pinTop,
-        left: pinLeft,
+        top: `${pinOffset.top}px`,
+        left: `${pinOffset.left - 10}px`,
       }}
     >
       <div className="pin-body"></div>

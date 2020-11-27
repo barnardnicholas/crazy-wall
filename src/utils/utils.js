@@ -58,15 +58,7 @@ const getPinOffset = (item) => {
   );
 };
 
-module.exports = {
-  moveToFront,
-  moveToBack,
-  splitText,
-  calcThreadAngle,
-  calcThreadLength,
-  getPinOffset,
-};
-// export {
+// module.exports = {
 //   moveToFront,
 //   moveToBack,
 //   splitText,
@@ -74,3 +66,11 @@ module.exports = {
 //   calcThreadLength,
 //   getPinOffset,
 // };
+export {
+  moveToFront,
+  moveToBack,
+  splitText,
+  calcThreadAngle,
+  calcThreadLength,
+  getPinOffset,
+};
