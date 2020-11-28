@@ -78,6 +78,7 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: #22222299;
 }
 
 .react-zoomable-ui-inner-div {
