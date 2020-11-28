@@ -211,32 +211,44 @@ class Board extends Component {
               {this.state.dataLoaded
                 ? this.state.items.map((i) => {
                     const item = { ...schema[i.type], ...i };
+                    const shadowStyle = {
+                      top: `${item.top + 4}px`,
+                      left: `${item.left + 4}px`,
+                      width: `${item.width}px`,
+                      height: `${item.height}px`,
+                      transform: `rotate(${item.angle}deg)`,
+                      background: `rgba(0,0,0,0.33)`,
+                      position: "absolute",
+                    };
                     return (
-                      <BoardItem
-                        key={`item-${item.id}`}
-                        data={item}
-                        zIndex={item.zIndex}
-                        aspect={item.aspect}
-                        active={
-                          this.state.activeItem === item.id ? true : false
-                        }
-                        handleContentClick={() => {
-                          this.handleContentClick(item.id);
-                        }}
-                        handleDrag={this.handleDrag}
-                        handleDragEnd={this.handleDragEnd}
-                        handleResize={this.handleResize}
-                        handleResizeEnd={this.handleResizeEnd}
-                        handleRotate={this.handleRotate}
-                        handleRotateEnd={this.handleRotateEnd}
-                        handleMoveToFront={() => {
-                          this.handleMoveToFront(item);
-                        }}
-                        handleMoveToBack={() => {
-                          this.handleMoveToBack(item);
-                        }}
-                        zoomFactor={this.state.zoomFactor}
-                      />
+                      <>
+                        <div style={shadowStyle}></div>
+                        <BoardItem
+                          key={`item-${item.id}`}
+                          data={item}
+                          zIndex={item.zIndex}
+                          aspect={item.aspect}
+                          active={
+                            this.state.activeItem === item.id ? true : false
+                          }
+                          handleContentClick={() => {
+                            this.handleContentClick(item.id);
+                          }}
+                          handleDrag={this.handleDrag}
+                          handleDragEnd={this.handleDragEnd}
+                          handleResize={this.handleResize}
+                          handleResizeEnd={this.handleResizeEnd}
+                          handleRotate={this.handleRotate}
+                          handleRotateEnd={this.handleRotateEnd}
+                          handleMoveToFront={() => {
+                            this.handleMoveToFront(item);
+                          }}
+                          handleMoveToBack={() => {
+                            this.handleMoveToBack(item);
+                          }}
+                          zoomFactor={this.state.zoomFactor}
+                        />
+                      </>
                     );
                   })
                 : null}

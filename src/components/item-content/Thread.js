@@ -30,7 +30,7 @@ const testThreadShadowStyle = {
   left: 0,
   width: 0,
   height: `${defaultWidth}px`,
-  backgroundColor: "rgba(0,0,0,0.5)",
+  backgroundColor: "rgba(0,0,0,0.33)",
   pointerEvents: "none",
   position: "absolute",
   transform: `rotate(0deg)`,
