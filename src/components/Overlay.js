@@ -19,11 +19,6 @@ const gradComp =
     .join("") +
   ")";
 
-// const gradComp = `radial-gradient(circle, ${gradValues})`;
-
-// background: rgb(0,0,0);
-// background: radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
-
 const gradientStyle = {
   backgroundImage: gradComp,
 };
