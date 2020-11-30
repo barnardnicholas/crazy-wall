@@ -9,6 +9,7 @@ import * as schema from "../data/item-schema";
 import { resetData } from "../data/test-data";
 import Thread from "./item-content/Thread";
 import Pin from "./item-content/Pin";
+import Overlay from "./Overlay";
 
 // const transformWrapperOptions = {
 //   disabled: false,
@@ -22,16 +23,14 @@ class Board extends Component {
   constructor() {
     super();
     this.state = {
+      authorUid: "HPAts2xCsLdT66tshh1Gw0JHYE62",
       lastInteraction: 0,
       dataLoaded: false,
       activeItem: null,
       centerX: 691,
       centerY: 432,
       items: [],
-      threads: [
-        ["puppy1", "puppy2"],
-        ["puppy2", "newspaper-column-1"],
-      ],
+      threads: [],
       zoomFactor: 0.66,
     };
   }
@@ -285,6 +284,7 @@ class Board extends Component {
             </div>
           </div>
         </Space>
+        <Overlay />
       </>
     );
   }

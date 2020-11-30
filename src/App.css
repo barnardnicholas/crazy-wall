@@ -39,7 +39,6 @@ body,
   margin: 0;
   padding: 0;
   background-color: #222222;
-  color: #ffffff;
 }
 
 p {
@@ -50,6 +49,7 @@ p {
   text-align: center;
   width: 100vw;
   height: 100vh;
+  color: #fbfbfb;
 }
 
 .header {
@@ -125,4 +125,11 @@ p {
   position: absolute;
   bottom: -30px;
   width: 100%;
+}
+
+.gradient-overlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  pointer-events: none;
 }
