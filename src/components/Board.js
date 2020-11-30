@@ -10,6 +10,7 @@ import { resetData } from "../data/test-data";
 import Thread from "./item-content/Thread";
 import Pin from "./item-content/Pin";
 import Overlay from "./Overlay";
+import BoardUI from "./ui/BoardUI";
 
 // const transformWrapperOptions = {
 //   disabled: false,
@@ -158,7 +159,7 @@ class Board extends Component {
   render() {
     return (
       <>
-        <div className="header">
+        {/* <div className="header">
           <h1>Crazy Wall</h1>
           <button
             onClick={() => {
@@ -169,7 +170,8 @@ class Board extends Component {
           </button>
           <button onClick={this.resetData}>Reset Data</button>
           <div></div>
-        </div>
+        </div> */}
+
         <Space
           // style={{ backgroundColor: "black" }}
           innerDivStyle={{ width: 10000, height: 10000 }}
@@ -285,6 +287,10 @@ class Board extends Component {
           </div>
         </Space>
         <Overlay />
+        <BoardUI
+          state={this.state}
+          handlers={{ resetData: this.resetData, writeData: this.writeData }}
+        />
       </>
     );
   }
