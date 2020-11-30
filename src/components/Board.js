@@ -159,19 +159,6 @@ class Board extends Component {
   render() {
     return (
       <>
-        {/* <div className="header">
-          <h1>Crazy Wall</h1>
-          <button
-            onClick={() => {
-              this.writeData(this.state);
-            }}
-          >
-            Write Data
-          </button>
-          <button onClick={this.resetData}>Reset Data</button>
-          <div></div>
-        </div> */}
-
         <Space
           // style={{ backgroundColor: "black" }}
           innerDivStyle={{ width: 10000, height: 10000 }}
