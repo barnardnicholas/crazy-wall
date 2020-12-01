@@ -1,4 +1,18 @@
 @font-face {
+  font-family: "Open Sans Light";
+  src: url("./assets/fonts/OpenSans-Light.ttf"); /* IE9 Compat Modes */
+  src: url("./assets/fonts/OpenSans-Light.ttf?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("./assets/fonts/OpenSans-Light.ttf") format("truetype"); /* Safari, Android, iOS */
+}
+@font-face {
+  font-family: "Open Sans SemiBold";
+  src: url("./assets/fonts/OpenSans-SemiBold.ttf"); /* IE9 Compat Modes */
+  src: url("./assets/fonts/OpenSans-SemiBold.ttf?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("./assets/fonts/OpenSans-SemiBold.ttf") format("truetype"); /* Safari, Android, iOS */
+}
+@font-face {
   font-family: "Sue Ellen Francisco";
   src: url("./assets/fonts/SueEllenFrancisco-Regular.ttf"); /* IE9 Compat Modes */
   src: url("./assets/fonts/SueEllenFrancisco-Regular.ttf?#iefix")
@@ -28,42 +42,356 @@
     /* IE6-IE8 */ url("./assets/fonts/Chomsky.ttf") format("truetype"); /* Safari, Android, iOS */
 }
 
+/* - - - - - - - - - - Font smoothing - - - - - - - - - - */
 * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html,
 body,
 .root {
   margin: 0;
   padding: 0;
   background-color: #222222;
+  color: #dedede;
+  border-color: #515151;
+  font-size: 12px;
+  /* font-size: clamp(12px, 2vmin, 32px); */
+  /* font-weight: 200; */
 }
-
+/* - - - - - - - - - - Typography - - - - - - - - - - */
+/* - - - - - - - - - - Headings - - - - - - - - - - */
+h1 {
+  font-size: 3rem;
+  line-height: 3rem;
+  font-weight: 600;
+}
+h2 {
+  font-size: 2.5rem;
+  line-height: 2rem;
+  font-weight: 600;
+}
+h3 {
+  font-size: 2rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+}
+h4 {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+}
+h5 {
+  font-size: 1.2rem;
+  line-height: 1rem;
+  font-weight: 500;
+}
+h6 {
+  font-size: 1rem;
+  line-height: 1rem;
+  font-weight: 600;
+}
+/* - - - - - - - - - - Body Text - - - - - - - - - - */
 p {
+  font-size: 1rem;
   margin-bottom: 1em;
 }
+blockquote,
+blockquote p {
+  font-size: 2rem;
+  font-weight: 600;
+}
 
+/* - - - - - - - - - - Lists - - - - - - - - - - */
+/* - - - - - - - - - - Definitions - - - - - - - - - - */
+dl {
+  font-size: 1rem;
+} /* Definition List */
+dt {
+  font-size: 1rem;
+} /* Definition List Title */
+dd {
+  font-size: 1rem;
+} /* Definition List Division */
+
+/* - - - - - - - - - - List Elements - - - - - - - - - - */
+li {
+  font-size: 1rem;
+}
+
+/* - - - - - - - - - - Ordered Lists - - - - - - - - - - */
+ol {
+  font-size: 1rem;
+}
+ol li {
+  font-size: 1rem;
+}
+
+/* - - - - - - - - - - Unordered Lists - - - - - - - - - - */
+ul {
+  font-size: 1rem;
+}
+ul li {
+  font-size: 1rem;
+}
+
+/* - - - - - - - - - - Horizontal Rules - - - - - - - - - - */
+hr {
+  display: block;
+}
+
+/* - - - - - - - - - - Tables - - - - - - - - - - */
+table {
+}
+tr {
+}
+td {
+}
+caption {
+} /*Table Caption */
+thead {
+} /* Table Header */
+tfoot {
+} /* Table Footer */
+th {
+} /* Tabel Header/Footer Data */
+
+/* - - - - - - - - - - Text formatting - - - - - - - - - - */
+/* - - - - - - - - - - Keyboard input - - - - - - - - - - */
+kbd {
+}
+/* - - - - - - - - - - Inline Code - - - - - - - - - - */
+code {
+}
+/* - - - - - - - - - - Preformatted Text - - - - - - - - - - */
+pre {
+}
+/* - - - - - - - - - - Inline elements - - - - - - - - - - */
+strong {
+} /* Strong */
+em {
+} /* Emphasis */
+b {
+} /* Bold */
+i {
+} /* Italics */
+u {
+} /* Underline */
+del {
+} /* Deleted */
+ins {
+} /* Inserted */
+s {
+} /* Strikethrough */
+sup {
+} /* Superscript */
+sub {
+} /* Subscript */
+small {
+} /* Small Script */
+abbr {
+} /* Abbreviation */
+q {
+} /* Quotation */
+cite {
+  font-size: 0.8rem;
+  font-weight: 400;
+} /* Citation */
+dfn {
+} /* Definition */
+mark {
+} /* Marked Text */
+var {
+} /* Variable */
+time {
+} /* Time */
+
+/* - - - - - - - - - - Images, Audio, Video - - - - - - - - - - */
+img {
+  max-width: 100%;
+}
+figure {
+}
+figcaption {
+}
+audio {
+}
+video {
+}
+canvas {
+}
+meter {
+}
+progress {
+}
+svg {
+}
+iframe {
+}
+
+/* - - - - - - - - - - Form Elements - - - - - - - - - - */
+/* - - - - - - - - - - Inputs - - - - - - - - - - */
+input {
+  background-color: inherit;
+  border: 1px solid #515151;
+  color: #dedede;
+}
+input[type="text"] {
+}
+input[type="password"] {
+}
+input[type="url"] {
+}
+input[type="email"] {
+}
+input[type="tel"] {
+}
+input[type="search"] {
+}
+input[type="number"] {
+}
+
+/* - - - - - - - - - - Select Menu - - - - - - - - - - */
+select {
+}
+select option {
+}
+
+/* - - - - - - - - - - Checkboxes & Radio - - - - - - - - - - */
+fieldset {
+}
+input[type="checkbox"] {
+}
+input[type="radio"] {
+}
+
+/* - - - - - - - - - - Text Area - - - - - - - - - - */
+textarea {
+}
+
+/* - - - - - - - - - - HTML5 Inputs - - - - - - - - - - */
+input[type="color"] {
+}
+input[type="number"] {
+}
+input[type="range"] {
+}
+input[type="date"] {
+}
+input[type="month"] {
+}
+input[type="week"] {
+}
+input[type="datetime"] {
+}
+input[type="datetime-local"] {
+}
+
+/* - - - - - - - - - - Action Buttons - - - - - - - - - - */
+input[type="submit"] {
+}
+input[type="button"] {
+}
+input[type="reset"] {
+}
+input[disabled] {
+}
+button[type="submit"] {
+}
+button[type="button"] {
+}
+button[type="reset"] {
+}
+button[disabled] {
+}
+
+/* - - - - - - - - - - Page Structure - - - - - - - - - - */
+header {
+}
+footer {
+}
+section {
+}
+article {
+}
+
+/* - - - - - - - - - - App Elements - - - - - - - - - - */
 .App {
   text-align: center;
   width: 100vw;
   height: 100vh;
-  color: #fbfbfb;
+  color: #dedede;
 }
 
 .header {
   width: 100%;
   position: fixed;
   z-index: 100;
+  background-color: #222222;
+  padding: 4px;
+  text-align: left;
+  border-bottom: 1px solid #515151;
+}
+
+.app-title {
+  display: inline-block;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 1em 0 0.5em;
+  color: #dedede;
+  text-decoration: none;
+  transition: 0.2s all;
+}
+
+.app-title:hover {
+  color: #222222;
+  text-shadow: 0px 0px 3px #dedede;
+}
+
+.header-button {
+  background-color: #222222;
+  border: 1px solid #515151;
+  border-radius: 2px;
+  padding: 2px 4px;
+  margin: 0 1px;
+  font-size: 1rem;
+  display: inline-block;
+  height: 1.8em;
+  line-height: 1.4em;
+  min-height: 1.8em;
+  min-width: 1.8em;
+  transition: 0.2s all;
+  cursor: pointer;
+}
+
+.header-button:hover {
+  background-color: #7b7b7b;
+  border: 1px solid #dedede;
+  color: #191919;
+}
+
+.sidebar {
+  position: fixed;
+  height: calc(100vh - 30px);
+  width: 300px;
+  background-color: #222222;
+  right: 0;
+  top: 30px;
+  border-left: 1px solid #515151;
+  transition: 0.2s all;
+  font-size: 12px;
 }
 
 .board {
   width: 100%;
   height: 100%;
   /* background-image: url(assets/img/Chequerboard.svg); */
-  background-image: url(assets/img/cork_1000x1000.jpg);
   /* background-size: 100px auto; */
+  background-image: url(assets/img/cork_1000x1000.jpg);
   background-repeat: repeat;
 }
 
@@ -132,4 +460,62 @@ p {
   height: 100vh;
   position: fixed;
   pointer-events: none;
+}
+
+/* - - - - - - - - - - Responsiveness Media Queries - - - - - - - - - - */
+
+/* Intelligent breakpoints from mobile to very large desktop - CSS Version
+Original article: https://www.freecodecamp.org/news/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862/ */
+
+/* Portrait Phones upwards
+/*-------------------------------------------------- */
+@media (max-width: 599px) {
+  html,
+  body {
+    font-size: 12px;
+  }
+}
+
+/* Portrait Tablets upwards
+/*-------------------------------------------------- */
+@media (min-width: 600px) {
+  html,
+  body {
+    font-size: 12px;
+  }
+}
+
+/* Landscape Tablets upwards
+/*-------------------------------------------------- */
+@media (min-width: 900px) {
+  html,
+  body {
+    font-size: 12px;
+  }
+}
+
+/* Desktop upwards
+/*-------------------------------------------------- */
+@media (min-width: 1200px) {
+  html,
+  body {
+    font-size: 12px;
+  }
+}
+
+/* Large Desktop upwards
+/*-------------------------------------------------- */
+@media (min-width: 1800px) {
+  html,
+  body {
+    font-size: 12px;
+  }
+}
+
+/* - - - - - - - - - - Super-Responsiveness - vMin/vMax - - - - - - - - - - */
+@supports (font-size: clamp(16px, 2vmin, 32px)) {
+  html,
+  body {
+    /* font-size: clamp(12px, 2vmin, 32px) !important; */
+  }
 }

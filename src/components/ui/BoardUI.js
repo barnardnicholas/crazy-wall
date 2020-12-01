@@ -1,21 +1,37 @@
 import React from "react";
+import HeaderButton from "./HeaderButton";
+import { Link } from "@reach/router";
+import ItemEditor from "./ItemEditor";
+import Sidebar from "./Sidebar";
 
 const BoardUI = (props) => {
-  const { resetData, writeData } = props.handlers;
+  const { resetData, writeData, writeToTxt } = props.handlers;
   const { state } = props;
   return (
     <>
+      {/* <ItemEditor /> */}
+      <Sidebar>
+        <ItemEditor />
+      </Sidebar>
       <div className="header">
-        <h1>Crazy Wall</h1>
-        <button
+        <Link to="/" className="app-title">
+          Crazy Wall
+        </Link>
+        <HeaderButton
           onClick={() => {
             writeData(state);
           }}
         >
           Write Data
-        </button>
-        <button onClick={resetData}>Reset Data</button>
-        <div></div>
+        </HeaderButton>
+        <HeaderButton onClick={resetData}>Reset Data</HeaderButton>
+        <HeaderButton
+          onClick={() => {
+            writeToTxt();
+          }}
+        >
+          Save
+        </HeaderButton>
       </div>
     </>
   );

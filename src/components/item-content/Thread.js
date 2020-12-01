@@ -9,7 +9,7 @@ import threadRed from "../../assets/img/thread_red.png";
 
 const defaultWidth = 7; // thread width in px
 
-const testThreadStyle = {
+const threadStyle = {
   top: 0,
   left: 0,
   width: 0,
@@ -23,9 +23,20 @@ const testThreadStyle = {
   position: "absolute",
   transform: `rotate(0deg)`,
   transformOrigin: `0 50%`,
+  textAlign: "center",
 };
 
-const testThreadShadowStyle = {
+const threadBoundsStyle = {
+  display: "inline-block",
+  minWidth: "20px",
+  maxWidth: "600px",
+  width: "25%",
+  height: "100%",
+  backgroundColor: "#ffffff",
+  position: "absolute",
+};
+
+const threadShadowStyle = {
   top: 0,
   left: 0,
   width: 0,
@@ -73,12 +84,11 @@ const Thread = (props) => {
     <>
       <div
         className="test-thread-shadow"
-        style={{ ...testThreadShadowStyle, ...newShadowStyle }}
+        style={{ ...threadShadowStyle, ...newShadowStyle }}
       ></div>
-      <div
-        className="test-thread"
-        style={{ ...testThreadStyle, ...newStyle }}
-      ></div>
+      <div className="thread" style={{ ...threadStyle, ...newStyle }}>
+        {/* <div className="thread-bounds" style={threadBoundsStyle}></div> */}
+      </div>
     </>
   );
 };

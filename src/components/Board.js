@@ -52,6 +52,10 @@ class Board extends Component {
     this.writeData(resetData);
   };
 
+  writeToTxt = () => {
+    console.log("writeToTxt");
+  };
+
   setActiveItem = (id) => {
     if (this.state.activeItem !== id) this.setState({ activeItem: id });
     else if (!id) this.setState({ activeItem: null });
@@ -196,87 +200,97 @@ class Board extends Component {
             <div key={"origin"} className="origin">
               <div>ORIGIN</div>
               {/* Load items */}
-              {this.state.dataLoaded
-                ? this.state.items.map((i) => {
-                    const item = { ...schema[i.type], ...i };
-                    const shadowStyle = {
-                      top: `${item.top + 4}px`,
-                      left: `${item.left + 4}px`,
-                      width: `${item.width}px`,
-                      height: `${item.height}px`,
-                      transform: `rotate(${item.angle}deg)`,
-                      background: `rgba(0,0,0,0.33)`,
-                      position: "absolute",
-                    };
-                    return (
-                      <>
-                        <div style={shadowStyle}></div>
-                        <BoardItem
-                          key={`item-${item.id}`}
-                          data={item}
-                          zIndex={item.zIndex}
-                          aspect={item.aspect}
-                          active={
-                            this.state.activeItem === item.id ? true : false
-                          }
-                          handleContentClick={() => {
-                            this.handleContentClick(item.id);
-                          }}
-                          handleDrag={this.handleDrag}
-                          handleDragEnd={this.handleDragEnd}
-                          handleResize={this.handleResize}
-                          handleResizeEnd={this.handleResizeEnd}
-                          handleRotate={this.handleRotate}
-                          handleRotateEnd={this.handleRotateEnd}
-                          handleMoveToFront={() => {
-                            this.handleMoveToFront(item);
-                          }}
-                          handleMoveToBack={() => {
-                            this.handleMoveToBack(item);
-                          }}
-                          zoomFactor={this.state.zoomFactor}
-                        />
-                      </>
-                    );
-                  })
-                : null}
+              {this.state.dataLoaded ? (
+                this.state.items.map((i, idx) => {
+                  const item = { ...schema[i.type], ...i };
+                  const shadowStyle = {
+                    top: `${item.top + 4}px`,
+                    left: `${item.left + 4}px`,
+                    width: `${item.width}px`,
+                    height: `${item.height}px`,
+                    transform: `rotate(${item.angle}deg)`,
+                    background: `rgba(0,0,0,0.33)`,
+                    position: "absolute",
+                  };
+                  return (
+                    <>
+                      <div style={shadowStyle}></div>
+                      <BoardItem
+                        key={`item-${idx}-${item.id}`}
+                        data={item}
+                        zIndex={item.zIndex}
+                        aspect={item.aspect}
+                        active={
+                          this.state.activeItem === item.id ? true : false
+                        }
+                        handleContentClick={() => {
+                          this.handleContentClick(item.id);
+                        }}
+                        handleDrag={this.handleDrag}
+                        handleDragEnd={this.handleDragEnd}
+                        handleResize={this.handleResize}
+                        handleResizeEnd={this.handleResizeEnd}
+                        handleRotate={this.handleRotate}
+                        handleRotateEnd={this.handleRotateEnd}
+                        handleMoveToFront={() => {
+                          this.handleMoveToFront(item);
+                        }}
+                        handleMoveToBack={() => {
+                          this.handleMoveToBack(item);
+                        }}
+                        zoomFactor={this.state.zoomFactor}
+                      />
+                    </>
+                  );
+                })
+              ) : (
+                <></>
+              )}
 
               {/* Load Threads */}
-              {this.state.items.length
-                ? this.state.threads.map((thread) => {
-                    const startId = thread[0];
-                    const endId = thread[1];
-                    const startIndex = this.state.items
-                      .map((i) => i.id)
-                      .indexOf(startId);
-                    const endIndex = this.state.items
-                      .map((i) => i.id)
-                      .indexOf(endId);
-                    const startItem = this.state.items[startIndex];
-                    const endItem = this.state.items[endIndex];
-                    return (
-                      <Thread
-                        key={`thread-${thread[0]}-${thread[1]}`}
-                        startItem={startItem}
-                        endItem={endItem}
-                      />
-                    );
-                  })
-                : null}
+              {this.state.items.length ? (
+                this.state.threads.map((thread, idx) => {
+                  const startId = thread[0];
+                  const endId = thread[1];
+                  const startIndex = this.state.items
+                    .map((i) => i.id)
+                    .indexOf(startId);
+                  const endIndex = this.state.items
+                    .map((i) => i.id)
+                    .indexOf(endId);
+                  const startItem = this.state.items[startIndex];
+                  const endItem = this.state.items[endIndex];
+                  return (
+                    <Thread
+                      key={`thread-${idx}-${thread[0]}-${thread[1]}`}
+                      startItem={startItem}
+                      endItem={endItem}
+                    />
+                  );
+                })
+              ) : (
+                <></>
+              )}
 
               {/* Load Pins */}
-              {this.state.items.length
-                ? this.state.items.map((item) => {
-                    return <Pin key={`pin-${item.id}`} item={item} />;
-                  })
-                : null}
+              {this.state.items.length ? (
+                this.state.items.map((item, idx) => {
+                  return <Pin key={`pin-${idx}-${item.id}`} item={item} />;
+                })
+              ) : (
+                <></>
+              )}
             </div>
           </div>
         </Space>
         <Overlay />
         <BoardUI
           state={this.state}
-          handlers={{ resetData: this.resetData, writeData: this.writeData }}
+          handlers={{
+            resetData: this.resetData,
+            writeData: this.writeData,
+            writeToTxt: this.writeToTxt,
+          }}
         />
       </>
     );
