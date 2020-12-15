@@ -7,11 +7,18 @@ import Sidebar from "./Sidebar";
 const BoardUI = (props) => {
   const { resetData, writeData, writeToTxt } = props.handlers;
   const { state } = props;
+  const renderSidebar = () => {
+    const thisItem = state.items.filter((i) => i.id === state.activeItem)[0];
+    return (
+      <Sidebar>
+        <ItemEditor item={thisItem} />
+      </Sidebar>
+    );
+  };
   return (
     <>
-      {/* <Sidebar>
-        <ItemEditor />
-      </Sidebar> */}
+      {state.activeItem ? renderSidebar() : null}
+
       <div className="header">
         <Link to="/" className="app-title">
           Crazy Wall
