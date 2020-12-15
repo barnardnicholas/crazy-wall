@@ -9,10 +9,9 @@ const BoardUI = (props) => {
   const { state } = props;
   return (
     <>
-      {/* <ItemEditor /> */}
-      <Sidebar>
+      {/* <Sidebar>
         <ItemEditor />
-      </Sidebar>
+      </Sidebar> */}
       <div className="header">
         <Link to="/" className="app-title">
           Crazy Wall

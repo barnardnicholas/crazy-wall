@@ -1,10 +1,16 @@
 import React from "react";
 import notepadPage from "../../assets/img/notepad-page.png";
 import "./Items.css";
+import { inputs } from "../../data/item-schema";
+const inputSchema = { ...inputs };
 
 const NotepadPage = (props) => {
   const { handleContentClick, handleMoveToFront, handleMoveToBack } = props;
-  const { id, width, height, text } = props.data;
+  const { id, width, height, inputs } = props.data;
+  const textInput = {
+    ...inputSchema.textArea,
+    ...inputs.filter((i) => i.label === "Text")[0],
+  };
   return (
     <div
       key={id}
@@ -17,7 +23,7 @@ const NotepadPage = (props) => {
           className="notepad-page bg-contain"
           style={{ backgroundImage: `url(${notepadPage})` }}
         >
-          {text}
+          {textInput.value}
         </div>
 
         <div className="order-controls">

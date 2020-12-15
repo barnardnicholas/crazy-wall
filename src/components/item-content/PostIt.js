@@ -1,16 +1,16 @@
 import React from "react";
 import postIt1 from "../../assets/img/postit-1.png";
 import "./Items.css";
+import { inputs } from "../../data/item-schema";
+const inputSchema = { ...inputs };
 
 const NotepadPage = (props) => {
   const { handleContentClick, handleMoveToFront, handleMoveToBack } = props;
-  const {
-    id,
-    // name,
-    width,
-    height,
-    text,
-  } = props.data;
+  const { id, width, height, inputs } = props.data;
+  const textInput = {
+    ...inputSchema.textArea,
+    ...inputs.filter((i) => i.label === "Text")[0],
+  };
   return (
     <div
       key={id}
@@ -23,7 +23,7 @@ const NotepadPage = (props) => {
           className="postit bg-contain"
           style={{ backgroundImage: `url(${postIt1})` }}
         >
-          {text}
+          {textInput.value}
         </div>
 
         <div className="order-controls">

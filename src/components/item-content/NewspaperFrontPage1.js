@@ -2,11 +2,24 @@ import React from "react";
 import paperTexture from "../../assets/img/paper-texture-1.png";
 import { splitText } from "../../utils/utils";
 import "./Items.css";
+import { inputs } from "../../data/item-schema";
+const inputSchema = { ...inputs };
 
 const NewspaperFrontPage1 = (props) => {
   const { handleContentClick, handleMoveToFront, handleMoveToBack } = props;
-  const { id, width, height, headline, text, imageURL } = props.data;
-
+  const { id, width, height, inputs } = props.data;
+  const headlineInput = {
+    ...inputSchema.text,
+    ...inputs.filter((i) => i.label === "Headline")[0],
+  };
+  const textInput = {
+    ...inputSchema.textArea,
+    ...inputs.filter((i) => i.label === "Text")[0],
+  };
+  const imageInput = {
+    ...inputSchema.image,
+    ...inputs.filter((i) => i.label === "Image")[0],
+  };
   return (
     <div key={id} id={id} className={`content`} onClick={handleContentClick}>
       <div style={{ width, height, fontSize: `${height * 0.1}px` }}>
@@ -34,15 +47,17 @@ const NewspaperFrontPage1 = (props) => {
             <div>Wednesday, November 24th, 1935</div>
             <div style={{ marginRight: "1em" }}>Price: 10¢</div>
           </div>
-          <div className="newspaper-front-1-headline">{headline || ""}</div>
+          <div className="newspaper-front-1-headline">
+            {headlineInput.value || ""}
+          </div>
           <div className="newspaper-front-1-body">
-            {splitText(text).map((t, i) => (
+            {splitText(textInput.value).map((t, i) => (
               <p key={`${id}-${i}`}>{t}</p>
             ))}
           </div>
           <div
             className="newspaper-front-1-image bg-cover"
-            style={{ backgroundImage: `url(${imageURL})` }}
+            style={{ backgroundImage: `url(${imageInput.value})` }}
           ></div>
         </div>
 

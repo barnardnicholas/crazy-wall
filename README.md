@@ -5,7 +5,7 @@
 ### Now:
 
 API functionality
-Database schema
+Database schema - add input data for editor
 Version notation on item db entries
 
 <!-- Item templates in local data -->

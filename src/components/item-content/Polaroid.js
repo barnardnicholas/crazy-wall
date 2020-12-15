@@ -1,11 +1,20 @@
 import React from "react";
 import polaroidFrame from "../../assets/img/polaroid-frame.png";
 import "./Items.css";
+import { inputs } from "../../data/item-schema";
+const inputSchema = { ...inputs };
 
 const Polaroid = (props) => {
   const { handleContentClick, handleMoveToFront, handleMoveToBack } = props;
-  const { id, name, width, height, imageUrl } = props.data;
-
+  const { id, name, width, height, inputs } = props.data;
+  const imageInput = {
+    ...inputSchema.image,
+    ...inputs.filter((i) => i.label === "Image")[0],
+  };
+  const labelInput = {
+    ...inputSchema.text,
+    ...inputs.filter((i) => i.label === "Label")[0],
+  };
   return (
     <div
       key={id}
@@ -16,13 +25,13 @@ const Polaroid = (props) => {
       <div style={{ width, height, fontSize: `${height * 0.1}px` }}>
         <div
           className="pic-polaroid bg-cover"
-          style={{ backgroundImage: `url(${imageUrl})` }}
+          style={{ backgroundImage: `url(${imageInput.value})` }}
         ></div>
         <div
           className="bg-cover pic-frame-polaroid"
           style={{ backgroundImage: `url(${polaroidFrame})` }}
         ></div>
-        <div className="pic-label-polaroid">{name}</div>
+        <div className="pic-label-polaroid">{labelInput.value}</div>
 
         <div className="order-controls">
           <button onClick={handleMoveToFront}>F</button>

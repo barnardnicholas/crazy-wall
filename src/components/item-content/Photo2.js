@@ -1,9 +1,15 @@
 import React from "react";
 import "./Items.css";
+import { inputs } from "../../data/item-schema";
+const inputSchema = { ...inputs };
 
 const Photo2 = (props) => {
   const { handleContentClick, handleMoveToFront, handleMoveToBack } = props;
-  const { id, width, height, imageUrl } = props.data;
+  const { id, width, height, imageUrl, inputs } = props.data;
+  const imageInput = {
+    ...inputSchema.image,
+    ...inputs.filter((i) => i.label === "Image")[0],
+  };
   return (
     <div
       key={id}
@@ -14,7 +20,7 @@ const Photo2 = (props) => {
       <div style={{ width, height, fontSize: `${height * 0.1}px` }}>
         <div
           className="photo2 bg-cover"
-          style={{ backgroundImage: `url(${imageUrl})` }}
+          style={{ backgroundImage: `url(${imageInput.value})` }}
         ></div>
 
         <div className="order-controls">
