@@ -325,6 +325,7 @@ class Board extends Component {
             writeData: this.writeData,
             writeToTxt: this.writeToTxt,
             handleUpdateItem: this.handleUpdateItem,
+            setEditingItem: this.setEditingItem,
           }}
         />
       </>

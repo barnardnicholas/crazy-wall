@@ -92,7 +92,7 @@ export const note1 = {
     {
       ...inputs.textArea,
       label: "Text",
-      maxLength: 200,
+      maxLength: 500,
       value:
         "Lorem ipsum dolor sit amet, usu mazim iuvaret in, ne eos virtute aliquid, nullam veritus imperdiet duo no. Iusto democritum at eam, pri omnis populo an. Id erat errem ullamcorper vel, vim in regione intellegat.",
     },
@@ -111,7 +111,7 @@ export const postit = {
     {
       ...inputs.textArea,
       label: "Text",
-      maxLength: 60,
+      maxLength: 70,
       value: "Lorem ipsum dolor sit amet",
     },
   ],
@@ -139,7 +139,7 @@ export const newspaperColumn = {
       inputType: "textarea",
       rows: 10,
       cols: 30,
-      maxLength: 400,
+      maxLength: 1000,
       value: [
         "Lorem ipsum dolor sit amet, utroque percipit voluptaria vix an, eum in graeco splendide evertitur, ut vel errem putent. Id sit dico minim habemus, quo augue fastidii ea, ex eos essent adversarium vituperatoribus. In eam tale everti nonumes, vel at iriure equidem rationibus. Fugit omnesque an eum, dico sanctus duo id, est ne autem libris mandamus.",
         "Nec numquam ponderum at. Et possim doctus his, vel recusabo adversarium no, vim ea volutpat elaboraret. Duo no modo blandit percipit, qui falli homero ne, an mazim viderer pro. Cu probo fierent omittantur sea, eum persius disputando ne.",

@@ -10,49 +10,59 @@ class ItemEditor extends Component {
   renderTextInput = (itemInput) => {
     return (
       <div className="item-editor-input">
-        <label>
+        <label for={`item-input-${itemInput.label}-${this.props.item.id}`}>
           {itemInput.label || "Text"}
-          <input
-            type="text"
-            value={this.state[itemInput.label]}
-            onChange={(e) => {
-              this.handleInputChange(e, itemInput.label);
-            }}
-          ></input>
         </label>
+        <input
+          id={`item-input-${itemInput.label}-${this.props.item.id}`}
+          maxlength={itemInput.maxLength}
+          type="text"
+          value={this.state[itemInput.label]}
+          onChange={(e) => {
+            this.handleInputChange(e, itemInput.label);
+          }}
+        ></input>
       </div>
     );
   };
   renderImageInput = (itemInput) => {
     return (
       <div className="item-editor-input">
-        <label>
+        <label for={`item-input-${itemInput.label}-${this.props.item.id}`}>
           {itemInput.label || "Image"}
-          <input
-            type="url"
-            value={this.state[itemInput.label]}
-            onChange={(e) => {
-              this.handleInputChange(e, itemInput.label);
-            }}
-          ></input>
         </label>
+        <div>
+          {itemInput.value ? (
+            <img src={itemInput.value} alt={this.props.item.name} />
+          ) : null}
+        </div>
+        <input
+          id={`item-input-${itemInput.label}-${this.props.item.id}`}
+          type="url"
+          value={this.state[itemInput.label]}
+          onChange={(e) => {
+            this.handleInputChange(e, itemInput.label);
+          }}
+        ></input>
       </div>
     );
   };
   renderTextArea = (itemInput) => {
     return (
       <div className="item-editor-input">
-        <label>
+        <label for={`item-input-${itemInput.label}-${this.props.item.id}`}>
           {itemInput.label || "Text Area"}
-          <textarea
-            rows={itemInput.rows || 10}
-            cols={itemInput.cols || 30}
-            value={this.state[itemInput.label]}
-            onChange={(e) => {
-              this.handleInputChange(e, itemInput.label);
-            }}
-          ></textarea>
         </label>
+        <textarea
+          id={`item-input-${itemInput.label}-${this.props.item.id}`}
+          rows={itemInput.rows || 30}
+          cols={itemInput.cols || 30}
+          maxlength={itemInput.maxLength}
+          value={this.state[itemInput.label]}
+          onChange={(e) => {
+            this.handleInputChange(e, itemInput.label);
+          }}
+        ></textarea>
       </div>
     );
   };
@@ -75,6 +85,10 @@ class ItemEditor extends Component {
     this.setState(newState);
   };
 
+  handleCloseEditor = () => {
+    this.props.setEditingItem(null);
+  };
+
   renderInputs = () => {
     return this.props.item.inputs.map((i) => {
       if (i.inputType === "text") return this.renderTextInput(i);
@@ -84,10 +98,10 @@ class ItemEditor extends Component {
   };
 
   render() {
-    const { name, inputs } = this.props.item;
+    const { name } = this.props.item;
     const inputLabels = Object.keys(this.state);
     return (
-      <div>
+      <div class="item-editor">
         <h4 className="item-editor-title">{name}</h4>
         <form onSubmit={this.formHandler}>
           {/* <label>
@@ -102,6 +116,12 @@ class ItemEditor extends Component {
           {/* {inputLabels.length ? this.renderInputs : null} */}
           {inputLabels.length ? this.renderInputs() : null}
         </form>
+        <button
+          className="item-editor-close-button"
+          onClick={this.handleCloseEditor}
+        >
+          X
+        </button>
       </div>
     );
   }

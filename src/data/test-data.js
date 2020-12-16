@@ -150,6 +150,7 @@ const resetData = {
       inputs: [
         {
           label: "Image",
+          inputType: "image",
           value:
             "https://www.gannett-cdn.com/presto/2019/06/11/USAT/bafed1d8-eda0-457a-8f6b-8fd4f3c421ec-061019-dobby-1280x720.jpg?crop=459,546,x0,y0&width=300&height=357&format=pjpg&auto=webp",
         },
