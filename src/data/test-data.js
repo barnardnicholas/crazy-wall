@@ -108,6 +108,7 @@ const resetData = {
         {
           label: "Text",
           maxLength: 200,
+          inputType: "textarea",
           value:
             "Lorem ipsum dolor sit amet, usu mazim iuvaret in, ne eos virtute aliquid, nullam veritus imperdiet duo no. Iusto democritum at eam, pri omnis populo an. Id erat errem ullamcorper vel, vim in regione intellegat.",
         },
@@ -126,6 +127,7 @@ const resetData = {
       inputs: [
         {
           label: "Text",
+          inputType: "text",
           maxLength: 60,
           value: "Lorem ipsum dolor sit amet",
         },

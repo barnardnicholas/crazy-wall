@@ -5,7 +5,12 @@ import { inputs } from "../../data/item-schema";
 const inputSchema = { ...inputs };
 
 const NotepadPage = (props) => {
-  const { handleContentClick, handleMoveToFront, handleMoveToBack } = props;
+  const {
+    handleContentClick,
+    handleMoveToFront,
+    handleMoveToBack,
+    handleToggleEditItem,
+  } = props;
   const { id, width, height, inputs } = props.data;
   const textInput = {
     ...inputSchema.textArea,
@@ -29,6 +34,14 @@ const NotepadPage = (props) => {
         <div className="order-controls">
           <button onClick={handleMoveToFront}>F</button>
           <button onClick={handleMoveToBack}>B</button>
+          <button
+            onClick={() => {
+              console.log(id);
+              handleToggleEditItem(id);
+            }}
+          >
+            Edit
+          </button>
         </div>
       </div>
     </div>

@@ -22,7 +22,7 @@ export const inputs = {
 };
 
 const item = {
-  uid: null,
+  id: null,
   type: null,
   left: 0,
   top: 0,

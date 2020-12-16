@@ -6,7 +6,12 @@ import { inputs } from "../../data/item-schema";
 const inputSchema = { ...inputs };
 
 const NewspaperColumn = (props) => {
-  const { handleContentClick, handleMoveToFront, handleMoveToBack } = props;
+  const {
+    handleContentClick,
+    handleMoveToFront,
+    handleMoveToBack,
+    handleToggleEditItem,
+  } = props;
   const { id, width, height, inputs } = props.data;
   const headlineInput = {
     ...inputSchema.text,
@@ -36,6 +41,14 @@ const NewspaperColumn = (props) => {
         <div className="order-controls">
           <button onClick={handleMoveToFront}>F</button>
           <button onClick={handleMoveToBack}>B</button>
+          <button
+            onClick={() => {
+              console.log(id);
+              handleToggleEditItem(id);
+            }}
+          >
+            Edit
+          </button>
         </div>
       </div>
     </div>

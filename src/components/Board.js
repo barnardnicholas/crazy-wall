@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import "react-rotatable/dist/css/rotatable.min.css";
 import BoardItem from "./BoardItem";
-import { moveToFront, moveToBack } from "../utils/utils";
+import { moveToFront, moveToBack, replaceItem } from "../utils/utils";
 import { Space } from "react-zoomable-ui";
 import { timestamp } from "timestamp";
 import * as schema from "../data/item-schema";
@@ -60,6 +60,14 @@ class Board extends Component {
   setActiveItem = (id) => {
     if (this.state.activeItem !== id) this.setState({ activeItem: id });
     else if (!id) this.setState({ activeItem: null });
+  };
+
+  setEditingItem = (id) => {
+    if (this.state.editingItem !== id) {
+      this.setState({ editingItem: id });
+    } else {
+      this.setState({ editingItem: null });
+    }
   };
 
   handleContentClick = (id) => {
@@ -155,11 +163,11 @@ class Board extends Component {
     );
   };
 
-  handleToggleEditItem = (item) => {
-    console.log(item.id, this.state.editingItem);
-    if (this.state.editingItem !== item.id) {
+  handleToggleEditItem = (id) => {
+    // console.log(item.id, this.state.editingItem);
+    if (this.state.editingItem !== id) {
       this.setState({
-        editingItem: item.id,
+        editingItem: id,
       });
     } else {
       this.setState({
@@ -168,9 +176,20 @@ class Board extends Component {
     }
   };
 
+  handleUpdateItem = (item) => {
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        items: replaceItem(prevState.items, item),
+      };
+    });
+  };
+
   handleBoardClick = (e) => {
-    // console.log(e);
-    if (e.target.className === "board") this.setActiveItem(null);
+    if (e.target.className === "board") {
+      this.setActiveItem(null);
+      this.setEditingItem(null);
+    }
     this.setState({ lastInteraction: timestamp() });
   };
 
@@ -252,9 +271,7 @@ class Board extends Component {
                         handleMoveToBack={() => {
                           this.handleMoveToBack(item);
                         }}
-                        handleToggleEditItem={() => {
-                          this.handleToggleEditItem(item);
-                        }}
+                        handleToggleEditItem={this.handleToggleEditItem}
                         zoomFactor={this.state.zoomFactor}
                       />
                     </>
@@ -307,6 +324,7 @@ class Board extends Component {
             resetData: this.resetData,
             writeData: this.writeData,
             writeToTxt: this.writeToTxt,
+            handleUpdateItem: this.handleUpdateItem,
           }}
         />
       </>

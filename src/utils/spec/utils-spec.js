@@ -1,6 +1,7 @@
 const {
   moveToFront,
   moveToBack,
+  replaceItem,
   splitText,
   calcThreadAngle,
   calcThreadLength,
@@ -157,6 +158,74 @@ describe("moveToBack", () => {
   });
   it("Returns an array with all other items in their original order", () => {
     const actualResult = moveToBack(testItems, itemToMove);
+    const otherTestItems = testItems.filter(
+      (item) => item.id !== itemToMove.id
+    );
+    const otherResultItems = actualResult.slice(1);
+    expect(otherTestItems).to.eql(otherResultItems);
+  });
+});
+
+describe.only("replaceItem", () => {
+  it("Returns an array", () => {
+    const actualResult = replaceItem(testItems, itemToMove);
+    expect(actualResult).to.be.an("array");
+  });
+  it("Does not mutate original array", () => {
+    const arrayCopy = [...testItems];
+    expect(arrayCopy).to.eql(testItems);
+  });
+  it("Returns an array containing the specified item", () => {
+    const actualResult = replaceItem(testItems, itemToMove);
+    let result = false;
+    actualResult.forEach((item) => {
+      if (
+        item.type === "photo" &&
+        item.imageUrl ===
+          "https://www.telegraph.co.uk/content/dam/Pets/spark/royal-canin/happy-puppy-xlarge.jpg?imwidth=1200" &&
+        item.left === 400 &&
+        item.top === 400 &&
+        item.width === 450 &&
+        item.height === 547 &&
+        item.angle === 355 &&
+        item.aspect === 0.823 &&
+        item.name === "Puppy 1" &&
+        item.id === "puppy1" &&
+        item.zIndex === 2
+      )
+        result = true;
+    });
+    expect(result).to.equal(true);
+  });
+  it("Returns an array containing all original items", () => {
+    const actualResult = replaceItem(testItems, itemToMove);
+    testItems.forEach((item) => {
+      let result = false;
+      actualResult.forEach((res) => {
+        if (
+          item.type === res.type &&
+          item.imageUrl === res.imageUrl &&
+          item.left === res.left &&
+          item.top === res.top &&
+          item.width === res.width &&
+          item.height === res.height &&
+          item.angle === res.angle &&
+          item.aspect === res.aspect &&
+          item.name === res.name &&
+          item.id === res.id &&
+          item.zIndex === res.zIndex
+        )
+          result = true;
+      });
+      expect(result).to.equal(true);
+    });
+  });
+  it("Returns an array with the specified item at the far end", () => {
+    const actualResult = replaceItem(testItems, itemToMove);
+    expect(actualResult[0]).to.eql(itemToMove);
+  });
+  it("Returns an array with all other items in their original order", () => {
+    const actualResult = replaceItem(testItems, itemToMove);
     const otherTestItems = testItems.filter(
       (item) => item.id !== itemToMove.id
     );
@@ -346,7 +415,7 @@ const testPinItem = {
 // centre of item (absolute) = {top: 673.5, left: 625}
 // distance from center to pin: 263.5
 
-describe.only("getPinOffset", () => {
+describe("getPinOffset", () => {
   it("returns an object with correct keys and value types", () => {
     const actual = getPinOffset(testPinItem);
     expect(actual).to.be.an("object");

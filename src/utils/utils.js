@@ -8,6 +8,22 @@ const moveToBack = (items, item) => {
   return [item, ...items.filter((i) => i.id !== item.id)];
 };
 
+// Replace item in place in array
+const replaceItem = (items, item) => {
+  let itemIndex;
+  items.forEach((i, idx) => {
+    if (i.id === item.id) itemIndex = idx;
+  });
+  if (itemIndex === 0) return [item, ...items.filter((i) => i.id !== item.id)];
+  else if (itemIndex >= items.length - 1)
+    return [...items.filter((i) => i.id !== item.id), item];
+  else {
+    let itemsBefore = items.slice(0, itemIndex);
+    let itemsAfter = items.slice(itemIndex + 1);
+    return [...itemsBefore, item, ...itemsAfter];
+  }
+};
+
 const splitText = (text) => {
   return text.split("\r\n");
 };
@@ -61,6 +77,7 @@ const getPinOffset = (item) => {
 // module.exports = {
 //   moveToFront,
 //   moveToBack,
+//   replaceItem,
 //   splitText,
 //   calcThreadAngle,
 //   calcThreadLength,
@@ -69,6 +86,7 @@ const getPinOffset = (item) => {
 export {
   moveToFront,
   moveToBack,
+  replaceItem,
   splitText,
   calcThreadAngle,
   calcThreadLength,

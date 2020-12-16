@@ -41,7 +41,14 @@ const Polaroid = (props) => {
         <div className="order-controls">
           <button onClick={handleMoveToFront}>F</button>
           <button onClick={handleMoveToBack}>B</button>
-          <button onClick={handleToggleEditItem}>Edit</button>
+          <button
+            onClick={() => {
+              console.log(id);
+              handleToggleEditItem(id);
+            }}
+          >
+            Edit
+          </button>
         </div>
         {/* <div className="item-edit-button">...</div> */}
       </div>

@@ -384,6 +384,19 @@ article {
   border-left: 1px solid #515151;
   transition: 0.2s all;
   font-size: 12px;
+  padding: 1em;
+}
+
+.item-editor-input {
+  padding: 0.5em 0;
+}
+
+.item-editor-input input {
+  margin-left: 0.5em;
+}
+
+.item-editor-title {
+  margin-bottom: 0.5em;
 }
 
 .board {
