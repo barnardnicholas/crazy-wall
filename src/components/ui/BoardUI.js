@@ -8,7 +8,7 @@ const BoardUI = (props) => {
   const { resetData, writeData, writeToTxt } = props.handlers;
   const { state } = props;
   const renderSidebar = () => {
-    const thisItem = state.items.filter((i) => i.id === state.activeItem)[0];
+    const thisItem = state.items.filter((i) => i.id === state.editingItem)[0];
     return (
       <Sidebar>
         <ItemEditor item={thisItem} />
@@ -17,7 +17,7 @@ const BoardUI = (props) => {
   };
   return (
     <>
-      {state.activeItem ? renderSidebar() : null}
+      {state.editingItem ? renderSidebar() : null}
 
       <div className="header">
         <Link to="/" className="app-title">

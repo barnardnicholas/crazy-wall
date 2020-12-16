@@ -28,6 +28,7 @@ class Board extends Component {
       lastInteraction: 0,
       dataLoaded: false,
       activeItem: null,
+      editingItem: null,
       centerX: 691,
       centerY: 432,
       items: [],
@@ -154,6 +155,19 @@ class Board extends Component {
     );
   };
 
+  handleToggleEditItem = (item) => {
+    console.log(item.id, this.state.editingItem);
+    if (this.state.editingItem !== item.id) {
+      this.setState({
+        editingItem: item.id,
+      });
+    } else {
+      this.setState({
+        editingItem: null,
+      });
+    }
+  };
+
   handleBoardClick = (e) => {
     // console.log(e);
     if (e.target.className === "board") this.setActiveItem(null);
@@ -237,6 +251,9 @@ class Board extends Component {
                         }}
                         handleMoveToBack={() => {
                           this.handleMoveToBack(item);
+                        }}
+                        handleToggleEditItem={() => {
+                          this.handleToggleEditItem(item);
                         }}
                         zoomFactor={this.state.zoomFactor}
                       />

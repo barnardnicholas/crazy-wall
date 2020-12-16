@@ -5,7 +5,12 @@ import { inputs } from "../../data/item-schema";
 const inputSchema = { ...inputs };
 
 const Polaroid = (props) => {
-  const { handleContentClick, handleMoveToFront, handleMoveToBack } = props;
+  const {
+    handleContentClick,
+    handleMoveToFront,
+    handleMoveToBack,
+    handleToggleEditItem,
+  } = props;
   const { id, name, width, height, inputs } = props.data;
   const imageInput = {
     ...inputSchema.image,
@@ -36,7 +41,9 @@ const Polaroid = (props) => {
         <div className="order-controls">
           <button onClick={handleMoveToFront}>F</button>
           <button onClick={handleMoveToBack}>B</button>
+          <button onClick={handleToggleEditItem}>Edit</button>
         </div>
+        {/* <div className="item-edit-button">...</div> */}
       </div>
     </div>
   );

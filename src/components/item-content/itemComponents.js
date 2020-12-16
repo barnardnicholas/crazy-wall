@@ -15,6 +15,7 @@ const itemComponents = {
         handleContentClick={props.handleContentClick}
         handleMoveToFront={props.handleMoveToFront}
         handleMoveToBack={props.handleMoveToBack}
+        handleToggleEditItem={props.handleToggleEditItem}
       />
       // </Suspense>
     );
