@@ -82,7 +82,7 @@ export const photo2 = {
     {
       ...inputs.image,
       label: "Image",
-      value: "src/assets/img/Light-Chequerboard.svg",
+      value: chequerboard,
     },
   ],
   width: 203, // 10.16cm x 20px = 203px
@@ -195,7 +195,7 @@ export const newspaperFrontPage1 = {
     {
       label: "Image",
       inputType: "image",
-      value: "src/assets/img/Light-Chequerboard.svg",
+      value: chequerboard,
     },
   ],
 };
