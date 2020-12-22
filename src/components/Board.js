@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 // import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import "react-rotatable/dist/css/rotatable.min.css";
 import BoardItem from "./BoardItem";
@@ -43,7 +43,8 @@ class Board extends Component {
 
   readData = () => {
     if (localStorage.puppyState) {
-      const newState = JSON.parse(localStorage.puppyState);
+      // const newState = JSON.parse(localStorage.puppyState);
+      const newState = { ...resetData };
       newState.dataLoaded = true;
       this.setState(newState);
     }
@@ -193,9 +194,86 @@ class Board extends Component {
     this.setState({ lastInteraction: timestamp() });
   };
 
+  renderItems() {
+    if (this.state.dataLoaded) {
+      return this.state.items.map((i, idx) => {
+        const item = { ...schema[i.type], ...i };
+        const shadowStyle = {
+          top: `${item.top + 4}px`,
+          left: `${item.left + 4}px`,
+          width: `${item.width}px`,
+          height: `${item.height}px`,
+          transform: `rotate(${item.angle}deg)`,
+          background: `rgba(0,0,0,0.33)`,
+          position: "absolute",
+        };
+        return (
+          <Fragment key={`item-${idx}-${item.id}`}>
+            <div style={shadowStyle}></div>
+            <BoardItem
+              data={item}
+              zIndex={item.zIndex}
+              aspect={item.aspect}
+              active={this.state.activeItem === item.id ? true : false}
+              handleContentClick={() => {
+                this.handleContentClick(item.id);
+              }}
+              handleDrag={this.handleDrag}
+              handleDragEnd={this.handleDragEnd}
+              handleResize={this.handleResize}
+              handleResizeEnd={this.handleResizeEnd}
+              handleRotate={this.handleRotate}
+              handleRotateEnd={this.handleRotateEnd}
+              handleMoveToFront={() => {
+                this.handleMoveToFront(item);
+              }}
+              handleMoveToBack={() => {
+                this.handleMoveToBack(item);
+              }}
+              handleToggleEditItem={this.handleToggleEditItem}
+              zoomFactor={this.state.zoomFactor}
+            />
+          </Fragment>
+        );
+      });
+    } else {
+      return null;
+    }
+  }
+
+  renderThreads() {
+    if (this.state.threads.length && this.state.items.length) {
+      return this.state.threads.map((thread, idx) => {
+        const startId = thread[0];
+        const endId = thread[1];
+        const startIndex = this.state.items.map((i) => i.id).indexOf(startId);
+        const endIndex = this.state.items.map((i) => i.id).indexOf(endId);
+        const startItem = this.state.items[startIndex];
+        const endItem = this.state.items[endIndex];
+        return (
+          <Thread
+            key={`thread-${idx}-${thread[0]}-${thread[1]}`}
+            startItem={startItem}
+            endItem={endItem}
+          />
+        );
+      });
+    } else {
+      return null;
+    }
+  }
+
+  renderPins() {
+    if (this.state.items.length) {
+      return this.state.items.map((item, idx) => {
+        return <Pin key={`pin-${idx}-${item.id}`} item={item} />;
+      });
+    } else return null;
+  }
+
   render() {
     return (
-      <>
+      <Fragment>
         <Space
           // style={{ backgroundColor: "black" }}
           innerDivStyle={{ width: 10000, height: 10000 }}
@@ -230,90 +308,17 @@ class Board extends Component {
               if (e.target.className === "board") this.setActiveItem(null);
             }}
           >
-            <div key={"origin"} className="origin">
+            <div className="origin">
               <div>ORIGIN</div>
+
               {/* Load items */}
-              {this.state.dataLoaded ? (
-                this.state.items.map((i, idx) => {
-                  const item = { ...schema[i.type], ...i };
-                  const shadowStyle = {
-                    top: `${item.top + 4}px`,
-                    left: `${item.left + 4}px`,
-                    width: `${item.width}px`,
-                    height: `${item.height}px`,
-                    transform: `rotate(${item.angle}deg)`,
-                    background: `rgba(0,0,0,0.33)`,
-                    position: "absolute",
-                  };
-                  return (
-                    <>
-                      <div style={shadowStyle}></div>
-                      <BoardItem
-                        key={`item-${idx}-${item.id}`}
-                        data={item}
-                        zIndex={item.zIndex}
-                        aspect={item.aspect}
-                        active={
-                          this.state.activeItem === item.id ? true : false
-                        }
-                        handleContentClick={() => {
-                          this.handleContentClick(item.id);
-                        }}
-                        handleDrag={this.handleDrag}
-                        handleDragEnd={this.handleDragEnd}
-                        handleResize={this.handleResize}
-                        handleResizeEnd={this.handleResizeEnd}
-                        handleRotate={this.handleRotate}
-                        handleRotateEnd={this.handleRotateEnd}
-                        handleMoveToFront={() => {
-                          this.handleMoveToFront(item);
-                        }}
-                        handleMoveToBack={() => {
-                          this.handleMoveToBack(item);
-                        }}
-                        handleToggleEditItem={this.handleToggleEditItem}
-                        zoomFactor={this.state.zoomFactor}
-                      />
-                    </>
-                  );
-                })
-              ) : (
-                <></>
-              )}
+              {this.renderItems()}
 
               {/* Load Threads */}
-              {this.state.items.length ? (
-                this.state.threads.map((thread, idx) => {
-                  const startId = thread[0];
-                  const endId = thread[1];
-                  const startIndex = this.state.items
-                    .map((i) => i.id)
-                    .indexOf(startId);
-                  const endIndex = this.state.items
-                    .map((i) => i.id)
-                    .indexOf(endId);
-                  const startItem = this.state.items[startIndex];
-                  const endItem = this.state.items[endIndex];
-                  return (
-                    <Thread
-                      key={`thread-${idx}-${thread[0]}-${thread[1]}`}
-                      startItem={startItem}
-                      endItem={endItem}
-                    />
-                  );
-                })
-              ) : (
-                <></>
-              )}
+              {this.renderThreads()}
 
               {/* Load Pins */}
-              {this.state.items.length ? (
-                this.state.items.map((item, idx) => {
-                  return <Pin key={`pin-${idx}-${item.id}`} item={item} />;
-                })
-              ) : (
-                <></>
-              )}
+              {this.renderPins()}
             </div>
           </div>
         </Space>
@@ -328,7 +333,7 @@ class Board extends Component {
             setEditingItem: this.setEditingItem,
           }}
         />
-      </>
+      </Fragment>
     );
   }
 
@@ -339,7 +344,7 @@ class Board extends Component {
 
   componentWillUnmount() {
     const { activeItem, ...prevState } = this.state;
-    this.writeData({ ...prevState, activeItem: null });
+    this.writeData({ ...prevState, activeItem: null, editingItem: null });
   }
 }
 

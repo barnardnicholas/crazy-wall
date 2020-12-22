@@ -5,6 +5,7 @@ import "./App.css";
 import ItemBuilder from "./components/ItemBuilder";
 import ThreadTests from "./components/ThreadTests";
 import * as apiLocal from "./utils/api-local";
+import ErrorPage from "./components/ErrorPage";
 
 const App = () => {
   // apiLocal
@@ -21,6 +22,7 @@ const App = () => {
         <Board path="/" />
         <ItemBuilder path="/item-builder" />
         <ThreadTests path="/threadtests" />
+        <ErrorPage default />
       </Router>
     </div>
   );

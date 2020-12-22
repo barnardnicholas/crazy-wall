@@ -1,3 +1,5 @@
+import * as schema from "./item-schema";
+
 const testItems = [
   {
     type: "photo",
@@ -34,22 +36,17 @@ const testItems = [
 ];
 
 const resetData = {
-  lastInteraction: 0,
-  dataLoaded: false,
-  activeItem: null,
-  editingItem: null,
-  centerX: 691,
-  centerY: 432,
-  zoomFactor: 0.66,
+  ...schema.board,
   items: [
     {
-      type: "photo1",
+      ...schema.photo1,
+      // type: "photo1",
       left: -457,
       top: -384,
       angle: 355,
       name: "Puppy 1",
       id: "puppy1",
-      zIndex: 2,
+      // zIndex: 2,
       pinAngle: 180,
       pinColor: "red",
       inputs: [
@@ -69,7 +66,8 @@ const resetData = {
       ],
     },
     {
-      type: "photo1",
+      ...schema.photo1,
+      // type: "photo1",
       left: 197,
       top: -365,
       angle: 25,
@@ -95,7 +93,8 @@ const resetData = {
       ],
     },
     {
-      type: "note1",
+      ...schema.note1,
+      // type: "note1",
       left: -424,
       top: 17,
       angle: 5,
@@ -115,7 +114,8 @@ const resetData = {
       ],
     },
     {
-      type: "postit",
+      ...schema.postit,
+      // type: "postit",
       left: -95,
       top: -282,
       angle: 350,
@@ -134,7 +134,8 @@ const resetData = {
       ],
     },
     {
-      type: "photo2",
+      ...schema.photo2,
+      // type: "photo2",
       id: "photo2-1",
       left: 128,
       top: 10,
@@ -157,14 +158,15 @@ const resetData = {
       ],
     },
     {
-      type: "newspaperColumn",
+      ...schema.newspaperColumn,
+      // type: "newspaperColumn",
       left: -50,
       top: 112,
       height: 420, // user-resizeable
       angle: 0,
       name: "Newspaper Column",
       id: "newspaper-column-1",
-      zIndex: 1,
+      // zIndex: 1,
       pinAngle: 70,
       pinColor: "green",
       inputs: [
@@ -188,7 +190,8 @@ const resetData = {
       ],
     },
     {
-      type: "newspaperFrontPage1",
+      ...schema.newspaperFrontPage1,
+      // type: "newspaperFrontPage1",
       left: 345,
       top: -198,
       angle: 345,

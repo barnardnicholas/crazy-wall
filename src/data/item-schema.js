@@ -1,3 +1,15 @@
+export const board = {
+  lastInteraction: 0,
+  dataLoaded: false,
+  activeItem: null,
+  editingItem: null,
+  centerX: 691,
+  centerY: 432,
+  zoomFactor: 0.66,
+  items: [],
+  threads: [],
+};
+
 export const inputs = {
   text: {
     label: "Text",
