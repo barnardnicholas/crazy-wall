@@ -385,7 +385,7 @@ article {
 .sidebar {
   position: fixed;
   height: calc(100vh - 30px);
-  width: 300px;
+
   background-color: #222222;
   right: 0;
   top: 30px;
@@ -397,6 +397,7 @@ article {
 
 .item-editor {
   text-align: left;
+  width: 240px;
 }
 
 .item-editor label {

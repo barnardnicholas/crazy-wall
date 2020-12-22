@@ -2,6 +2,7 @@ import React from "react";
 import HeaderButton from "./HeaderButton";
 import { Link } from "@reach/router";
 import ItemEditor from "./ItemEditor";
+import ItemAdder from "./ItemAdder";
 import Sidebar from "./Sidebar";
 
 const BoardUI = (props) => {
@@ -11,30 +12,53 @@ const BoardUI = (props) => {
     writeToTxt,
     handleUpdateItem,
     setEditingItem,
+    addNewItem,
   } = props.handlers;
   const { state } = props;
-  const renderSidebar = () => {
+
+  const renderItemEditor = () => {
+    const thisItem = state.items.filter((i) => i.id === state.editingItem)[0];
+    if (thisItem) {
+      return (
+        <Sidebar>
+          <ItemEditor
+            item={thisItem}
+            handleUpdateItem={handleUpdateItem}
+            setEditingItem={setEditingItem}
+          />
+        </Sidebar>
+      );
+    } else return null;
+  };
+
+  const renderItemAdder = () => {
     const thisItem = state.items.filter((i) => i.id === state.editingItem)[0];
     return (
       <Sidebar>
-        <ItemEditor
+        <ItemAdder
           item={thisItem}
-          handleUpdateItem={handleUpdateItem}
+          addNewItem={addNewItem}
           setEditingItem={setEditingItem}
         />
       </Sidebar>
     );
   };
+
+  const renderSideBar = () => {
+    if (state.editMode === "editItem") return renderItemEditor();
+    else if (state.editMode === "addItem") return renderItemAdder();
+  };
+
   return (
     <>
-      {state.editingItem ? renderSidebar() : null}
+      {renderSideBar()}
 
       <div className="header">
         <Link to="/" className="app-title">
           Crazy Wall
         </Link>
         <HeaderButton
-          onClick={() => {
+          handler={() => {
             writeData(state);
           }}
         >
@@ -42,11 +66,26 @@ const BoardUI = (props) => {
         </HeaderButton>
         <HeaderButton onClick={resetData}>Reset Data</HeaderButton>
         <HeaderButton
-          onClick={() => {
+          handler={() => {
             writeToTxt();
           }}
         >
           Save
+        </HeaderButton>
+
+        <HeaderButton
+          handler={() => {
+            addNewItem("postit", 0, 0);
+          }}
+        >
+          Add PostIt
+        </HeaderButton>
+        <HeaderButton
+          handler={() => {
+            addNewItem("photo1", 0, 0);
+          }}
+        >
+          Add Polaroid
         </HeaderButton>
       </div>
     </>

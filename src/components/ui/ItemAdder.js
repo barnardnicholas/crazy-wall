@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class ItemEditor extends Component {
+class ItemAdder extends Component {
   state = {};
 
   formHandler = (e) => {
@@ -98,7 +98,7 @@ class ItemEditor extends Component {
   };
 
   render() {
-    const { name } = this.props.item || { name: null };
+    const { name } = this.props.item;
     const inputLabels = Object.keys(this.state);
     return (
       <div class="item-editor">
@@ -143,4 +143,4 @@ class ItemEditor extends Component {
   }
 }
 
-export default ItemEditor;
+export default ItemAdder;

@@ -1,6 +1,8 @@
+import chequerboard from "../assets/img/Light-Chequerboard.svg";
 export const board = {
   lastInteraction: 0,
   dataLoaded: false,
+  editMode: null,
   activeItem: null,
   editingItem: null,
   centerX: 691,
@@ -57,7 +59,7 @@ export const photo1 = {
     {
       ...inputs.image,
       label: "Image",
-      value: "src/assets/img/Light-Chequerboard.svg",
+      value: chequerboard,
     },
     {
       ...inputs.text,
@@ -68,7 +70,7 @@ export const photo1 = {
   width: 180, // 9cm x 20px = 180px
   height: 219, //10.94cm x 20px = 218.8px
   aspect: 0.823,
-  name: "Puppy 1",
+  name: "Polaroid",
   zIndex: 2,
   pinOffsetTop: 10,
   pinOffsetLeft: 90,

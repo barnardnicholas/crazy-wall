@@ -12,14 +12,7 @@ import Pin from "./item-content/Pin";
 import Overlay from "./Overlay";
 import BoardUI from "./ui/BoardUI";
 import { uid } from "uid";
-// or: import { uid } from 'uid/secure';
-// or: import { uid } from 'uid/single';
 
-// length = 11 (default)
-// console.log(uid()); //=> 'fsm2vsgo1pr'
-// console.log(uid()); //=> 'gf34sezvoh6'
-
-console.dir(resetData);
 // const transformWrapperOptions = {
 //   disabled: false,
 // };
@@ -37,6 +30,7 @@ class Board extends Component {
       dataLoaded: false,
       activeItem: null,
       editingItem: null,
+      editMode: null,
       centerX: 691,
       centerY: 432,
       items: [],
@@ -73,9 +67,20 @@ class Board extends Component {
 
   setEditingItem = (id) => {
     if (this.state.editingItem !== id) {
-      this.setState({ editingItem: id });
+      this.setState({ editingItem: id, editMode: "editItem" });
     } else {
-      this.setState({ editingItem: null });
+      this.setState({ editingItem: null, editMode: null });
+    }
+  };
+
+  addNewItem = (type, top, left) => {
+    if (schema[type]) {
+      const newItems = [...this.state.items];
+      let newItem;
+      const newId = uid();
+      newItem = { ...schema[type], top, left, id: newId };
+      newItems.push(newItem);
+      this.setState({ items: newItems, editMode: null, activeItem: newId });
     }
   };
 
@@ -177,10 +182,12 @@ class Board extends Component {
     if (this.state.editingItem !== id) {
       this.setState({
         editingItem: id,
+        editMode: "editItem",
       });
     } else {
       this.setState({
         editingItem: null,
+        editMode: null,
       });
     }
   };
@@ -339,6 +346,7 @@ class Board extends Component {
             writeToTxt: this.writeToTxt,
             handleUpdateItem: this.handleUpdateItem,
             setEditingItem: this.setEditingItem,
+            addNewItem: this.addNewItem,
           }}
         />
       </Fragment>

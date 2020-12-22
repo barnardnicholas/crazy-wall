@@ -36,7 +36,7 @@ const NotepadPage = (props) => {
           <button onClick={handleMoveToBack}>B</button>
           <button
             onClick={() => {
-              console.log(id);
+              console.log(handleToggleEditItem);
               handleToggleEditItem(id);
             }}
           >
