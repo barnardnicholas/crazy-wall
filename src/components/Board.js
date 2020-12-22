@@ -11,7 +11,15 @@ import Thread from "./item-content/Thread";
 import Pin from "./item-content/Pin";
 import Overlay from "./Overlay";
 import BoardUI from "./ui/BoardUI";
+import { uid } from "uid";
+// or: import { uid } from 'uid/secure';
+// or: import { uid } from 'uid/single';
 
+// length = 11 (default)
+// console.log(uid()); //=> 'fsm2vsgo1pr'
+// console.log(uid()); //=> 'gf34sezvoh6'
+
+console.dir(resetData);
 // const transformWrapperOptions = {
 //   disabled: false,
 // };

@@ -44,8 +44,8 @@ const resetData = {
       left: -457,
       top: -384,
       angle: 355,
-      name: "Puppy 1",
-      id: "puppy1",
+      // name: "Puppy 1",
+      id: "a7243d6255b",
       // zIndex: 2,
       pinAngle: 180,
       pinColor: "red",
@@ -71,9 +71,9 @@ const resetData = {
       left: 197,
       top: -365,
       angle: 25,
-      name: "Puppy 2",
-      id: "puppy2",
-      zIndex: 1,
+      // name: "Puppy 2",
+      id: "7243d6255b1",
+      // zIndex: 1,
       pinAngle: 90,
       pinColor: "green",
       inputs: [
@@ -98,9 +98,9 @@ const resetData = {
       left: -424,
       top: 17,
       angle: 5,
-      name: "Note",
-      id: "note1",
-      zIndex: 1,
+      // name: "Note",
+      id: "243d6255b17",
+      // zIndex: 1,
       pinAngle: 53,
       pinColor: "yellow",
       inputs: [
@@ -119,9 +119,9 @@ const resetData = {
       left: -95,
       top: -282,
       angle: 350,
-      name: "Post-It",
-      id: "postit1",
-      zIndex: 1,
+      // name: "Post-It",
+      id: "43d6255b170",
+      // zIndex: 1,
       pinAngle: 20,
       pinColor: "red",
       inputs: [
@@ -136,15 +136,15 @@ const resetData = {
     {
       ...schema.photo2,
       // type: "photo2",
-      id: "photo2-1",
+      id: "3d6255b1704",
       left: 128,
       top: 10,
-      width: 203, // 10.16cm x 20px = 203px
-      height: 305, //15.24cm x 20px = 305px
+      // width: 203, // 10.16cm x 20px = 203px
+      // height: 305, //15.24cm x 20px = 305px
       angle: 355,
       aspect: 0.666,
-      name: "B&W Photo 1",
-      zIndex: 2,
+      // name: "B&W Photo 1",
+      // zIndex: 2,
       pinColor: "red",
       pinTop: "10px",
       pinLeft: "calc(50% - 10px)",
@@ -164,8 +164,8 @@ const resetData = {
       top: 112,
       height: 420, // user-resizeable
       angle: 0,
-      name: "Newspaper Column",
-      id: "newspaper-column-1",
+      // name: "Newspaper Column",
+      id: "d6255b1704a",
       // zIndex: 1,
       pinAngle: 70,
       pinColor: "green",
@@ -195,9 +195,9 @@ const resetData = {
       left: 345,
       top: -198,
       angle: 345,
-      name: "Newspaper Front Page 1",
-      id: "newspaper-front-1",
-      zIndex: 1,
+      // name: "Newspaper Front Page 1",
+      id: "6255b1704a7",
+      // zIndex: 1,
       pinAngle: 70,
       pinColor: "green",
       inputs: [
@@ -231,13 +231,15 @@ const resetData = {
     },
   ],
   threads: [
-    ["puppy1", "puppy2"],
-    ["puppy2", "newspaper-column-1"],
-    ["puppy2", "newspaper-front-1"],
-    ["newspaper-column-1", "photo2-1"],
-    ["postit1", "note1"],
+    ["a7243d6255b", "7243d6255b1"],
+    ["7243d6255b1", "d6255b1704a"],
+    ["7243d6255b1", "6255b1704a7"],
+    ["d6255b1704a", "3d6255b1704"],
+    ["43d6255b170", "243d6255b17"],
   ],
 };
+
+console.dir(resetData);
 
 // module.exports = { testItems, resetData };
 export { testItems, resetData };
