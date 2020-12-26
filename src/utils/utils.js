@@ -43,15 +43,6 @@ const calcThreadLength = (startTop, startLeft, endTop, endLeft) => {
   return Math.sqrt(Math.pow(dy, 2) + Math.pow(dx, 2));
 };
 
-function rotate(cx, cy, x, y, angle) {
-  var radians = (Math.PI / 180) * angle,
-    cos = Math.cos(radians),
-    sin = Math.sin(radians),
-    nx = cos * (x - cx) + sin * (y - cy) + cx,
-    ny = cos * (y - cy) - sin * (x - cx) + cy;
-  return [nx, ny];
-}
-
 const getPinOffset = (item) => {
   function rotate(cx, cy, x, y, angle) {
     let radians = (Math.PI / 180) * (angle * -1);
@@ -63,6 +54,7 @@ const getPinOffset = (item) => {
   }
   const { top, left, width, height, angle, pinOffsetTop, pinOffsetLeft } = item;
   const pinAtZero = { top: top + pinOffsetTop, left: left + pinOffsetLeft };
+  if (angle > 90 && angle < 270) pinAtZero.top = top + height - pinOffsetTop;
   const center = { top: top + height / 2, left: left + width / 2 };
 
   return rotate(

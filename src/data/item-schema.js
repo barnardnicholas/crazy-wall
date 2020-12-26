@@ -72,7 +72,7 @@ export const photo1 = {
   aspect: 0.823,
   name: "Polaroid",
   zIndex: 2,
-  pinOffsetTop: 10,
+  pinOffsetTop: 20,
   pinOffsetLeft: 90,
 };
 export const photo2 = {
@@ -90,7 +90,7 @@ export const photo2 = {
   aspect: 0.666,
   name: "B&W Photo 1",
   zIndex: 2,
-  pinOffsetTop: 10,
+  pinOffsetTop: 20,
   pinOffsetLeft: 101.5,
 };
 export const note1 = {
@@ -100,7 +100,7 @@ export const note1 = {
   height: 417, // 20.83cm x 20px = 416.6px
   aspect: 0.72,
   name: "Note",
-  pinOffsetTop: 20,
+  pinOffsetTop: 30,
   pinOffsetLeft: 150,
   inputs: [
     {
@@ -119,7 +119,7 @@ export const postit = {
   height: 150, //7.52cm x 20px = 150.4px
   aspect: 1.01,
   name: "Post-It",
-  pinOffsetTop: 13,
+  pinOffsetTop: 23,
   pinOffsetLeft: 76,
   inputs: [
     {
@@ -139,7 +139,7 @@ export const newspaperColumn = {
   aspect: null,
   name: "Newspaper Column",
   zoomable: "s",
-  pinOffsetTop: 5,
+  pinOffsetTop: 15,
   pinOffsetLeft: 75,
   inputs: [
     {
@@ -169,7 +169,7 @@ export const newspaperFrontPage1 = {
   // angle: 0,
   aspect: 1.524,
   name: "Newspaper Front Page 1",
-  pinOffsetTop: 5,
+  pinOffsetTop: 15,
   pinOffsetLeft: 320,
   inputs: [
     {

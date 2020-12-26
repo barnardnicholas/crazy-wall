@@ -2,6 +2,8 @@ import React from "react";
 import * as utils from "../../utils/utils";
 import * as schema from "../../data/item-schema";
 
+// Pin size 20px x 20px
+
 const hues = {
   red: 0,
   green: 90,
@@ -21,7 +23,7 @@ const Pin = (props) => {
       style={{
         filter: `hue-rotate(${hues[pinColor]}deg)`,
         transform: `rotate(${pinAngle}deg)`,
-        top: `${pinOffset.top}px`,
+        top: `${pinOffset.top - 10}px`,
         left: `${pinOffset.left - 10}px`,
       }}
     >

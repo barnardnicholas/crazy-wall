@@ -5,8 +5,8 @@
 ### Now:
 
 API functionality
-Database schema - add input data for editor
 Version notation on item db entries
+pinAngle rotation bug
 
 <!-- Item templates in local data -->
 <!-- Position items relative to center (X:0, y:0) -->
